@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copiar Relatório</title>
+    <style>
+        #popup {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border-radius: 5px;
+            transition: opacity 0.5s;
+        }
+    </style>
+</head>
+<body>
+    <pre id="relatorioFormatado">
+Aqui está seu relatório formatado:
+- Item 1
+- Item 2
+- Item 3
+    </pre>
+    <button id="copiarRelatorio">Copiar Relatório</button>
+
+    <div id="popup">Relatório copiado!</div>
+
+    <script>
+        document.getElementById('copiarRelatorio').addEventListener('click', function() {
+            const relatorio = document.getElementById('relatorioFormatado');
+            const range = document.createRange();
+            range.selectNode(relatorio);
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+
+            // Tenta copiar o conteúdo
+            try {
+                document.execCommand('copy');
+                showPopup();
+            } catch (err) {
+                console.error('Erro ao copiar: ', err);
+            }
+
+            window.getSelection().removeAllRanges(); // Limpa a seleção
+        });
+
+        function showPopup() {
+            const popup = document.getElementById('popup');
+            popup.style.display = 'block';
+            popup.style.opacity = '1';
+
+            setTimeout(() => {
+                popup.style.opacity = '0';
+                setTimeout(() => {
+                    popup.style.display = 'none';
+                }, 500);
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
