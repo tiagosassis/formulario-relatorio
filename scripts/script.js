@@ -64,7 +64,7 @@ addEntregador.addEventListener('click', () => {
 
     newDiv = document.createElement('div')
     newDiv.id = 'div-' + Date.now()
-    newDiv.className = 'entregadores'
+    newDiv.className = 'div-entregadores'
 
     for (let index = 0; index < 4; index++) {
 
