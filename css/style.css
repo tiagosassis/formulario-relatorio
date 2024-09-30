@@ -33,7 +33,7 @@ body{
     padding-top: 25px;
 }
 
-.box{
+.container{
     width: 800px;
     background-color: var(--secuncary-color);
     padding: 15px;
