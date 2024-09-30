@@ -10,11 +10,11 @@
 <body>
     <main class="flex-container">
         <div class="container">
-            <fieldset class="main-container">
-                <legend class="main-legend">Relatorio</legend>
-                <fieldset id="container-entregadores" class="secundary-fieldset">
-                    <legend class="secundary-legend">Entregadores</legend>
-                    <datalist id="datalist-entregadores">
+            <fieldset oninput="UpdateReport(event)">
+                <legend class="primary-legend">Relatorio</legend>
+                <fieldset id="delivery-persons-container" class="secondary-fieldset">
+                    <legend class="secondary-fieldset">Entregadores</legend>
+                    <datalist id="datalist-delivery-person">
                         <option value="Byane">Byane</option>
                         <option value="Guilherme Vieira">Guilherme Vieira</option>
                         <option value="Kaio">Kaio</option>
@@ -22,121 +22,123 @@
                         <option value="João Pedro">João Pedro</option>
                     </datalist>
     
-                    <div id="div-entregador1" class="div-entregadores">
+                    <div class="delivery-person-container">
                         <fieldset>
-                            <label for="id-entregador1">Nome</label>
-                            <input type="text" id="id-entregador1" list="datalist-entregadores" onfocus="ClearInput('id-entregador1')" value="Byane" placeholder="Entregador">
+                            <label for="delivery-person-name-1">Nome</label>
+                            <input type="text" id="delivery-person-name-1" list="datalist-delivery-person" onfocus="ClearInput('delivery-person-name-1')" value="Byane" placeholder="Entregador">
                         </fieldset>
                         <fieldset>
-                            <label for="entregas1">Entregas</label>
-                            <input type="number" id="entregas1" placeholder="Quantidade de entregas">
+                            <label for="deliveries-1">Entregas</label>
+                            <input type="number" id="deliveries-1" placeholder="Quantidade de entregas">
                         </fieldset>
                         <fieldset>
-                            <label for="extra1">Extra</label>
-                            <input type="number" id="extra1" placeholder="Quantidade de Extra">
+                            <label for="extra-1">Extra</label>
+                            <input type="number" id="extra-1" placeholder="Quantidade de Extra">
                         </fieldset>
                         <fieldset>
-                            <label for="consumo1">Consumo</label>
-                            <input type="text" id="consumo1" placeholder="Valor de Consumo">
-                        </fieldset>
-                        <hr>
-                    </div>
-
-                    <div id="div-entregador2" class="div-entregadores">
-                        <fieldset>
-                            <label for="id-entregador2">Nome</label>
-                            <input type="text" id="id-entregador2" list="datalist-entregadores" onfocus="ClearInput('id-entregador2')" value="Guilherme Vieira" placeholder="Entregador">
-                        </fieldset>
-                        <fieldset>
-                            <label for="entregas2">Entregas</label>
-                            <input type="number" id="entregas3" placeholder="Quantidade de entregas">
-                        </fieldset>
-                        <fieldset>
-                            <label for="extra2">Extra</label>
-                            <input type="number" id="extra2" placeholder="Quantidade de Extra">
-                        </fieldset>
-                        <fieldset>
-                            <label for="consumo2">Consumo</label>
-                            <input type="text" id="consumo2" placeholder="Valor de Consumo">
-                        </fieldset>
-                        <hr>
-                    </div>
-    
-                    <div id="div-entregador3" class="div-entregadores">
-                        <fieldset>
-                            <label for="id-entregador3">Nome</label>
-                            <input type="text" id="id-entregador3" list="datalist-entregadores" onfocus="ClearInput('id-entregador3')" value="Kaio" placeholder="Entregador">
-                        </fieldset>
-                        <fieldset>
-                            <label for="entregas3">Entregas</label>
-                            <input type="number" id="entregas3" placeholder="Quantidade de entregas">
-                        </fieldset>
-                        <fieldset>
-                            <label for="extra3">Extra</label>
-                            <input type="number" id="extra3" placeholder="Quantidade de Extra">
-                        </fieldset>
-                        <fieldset>
-                            <label for="consumo3">Consumo</label>
-                            <input type="text" id="consumo3" placeholder="Valor de Consumo">
-                        </fieldset>
-                        <hr>
-                    </div>
-    
-                    <div id="div-entregador4" class="div-entregadores">
-                        <fieldset>
-                            <label for="id-entregador4">Nome</label>
-                            <input type="text" id="id-entregador4" list="datalist-entregadores" onfocus="ClearInput('id-entregador4')" value="João Pedro" placeholder="Entregador">
-                        </fieldset>
-                        <fieldset>
-                            <label for="entregas4">Entregas</label>
-                            <input type="number" id="entregas4" placeholder="Quantidade de entregas">
-                        </fieldset>
-                        <fieldset>
-                            <label for="extra4">Extra</label>
-                            <input type="number" id="extra4" placeholder="Quantidade de Extra">
-                        </fieldset>
-                        <fieldset>
-                            <label for="consumo4">Consumo</label>
-                            <input type="text" id="consumo4" placeholder="Valor de Consumo">
+                            <label for="consumption-1">Consumo</label>
+                            <input type="text" id="consumption-1" placeholder="Valor de Consumo">
                         </fieldset>
                         <hr>
                     </div>
 
-                    <div id="div-entregador5" class="div-entregadores">
+                    <div class="delivery-person-container">
                         <fieldset>
-                            <label for="id-entregador5">Nome</label>
-                            <input type="text" id="id-entregador5" list="datalist-entregadores" onfocus="ClearInput('id-entregador5')" value="Keven" placeholder="Entregador">
+                            <label for="delivery-person-name-2">Nome</label>
+                            <input type="text" id="delivery-person-name-2" list="datalist-delivery-person" onfocus="ClearInput('delivery-person-name-2')" value="Guilherme Vieira" placeholder="Entregador">
                         </fieldset>
                         <fieldset>
-                            <label for="entregas5">Entregas</label>
-                            <input type="number" id="entregas5" placeholder="Quantidade de entregas">
+                            <label for="deliveries-2">Entregas</label>
+                            <input type="number" id="deliveries-2" placeholder="Quantidade de entregas">
                         </fieldset>
                         <fieldset>
-                            <label for="extra5">Extra</label>
-                            <input type="number" id="extra5" placeholder="Quantidade de Extra">
+                            <label for="extra-2">Extra</label>
+                            <input type="number" id="extra-2" placeholder="Quantidade de Extra">
                         </fieldset>
                         <fieldset>
-                            <label for="consumo5">Consumo</label>
-                            <input type="text" id="consumo5" placeholder="Valor de Consumo">
+                            <label for="consumption-2">Consumo</label>
+                            <input type="text" id="consumption-2" placeholder="Valor de Consumo">
                         </fieldset>
                         <hr>
                     </div>
-                    <input type="submit" id="addEntregador" value="Outro Entregador" class="addButton">
+    
+                    <div class="delivery-person-container">
+                        <fieldset>
+                            <label for="delivery-person-name-3">Nome</label>
+                            <input type="text" id="delivery-person-name-3" list="datalist-delivery-person" onfocus="ClearInput('delivery-person-name-3')" value="Kaio" placeholder="Entregador">
+                        </fieldset>
+                        <fieldset>
+                            <label for="deliveries-3">Entregas</label>
+                            <input type="number" id="deliveries-3" placeholder="Quantidade de entregas">
+                        </fieldset>
+                        <fieldset>
+                            <label for="extra-3">Extra</label>
+                            <input type="number" id="extra-3" placeholder="Quantidade de Extra">
+                        </fieldset>
+                        <fieldset>
+                            <label for="consumption-3">Consumo</label>
+                            <input type="text" id="consumption-3" placeholder="Valor de Consumo">
+                        </fieldset>
+                        <hr>
+                    </div>
+    
+                    <div class="delivery-person-container">
+                        <fieldset>
+                            <label for="delivery-person-name-4">Nome</label>
+                            <input type="text" id="delivery-person-name-4" list="datalist-delivery-person" onfocus="ClearInput('delivery-person-name-4')" value="João Pedro" placeholder="Entregador">
+                        </fieldset>
+                        <fieldset>
+                            <label for="deliveries-4">Entregas</label>
+                            <input type="number" id="deliveries-4" placeholder="Quantidade de entregas">
+                        </fieldset>
+                        <fieldset>
+                            <label for="extra-4">Extra</label>
+                            <input type="number" id="extra-4" placeholder="Quantidade de Extra">
+                        </fieldset>
+                        <fieldset>
+                            <label for="consumption-4">Consumo</label>
+                            <input type="text" id="consumption-4" placeholder="Valor de Consumo">
+                        </fieldset>
+                        <hr>
+                    </div>
+
+                    <div class="delivery-person-container">
+                        <fieldset>
+                            <label for="delivery-person-name-5">Nome</label>
+                            <input type="text" id="delivery-person-name-5" list="datalist-delivery-person" onfocus="ClearInput('delivery-person-name-5')" value="Keven" placeholder="Entregador">
+                        </fieldset>
+                        <fieldset>
+                            <label for="deliveries-5">Entregas</label>
+                            <input type="number" id="deliveries-5" placeholder="Quantidade de entregas">
+                        </fieldset>
+                        <fieldset>
+                            <label for="extra-5">Extra</label>
+                            <input type="number" id="extra-5" placeholder="Quantidade de Extra">
+                        </fieldset>
+                        <fieldset>
+                            <label for="consumption-5">Consumo</label>
+                            <input type="text" id="consumption-5" placeholder="Valor de Consumo">
+                        </fieldset>
+                        <hr>
+                    </div>
+                    <input type="submit" id="add-delivery-person" value="Outro Entregador" class="add-button" onclick="AddDeliveryPerson()">
                 </fieldset>
-                <fieldset class="secundary-fieldset" id="relatorio">
+                <fieldset class="secondary-fieldset" id="report">
                     <legend class="main-legend">Relatório</legend>
-                    <div class="copy-content">
+                    <div class="copy-button">
                         <span class="material-symbols-outlined">
                             content_copy
                         </span>
                     </div>
-                    <pre id="relatorioFormatado">
+                    <div id="formatted-report">
                     
-                    </pre>
+                    </div>
                 </fieldset>
             </fieldset>
         </div>
     </main>
+    <div id="popup" class="popup">Relatório copiado!</div>
+
     <script src="scripts/script.js"></script>
 </body>
 </html>

@@ -45,7 +45,7 @@ fieldset{
     padding: 5px 8px 8px 8px;
 }
 
-.secundary-fieldset{
+.secondary-fieldset{
     border: 2px solid var(--primary-color);
     margin-top: 12px;
 }
@@ -58,12 +58,12 @@ legend{
     border-radius: 5px;
 }
 
-.main-legend{
+.primary-legend{
     text-align: center;
     font-size: 1em;
 }
 
-.secundary-legend{
+.secondary-legend{
     text-align: left;
     font-size: .8em;
 }
@@ -81,32 +81,26 @@ label{
     font-size: .9em;
 }
 
-.div-entregadores{
+.delivery-person-container{
     display: flex;
     flex-flow: row wrap;
     justify-content: space-evenly;
 }
 
-.div-entregadores > fieldset{
+.delivery-person-container > fieldset{
     display: flex;
     flex-flow: row nowrap;
     flex: 0 1 48%;
     border: none;
     padding: 2px;
-}
 
-.div-entregadores > fieldset > input{
-    flex: 9 1 50px;
-}
+    & input{
+        flex: 9 1 50px;
+    }
 
-.div-entregadores > fieldset > label{
-    flex: 1 1 50px;
-}
-
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-    /* Remove spinners em navegadores baseados em WebKit (Chrome, Safari) */
-    -webkit-appearance: none;
+    & label{
+        flex: 1 1 50px;
+    }
 }
 
 input[type="number"] {
@@ -114,6 +108,11 @@ input[type="number"] {
     appearance: textfield;
 }
 
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    /* Remove spinners em navegadores baseados em WebKit (Chrome, Safari) */
+    -webkit-appearance: none;
+}
 
 hr{
     border: none;
@@ -124,7 +123,7 @@ hr{
     border-radius: 5px;
 }
 
-.addButton{
+.add-button{
     width: 100%;
     border: none;
     border-radius: 5px;
@@ -136,16 +135,16 @@ hr{
     background-image: linear-gradient(to right,rgb(0, 92, 197), rgb(90, 20, 220));
 }
 
-.addButton:hover{
+.add-button:hover{
     background-image: linear-gradient(to right,rgb(0, 80, 172), rgb(80, 19, 195));
 }
 
-#relatorio{
+#report{
     height: 500px;
     position: relative;
 }
 
-div.copy-content{
+div.copy-button{
     position: absolute;
     top: -12px;
     right: 6px;
@@ -160,11 +159,37 @@ div.copy-content{
     cursor: pointer;
 }
 
-div.copy-content:hover{
+div.copy-button:hover{
     box-shadow: 0px 0px 3px rgba(255, 255, 255, 1);
 }
 
-div.copy-content:active{
+div.copy-button:active{
     box-shadow: 0px 0px 3px rgba(255, 255, 255, 1);
     background-color: #062d49;
 }
+
+.popup {
+    visibility: hidden;
+    width: 250px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 10px;
+    position: fixed;
+    z-index: 1000;
+    right: 20px; /* Alinha à direita */
+    top: 20px; /* Distância do topo */
+    opacity: 0;
+    transition: opacity 0.5s, visibility 0.5s;
+}
+
+.popup.show {
+    visibility: visible;
+    opacity: 1;
+}
+
+div > p {
+    display: inline-block;
+}
+
