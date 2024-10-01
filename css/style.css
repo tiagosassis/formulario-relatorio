@@ -5,10 +5,14 @@
     --secondary-background-color: #1e90ff;
     --body-background: linear-gradient(to right, #1493dc, #113647);
     --text-color: #ffffff;
-    --input-text-color: #000;
+    --input-text-color: #000000;
     --hr-color: rgba(204, 204, 204, 0.5);
     --background-button-color: rgb(0, 92, 197);
     --hover-button-color: rgb(0, 79, 170);
+    --copy-button-background-color: #031725;
+    --copy-button-emphasis-color: rgba(255, 255, 255, 1);
+    --copy-button-background-emphasis-color: #062d49;
+    --popup-background-color: #333333;
 
 }
 
@@ -68,31 +72,6 @@ legend{
     font-size: .8em;
 }
 
-input{
-    outline: none;
-    border: none;
-    border-radius: 2px;
-    padding: 5px;
-    font-size: .9em;
-    color: var(--input-text-color);
-}
-
-input[type="number"] {
-    /* Ajusta a aparência no Firefox */
-    appearance: textfield;
-}
-
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-    /* Remove spinners em navegadores baseados em WebKit (Chrome, Safari) */
-    -webkit-appearance: none;
-}
-
-label{
-    padding-top: 5px;
-    font-size: .9em;
-}
-
 .delivery-person-container{
     display: flex;
     flex-flow: row wrap;
@@ -117,6 +96,31 @@ label{
     & label{
         flex: 1 1 50px;
     }
+}
+
+input{
+    outline: none;
+    border: none;
+    border-radius: 2px;
+    padding: 5px;
+    font-size: .9em;
+    color: var(--input-text-color);
+}
+
+input[type="number"] {
+    /* Ajusta a aparência no Firefox */
+    appearance: textfield;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    /* Remove spinners em navegadores baseados em WebKit (Chrome, Safari) */
+    -webkit-appearance: none;
+}
+
+label{
+    padding-top: 5px;
+    font-size: .9em;
 }
 
 hr{
@@ -144,6 +148,32 @@ hr{
     background-color: var(--hover-button-color);
 }
 
+#report{
+    position: relative;
+
+    & .delivery-report-container{
+        display: none;
+        flex-flow: row wrap;
+        justify-content: space-around;
+    }
+}
+
+section > div > span{
+    display: block;
+}
+
+.large-flex-item{
+    padding: 3px;
+    border-left: 1px solid var(--hr-color);
+    flex: 0 1 484px;
+}
+
+.small-flex-item{
+    padding: 3px;
+    border-left: 1px solid var(--hr-color);
+    flex: 0 1 241px;
+} 
+
 div.copy-button{
     position: absolute;
     top: -12px;
@@ -153,26 +183,25 @@ div.copy-button{
     font-weight: 400;
     border: 1px solid 031725;
     border-radius: 5px;
-    background-color: #031725;
+    background-color: var(--copy-button-background-color);
     padding: 5px;
     line-height: 1em;
     cursor: pointer;
 }
 
 div.copy-button:hover{
-    box-shadow: 0px 0px 3px rgba(255, 255, 255, 1);
+    box-shadow: 0px 0px 3px var(--copy-button-emphasis-color);
 }
 
 div.copy-button:active{
-    box-shadow: 0px 0px 3px rgba(255, 255, 255, 1);
-    background-color: #062d49;
+    box-shadow: 0px 0px 3px var(--copy-button-emphasis-color);
+    background-color: var(--copy-button-background-emphasis-color);
 }
 
 .popup {
     visibility: hidden;
     width: 250px;
-    background-color: #333;
-    color: #fff;
+    background-color: var(--popup-background-color);
     text-align: center;
     border-radius: 5px;
     padding: 10px;
@@ -187,12 +216,4 @@ div.copy-button:active{
 .popup.show {
     visibility: visible;
     opacity: 1;
-}
-
-#report{
-    position: relative;
-
-    & .delivery-report-container{
-        display: block;
-    }
 }

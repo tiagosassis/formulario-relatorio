@@ -67,17 +67,16 @@ function ClearInput(idInput) { // limpa o input para selecionar outro entregador
     }, 0)
 }
 
-document.querySelector('.copy-button').addEventListener('click', function() {
-    const report = document.getElementById('report');
-    const reportContent = report.innerText || report.textContent;
+function CopyContent() {
+    const report = document.getElementById('report-content');
+    const reportContent = report.innerText;
 
     navigator.clipboard.writeText(reportContent).then(() => {
         showPopup();  // Função para exibir o popup
     }).catch((err) => {
         alert('Erro ao copiar: ' + err);
     });
-});
-
+}
 
 function showPopup() { // Função para mostrar o popup e escondê-lo depois de 3 segundos
     const popup = document.getElementById('popup');
@@ -93,19 +92,23 @@ function UpdateReport(event) {
 
     PaymentCalculation(event, deliveryPersonId)
 
-    if (event.target.id.includes('name')) {
-        document.querySelector(`#p-${event.target.id}`).innerHTML = event.target.value // altera nome do entregador no relatorio
 
-    } else if(event.target.id.includes('deliveries')){
+    document.querySelector(`#p-delivery-person-name-${deliveryPersonId}`).innerHTML = document.querySelector(`#delivery-person-name-${deliveryPersonId}`).value // altera nome do entregador no relatorio
+
+    if(event.target.id.includes('deliveries')){
         document.querySelector(`#p-${event.target.id}`).innerHTML = event.target.value + ' Entregas' // altera a quantidade de entregas no relatorio
         if (event.target.value == 0 || event.target.value == '') {
             document.querySelector(`#delivery-person-report-${deliveryPersonId}`).style.display = 'none'
         } else {
-            document.querySelector(`#delivery-person-report-${deliveryPersonId}`).style.display = 'block'
+            document.querySelector(`#delivery-person-report-${deliveryPersonId}`).style.display = 'flex'
         }
 
     } else if(event.target.id.includes('extra')){
-        document.querySelector(`#p-${event.target.id}`).innerHTML = event.target.value + ' Extra'// altera a quantidade de entregas extras no relatorio
+        if (event.target.value) // altera o status de consumo no relatorio
+            document.querySelector(`#p-${event.target.id}`).innerHTML = event.target.value + ' Extra'// altera a quantidade de entregas extras no relatorio
+        else
+            document.querySelector(`#p-${event.target.id}`).innerHTML = ''
+        
 
     } else if(event.target.id.includes('consumption')){ 
         if (event.target.value) // altera o status de consumo no relatorio
@@ -120,6 +123,8 @@ function UpdateReport(event) {
 }
 
 function PaymentCalculation(event, deliveryPersonId) {
+    const costAssistance = 10
+    const deliveryFee = 6
     let deliveries, extra, consumption
 
     if (document.querySelector(`#deliveries-${deliveryPersonId}`).value == '') {
@@ -142,7 +147,7 @@ function PaymentCalculation(event, deliveryPersonId) {
         consumption = parseFloat(document.querySelector(`#consumption-${deliveryPersonId}`).value)
     }
 
-    document.querySelector(`#p-payment-${deliveryPersonId}`).innerHTML = 'R$: ' + eval((((deliveries + extra) * 6) + 10) - consumption)
+    document.querySelector(`#p-payment-${deliveryPersonId}`).innerHTML = 'R$: ' + eval((((deliveries + extra) * deliveryFee) + costAssistance) - consumption)
 
     /*
         cada entrega vale 6,00 reais, tem uma ajuda de custo de 10,00 reais e o consumo é descontado do valor final
