@@ -8,37 +8,37 @@ document.addEventListener('DOMContentLoaded', ()=>{
     let divDelivery = document.querySelectorAll('.delivery-person-container')
     
     if (currentDate.getHours() >= 5 && currentDate.getHours() <= 17) { // dia
-        h1.innerText = 'Almoço ' + day + '/' + month
+        h1.innerText = 'Relatório Almoço ' + day + '/' + month
         dateOfReport.innerHTML = '*Almoço ' + day + '/' + month + '*<br>'
-        divDelivery[0].style.display = 'none'; // caso seja de dia, os entregadores da noite não aparecem
-        divDelivery[1].style.display = 'none';
-        divDelivery[2].style.display = 'none';
+        divDelivery[0].classList.toggle('hidden') // caso seja de dia, os entregadores da noite não aparecem
+        divDelivery[1].classList.toggle('hidden')
+        divDelivery[2].classList.toggle('hidden')
         return
     } else{ // noite
-        divDelivery[3].style.display = 'none'; // desaparece com o entregador do dia
+        divDelivery[3].classList.toggle('hidden') // desaparece com o entregador do dia
         switch (weekDay) { // define qual entregador estara de folga
             case 1:
-                divDelivery[4].style.display = 'none';
+                divDelivery[4].classList.toggle('hidden')
                 break;
         
             case 2:
-                divDelivery[1].style.display = 'none';
+                divDelivery[1].classList.toggle('hidden')
                 break;
         
             case 3:
-                divDelivery[0].style.display = 'none';
+                divDelivery[0].classList.toggle('hidden')
                 break;
         
             case 4:
-                divDelivery[2].style.display = 'none';
+                divDelivery[2].classList.toggle('hidden')
                 break;
         }
         if(currentDate.getHours() >= 0 && currentDate.getHours() <= 4){
             day--
-            h1.innerText = 'Noite ' + day + '/' + month
+            h1.innerText = 'Relatório Noite ' + day + '/' + month
             dateOfReport.innerHTML = '*Noite ' + day + '/' + month + '*<br>'
         }else{
-            h1.innerText = 'Noite ' + day + '/' + month
+            h1.innerText = 'Relatório Noite ' + day + '/' + month
             dateOfReport.innerHTML = '*Noite ' + day + '/' + month + '*<br>'
         }
     }
@@ -49,13 +49,12 @@ function AddDeliveryPerson() { // função que torna visivel ou não o entregado
     const deliveryPersonExtra = document.querySelector('#delivery-person-extra')
     const button = document.querySelector('#add-delivery-person')
 
-    if (deliveryPersonExtra.style.display == 'flex') {
-        button.value = 'Adicionar entregador'
-        deliveryPersonExtra.style.display = 'none'
+    if (deliveryPersonExtra.className.includes('hidden')) {
+        button.value = 'Remover Entregador'
     } else {
-        button.value = 'Remover entregador'
-        deliveryPersonExtra.style.display = 'flex'
+        button.value = 'Adicionar Entregador'
     }
+    deliveryPersonExtra.classList.toggle('hidden')
 
 }
 
@@ -63,18 +62,23 @@ function ClearInput(idInput) { // limpa o input para selecionar outro entregador
     let input = document.getElementById(idInput)
     input.value = ''
     setTimeout(() => {
-        input.focus();
+        input.focus()
     }, 0)
 }
 
 function CopyContent() {
-    const report = document.getElementById('report-content');
-    const spans = report.querySelectorAll('span');
+    const report = document.getElementById('report-content')
+    const spans = report.querySelectorAll('span')
+    const spansHidden = report.querySelectorAll('.hidden')
     
     // Muda o display para contents antes de copiar
     spans.forEach(span => {
-        span.style.display = 'contents';
-    });
+        span.classList.toggle('content')
+    })
+
+    spansHidden.forEach(span=>{
+        span.classList.toggle('hidden')
+    })
 
     // Copia o conteúdo
     const reportContent = report.innerText;
@@ -82,28 +86,31 @@ function CopyContent() {
     navigator.clipboard.writeText(reportContent).then(() => {
         showPopup(); // Função para exibir o popup
     }).catch((err) => {
-        alert('Erro ao copiar: ' + err);
-    });
+        alert('Erro ao copiar: ' + err)
+    })
 
     // Reverta o display para block após a cópia
     spans.forEach(span => {
-        span.style.display = 'block';
-    });
+        span.classList.toggle('content')
+    })
+
+    spansHidden.forEach(span=>{
+        span.classList.toggle('hidden')
+    })
 }
 
 
 function showPopup() { // Função para mostrar o popup e escondê-lo depois de 3 segundos
-    const popup = document.getElementById('popup');
-    popup.classList.add('show');
+    const popup = document.getElementById('popup')
+    popup.classList.add('show')
     
     setTimeout(() => {
-        popup.classList.remove('show');
+        popup.classList.remove('show')
     }, 3000); // O popup desaparece após 3 segundos
 }
 
 function UpdateReport(event) {
     const deliveryPersonId = event.target.id.match(/\d+/g)[0]
-
     PaymentCalculation(event, deliveryPersonId)
 
 
@@ -113,8 +120,10 @@ function UpdateReport(event) {
         document.querySelector(`#p-${event.target.id}`).innerHTML = event.target.value + ' Entregas' // altera a quantidade de entregas no relatorio
         if (event.target.value == 0 || event.target.value == '') {
             document.querySelector(`#delivery-person-report-${deliveryPersonId}`).style.display = 'none'
+
         } else {
             document.querySelector(`#delivery-person-report-${deliveryPersonId}`).style.display = 'flex'
+            
         }
 
     } else if(event.target.id.includes('extra')){

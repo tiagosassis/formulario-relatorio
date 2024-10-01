@@ -49,14 +49,14 @@ h1{
     text-align: center;
 }
 
+h1, h2, h3, h4{
+    margin-bottom: 20px;
+}
+
 .delivery-person-container{
     display: flex;
     flex-flow: row wrap;
     justify-content: space-evenly;
-
-    &#delivery-person-extra{
-        display: none;
-    }
 }
 
 .delivery-person-container > fieldset{
@@ -135,7 +135,7 @@ section#report{
     }
 }
 
-section > div > span{
+.large-flex-item.small-flex-item{
     display: block;
 }
 
@@ -150,7 +150,7 @@ section > div > span{
 }
 
 div.break-row{
-    display: inline;
+    display: block;
 }
 
 div.copy-button{
@@ -175,6 +175,15 @@ div.copy-button:hover{
 div.copy-button:active{
     box-shadow: 0px 0px 3px var(--copy-button-emphasis-color);
     background-color: var(--copy-button-background-emphasis-color);
+}
+
+.hidden{
+    display: none;
+}
+
+.content{
+    display: contents;
+    /*Essa classe altera a disposição do texto no relatorio, de forma que fique exatamente como tem que ficar quando for copiado, essa classe deve ser aplicada somente no momento de copiar e depois deve ser retirada para o texto voltar a ter display block*/
 }
 
 .popup {
