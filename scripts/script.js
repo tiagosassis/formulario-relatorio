@@ -119,7 +119,7 @@ function UpdateReport(event) {
 
     } else if(event.target.id.includes('extra')){
         if (event.target.value) // altera o status de consumo no relatorio
-            document.querySelector(`#p-${event.target.id}`).innerHTML = ', ' + event.target.value + ' Extra'// altera a quantidade de entregas extras no relatorio
+            document.querySelector(`#p-${event.target.id}`).innerHTML = ', ' + event.target.value + ' Extra' // altera a quantidade de entregas extras no relatorio
         else
             document.querySelector(`#p-${event.target.id}`).innerHTML = ''
         
