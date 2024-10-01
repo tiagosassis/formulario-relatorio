@@ -69,14 +69,28 @@ function ClearInput(idInput) { // limpa o input para selecionar outro entregador
 
 function CopyContent() {
     const report = document.getElementById('report-content');
+    const spans = report.querySelectorAll('span');
+    
+    // Muda o display para contents antes de copiar
+    spans.forEach(span => {
+        span.style.display = 'contents';
+    });
+
+    // Copia o conteúdo
     const reportContent = report.innerText;
 
     navigator.clipboard.writeText(reportContent).then(() => {
-        showPopup();  // Função para exibir o popup
+        showPopup(); // Função para exibir o popup
     }).catch((err) => {
         alert('Erro ao copiar: ' + err);
     });
+
+    // Reverta o display para block após a cópia
+    spans.forEach(span => {
+        span.style.display = 'block';
+    });
 }
+
 
 function showPopup() { // Função para mostrar o popup e escondê-lo depois de 3 segundos
     const popup = document.getElementById('popup');
