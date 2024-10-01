@@ -13,6 +13,15 @@ document.addEventListener('DOMContentLoaded', ()=>{
         divDelivery[0].classList.toggle('hidden') // caso seja de dia, os entregadores da noite não aparecem
         divDelivery[1].classList.toggle('hidden')
         divDelivery[2].classList.toggle('hidden')
+        switch (weekDay) { // define qual entregador estara de folga
+            case 1:
+                divDelivery[4].classList.toggle('hidden')
+                break;
+        
+            case 2:
+                divDelivery[3].classList.toggle('hidden')
+                break;
+        }
         return
     } else{ // noite
         divDelivery[3].classList.toggle('hidden') // desaparece com o entregador do dia
@@ -45,7 +54,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     
 })
 
-function AddDeliveryPerson() { // função que torna visivel ou não o entregador extra
+function ToggleExtraDeliveryPerson () { // função que torna visivel ou não o entregador extra
     const deliveryPersonExtra = document.querySelector('#delivery-person-extra')
     const button = document.querySelector('#add-delivery-person')
 
@@ -118,11 +127,10 @@ function UpdateReport(event) {
 
     if(event.target.id.includes('deliveries')){
         document.querySelector(`#p-${event.target.id}`).innerHTML = event.target.value + ' Entregas' // altera a quantidade de entregas no relatorio
-        if (event.target.value == 0 || event.target.value == '') {
-            document.querySelector(`#delivery-person-report-${deliveryPersonId}`).style.display = 'none'
-
-        } else {
-            document.querySelector(`#delivery-person-report-${deliveryPersonId}`).style.display = 'flex'
+        if (event.target.value == '' && !(document.querySelector(`#delivery-person-report-${deliveryPersonId}`).className.includes('hidden'))) {
+            document.querySelector(`#delivery-person-report-${deliveryPersonId}`).classList.toggle('hidden')
+        } else if(document.querySelector(`#delivery-person-report-${deliveryPersonId}`).className.includes('hidden')){
+            document.querySelector(`#delivery-person-report-${deliveryPersonId}`).classList.toggle('hidden')
             
         }
 
@@ -170,7 +178,8 @@ function PaymentCalculation(event, deliveryPersonId) {
         consumption = parseFloat(document.querySelector(`#consumption-${deliveryPersonId}`).value)
     }
 
-    document.querySelector(`#p-payment-${deliveryPersonId}`).innerHTML = 'R$ ' + eval((((deliveries + extra) * deliveryFee) + costAssistance) - consumption)
+    const totalPayment = ((deliveries + extra) * deliveryFee) + costAssistance - consumption;
+    document.querySelector(`#p-payment-${deliveryPersonId}`).textContent = `R$ ${totalPayment.toFixed(2)}`;
 
     /*
         cada entrega vale 6,00 reais, tem uma ajuda de custo de 10,00 reais e o consumo é descontado do valor final

@@ -129,7 +129,6 @@ section#report{
     position: relative;
 
     & .delivery-report-container{
-        display: none;
         flex-flow: row wrap;
         justify-content: space-around;
     }
@@ -140,12 +139,10 @@ section#report{
 }
 
 .large-flex-item{
-    padding: 3px;
     flex: 0 1 484px;
 }
 
 .small-flex-item{
-    padding: 3px;
     flex: 0 1 241px;
 }
 
