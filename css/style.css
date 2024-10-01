@@ -12,7 +12,7 @@
     --copy-button-background-color: #031725;
     --copy-button-emphasis-color: rgba(255, 255, 255, 1);
     --copy-button-background-emphasis-color: #062d49;
-    --popup-background-color: #333333;
+    --popup-background-color: #707070;
 
 }
 
@@ -45,31 +45,8 @@ body{
     border-radius: 15px;
 }
 
-fieldset{
-    border: 3px solid var(--secondary-background-color);
-    padding: 5px 8px 8px 8px;
-}
-
-.secondary-fieldset{
-    border: 2px solid var(--secondary-background-color);
-    margin-top: 12px;
-}
-
-legend{
-    font-weight: bold;
-    padding: 10px;
-    background-color: var(--secondary-background-color);
-    border-radius: 5px;
-}
-
-.primary-legend{
+h1{
     text-align: center;
-    font-size: 1em;
-}
-
-.secondary-legend{
-    text-align: left;
-    font-size: .8em;
 }
 
 .delivery-person-container{
@@ -148,7 +125,7 @@ hr{
     background-color: var(--hover-button-color);
 }
 
-#report{
+section#report{
     position: relative;
 
     & .delivery-report-container{
@@ -164,20 +141,22 @@ section > div > span{
 
 .large-flex-item{
     padding: 3px;
-    border-left: 1px solid var(--hr-color);
     flex: 0 1 484px;
 }
 
 .small-flex-item{
     padding: 3px;
-    border-left: 1px solid var(--hr-color);
     flex: 0 1 241px;
-} 
+}
+
+div.break-row{
+    display: inline;
+}
 
 div.copy-button{
     position: absolute;
-    top: -12px;
-    right: 6px;
+    top: 5px;
+    right: 5px;
     font-family: ui-sans-serif, -apple-system, system-ui, "Segoe UI", Helvetica;
     font-size: .75em;
     font-weight: 400;

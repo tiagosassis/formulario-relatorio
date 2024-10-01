@@ -10,10 +10,10 @@
 <body>
     <main class="flex-container">
         <div class="container">
-            <fieldset>
-                <legend class="primary-legend">Relatorio</legend>
-                <fieldset id="delivery-persons-container" class="secondary-fieldset" oninput="UpdateReport(event)">
-                    <legend class="secondary-fieldset">Entregadores</legend>
+            <section>
+                <h1>Relatório</h1>
+                <section id="delivery-persons-container"  oninput="UpdateReport(event)">
+                    <h2>Entregadores</h2>
                     <datalist id="datalist-delivery-person">
                         <option value="Byane">Byane</option>
                         <option value="Guilherme Vieira">Guilherme Vieira</option>
@@ -143,10 +143,10 @@
                     </div>
                     
                     <input type="submit" id="add-delivery-person" value="Adicionar Entregador" class="add-button" onclick="AddDeliveryPerson()">
-                </fieldset>
+                </section>
                 
-                <fieldset class="secondary-fieldset" id="report">
-                    <legend class="main-legend">Relatório</legend>
+                <section id="report">
+                    <h2>Relatório</h2>
                     <div class="copy-button" onclick="CopyContent()">
                         <span class="material-symbols-outlined">
                             content_copy
@@ -154,66 +154,63 @@
                     </div>
 
                     <section id="report-content">
-                        <h1 id="date-of-report"></h1>
-                        <h2>Entregadores</h2>
-                        <div id="delivery-person-report-1" class="delivery-report-container">
-                            <span id="p-delivery-person-name-1" class="small-flex-item"></span>
-                            <span id="p-payment-1" class="large-flex-item"></span>
-                            <span id="p-deliveries-1" class="small-flex-item"></span>
-                            <span id="p-extra-1" class="small-flex-item"></span>
-                            <span id="p-consumption-1" class="small-flex-item"></span>
-                            <hr>
-                        </div>
-
-                        <div id="delivery-person-report-2" class="delivery-report-container">
-                            <span id="p-delivery-person-name-2" class="small-flex-item"></span>
-                            <span id="p-payment-2" class="large-flex-item"></span>
-                            <span id="p-deliveries-2" class="small-flex-item"></span>
-                            <span id="p-extra-2" class="small-flex-item"></span>
-                            <span id="p-consumption-2" class="small-flex-item"></span>
-                            <hr>
-                        </div>
-
-                        <div id="delivery-person-report-3" class="delivery-report-container">
-                            <span id="p-delivery-person-name-3" class="small-flex-item"></span>
-                            <span id="p-payment-3" class="large-flex-item"></span>
-                            <span id="p-deliveries-3" class="small-flex-item"></span>
-                            <span id="p-extra-3" class="small-flex-item"></span>
-                            <span id="p-consumption-3" class="small-flex-item"></span>
-                            <hr>
-                        </div>
-
-                        <div id="delivery-person-report-4" class="delivery-report-container">
-                            <span id="p-delivery-person-name-4" class="small-flex-item"></span>
-                            <span id="p-payment-4" class="large-flex-item"></span>
-                            <span id="p-deliveries-4" class="small-flex-item"></span>
-                            <span id="p-extra-4" class="small-flex-item"></span>
-                            <span id="p-consumption-4" class="small-flex-item"></span>
-                            <hr>
-                        </div>
-
-                        <div id="delivery-person-report-5" class="delivery-report-container">
-                            <span id="p-delivery-person-name-5" class="small-flex-item"></span>
-                            <span id="p-payment-5" class="large-flex-item"></span>
-                            <span id="p-deliveries-5" class="small-flex-item"></span>
-                            <span id="p-extra-5" class="small-flex-item"></span>
-                            <span id="p-consumption-5" class="small-flex-item"></span>
-                            <hr>
-                        </div>
-
-                        <div id="delivery-person-report-6" class="delivery-report-container">
-                            <span id="p-delivery-person-name-6" class="small-flex-item">...</span>
-                            <span id="p-payment-6" class="large-flex-item"></span>
-                            <span id="p-deliveries-6" class="small-flex-item"></span>
-                            <span id="p-extra-6" class="small-flex-item"></span>
-                            <span id="p-consumption-6" class="small-flex-item"></span>
-                            <hr>
-                        </div>
-                        <h2>Extra Entregadores</h2>
-                        <h2>Extras</h2>
+                        <h3 id="date-of-report"></h3>
+                        <section>
+                            <h4>Entregadores</h4>
+                            <div id="delivery-person-report-1" class="delivery-report-container">
+                                <span id="p-delivery-person-name-1" class="small-flex-item"></span>
+                                <span id="p-payment-1" class="large-flex-item"></span><div class="break-row"></div>
+                                (<span id="p-deliveries-1" class="small-flex-item"></span>
+                                <span id="p-extra-1" class="small-flex-item"></span>
+                                <span id="p-consumption-1" class="small-flex-item"></span>)
+                                <hr>
+                            </div>
+                            <div id="delivery-person-report-2" class="delivery-report-container">
+                                <span id="p-delivery-person-name-2" class="small-flex-item"></span>
+                                <span id="p-payment-2" class="large-flex-item"></span><div class="break-row"></div>
+                                (<span id="p-deliveries-2" class="small-flex-item"></span>
+                                <span id="p-extra-2" class="small-flex-item"></span>
+                                <span id="p-consumption-2" class="small-flex-item"></span>)
+                                <hr>
+                            </div>
+                            <div id="delivery-person-report-3" class="delivery-report-container">
+                                <span id="p-delivery-person-name-3" class="small-flex-item"></span>
+                                <span id="p-payment-3" class="large-flex-item"></span><div class="break-row"></div>
+                                (<span id="p-deliveries-3" class="small-flex-item"></span>
+                                <span id="p-extra-3" class="small-flex-item"></span>
+                                <span id="p-consumption-3" class="small-flex-item"></span>)
+                                <hr>
+                            </div>
+                            <div id="delivery-person-report-4" class="delivery-report-container">
+                                <span id="p-delivery-person-name-4" class="small-flex-item"></span>
+                                <span id="p-payment-4" class="large-flex-item"></span><div class="break-row"></div>
+                                (<span id="p-deliveries-4" class="small-flex-item"></span>
+                                <span id="p-extra-4" class="small-flex-item"></span>
+                                <span id="p-consumption-4" class="small-flex-item"></span>)
+                                <hr>
+                            </div>
+                            <div id="delivery-person-report-5" class="delivery-report-container">
+                                <span id="p-delivery-person-name-5" class="small-flex-item"></span>
+                                <span id="p-payment-5" class="large-flex-item"></span><div class="break-row"></div>
+                                (<span id="p-deliveries-5" class="small-flex-item"></span>
+                                <span id="p-extra-5" class="small-flex-item"></span>
+                                <span id="p-consumption-5" class="small-flex-item"></span>)
+                                <hr>
+                            </div>
+                            <div id="delivery-person-report-6" class="delivery-report-container">
+                                <span id="p-delivery-person-name-6" class="small-flex-item">...</span>
+                                <span id="p-payment-6" class="large-flex-item"></span><div class="break-row"></div>
+                                (<span id="p-deliveries-6" class="small-flex-item"></span>
+                                <span id="p-extra-6" class="small-flex-item"></span>
+                                <span id="p-consumption-6" class="small-flex-item"></span>)
+                                <hr>
+                            </div>
+                        </section>
+                        <h4>Extra Entregadores</h4>
+                        <h4>Extras</h4>
                     </section>
-                </fieldset>
-            </fieldset>
+                </section>
+            </section>
         </div>
     </main>
     <div id="popup" class="popup">Relatório copiado!</div>

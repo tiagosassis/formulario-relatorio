@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', ()=>{
     const currentDate = new Date()
-    const legend = document.querySelector('legend')
+    const h1 = document.querySelector('h1')
     let dateOfReport = document.querySelector('#date-of-report')
     let weekDay = currentDate.getDay()
     let day = currentDate.getDate()
@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     let divDelivery = document.querySelectorAll('.delivery-person-container')
     
     if (currentDate.getHours() >= 5 && currentDate.getHours() <= 17) { // dia
-        legend.innerText = 'Almoço ' + day + '/' + month
+        h1.innerText = 'Almoço ' + day + '/' + month
         dateOfReport.innerHTML = '*Almoço ' + day + '/' + month + '*<br>'
         divDelivery[0].style.display = 'none'; // caso seja de dia, os entregadores da noite não aparecem
         divDelivery[1].style.display = 'none';
@@ -35,10 +35,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
         }
         if(currentDate.getHours() >= 0 && currentDate.getHours() <= 4){
             day--
-            legend.innerText = 'Noite ' + day + '/' + month
+            h1.innerText = 'Noite ' + day + '/' + month
             dateOfReport.innerHTML = '*Noite ' + day + '/' + month + '*<br>'
         }else{
-            legend.innerText = 'Noite ' + day + '/' + month
+            h1.innerText = 'Noite ' + day + '/' + month
             dateOfReport.innerHTML = '*Noite ' + day + '/' + month + '*<br>'
         }
     }
@@ -107,7 +107,7 @@ function UpdateReport(event) {
     PaymentCalculation(event, deliveryPersonId)
 
 
-    document.querySelector(`#p-delivery-person-name-${deliveryPersonId}`).innerHTML = document.querySelector(`#delivery-person-name-${deliveryPersonId}`).value // altera nome do entregador no relatorio
+    document.querySelector(`#p-delivery-person-name-${deliveryPersonId}`).innerHTML = document.querySelector(`#delivery-person-name-${deliveryPersonId}`).value + ':' // altera nome do entregador no relatorio
 
     if(event.target.id.includes('deliveries')){
         document.querySelector(`#p-${event.target.id}`).innerHTML = event.target.value + ' Entregas' // altera a quantidade de entregas no relatorio
@@ -119,14 +119,14 @@ function UpdateReport(event) {
 
     } else if(event.target.id.includes('extra')){
         if (event.target.value) // altera o status de consumo no relatorio
-            document.querySelector(`#p-${event.target.id}`).innerHTML = event.target.value + ' Extra'// altera a quantidade de entregas extras no relatorio
+            document.querySelector(`#p-${event.target.id}`).innerHTML = ', ' + event.target.value + ' Extra'// altera a quantidade de entregas extras no relatorio
         else
             document.querySelector(`#p-${event.target.id}`).innerHTML = ''
         
 
     } else if(event.target.id.includes('consumption')){ 
         if (event.target.value) // altera o status de consumo no relatorio
-            document.querySelector(`#p-${event.target.id}`).innerHTML = '1 Consumo'
+            document.querySelector(`#p-${event.target.id}`).innerHTML = ', 1 Consumo'
         else
             document.querySelector(`#p-${event.target.id}`).innerHTML = ''
     } else 
@@ -161,7 +161,7 @@ function PaymentCalculation(event, deliveryPersonId) {
         consumption = parseFloat(document.querySelector(`#consumption-${deliveryPersonId}`).value)
     }
 
-    document.querySelector(`#p-payment-${deliveryPersonId}`).innerHTML = 'R$: ' + eval((((deliveries + extra) * deliveryFee) + costAssistance) - consumption)
+    document.querySelector(`#p-payment-${deliveryPersonId}`).innerHTML = 'R$ ' + eval((((deliveries + extra) * deliveryFee) + costAssistance) - consumption)
 
     /*
         cada entrega vale 6,00 reais, tem uma ajuda de custo de 10,00 reais e o consumo é descontado do valor final
