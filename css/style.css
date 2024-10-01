@@ -85,6 +85,10 @@ label{
     display: flex;
     flex-flow: row wrap;
     justify-content: space-evenly;
+
+    &#delivery-person-extra{
+        display: none;
+    }
 }
 
 .delivery-person-container > fieldset{
@@ -139,11 +143,6 @@ hr{
     background-image: linear-gradient(to right,rgb(0, 80, 172), rgb(80, 19, 195));
 }
 
-#report{
-    height: 500px;
-    position: relative;
-}
-
 div.copy-button{
     position: absolute;
     top: -12px;
@@ -189,7 +188,6 @@ div.copy-button:active{
     opacity: 1;
 }
 
-div > p {
-    display: inline-block;
+#report{
+    position: relative;
 }
-

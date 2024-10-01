@@ -10,9 +10,9 @@
 <body>
     <main class="flex-container">
         <div class="container">
-            <fieldset oninput="UpdateReport(event)">
+            <fieldset>
                 <legend class="primary-legend">Relatorio</legend>
-                <fieldset id="delivery-persons-container" class="secondary-fieldset">
+                <fieldset id="delivery-persons-container" class="secondary-fieldset" oninput="UpdateReport(event)">
                     <legend class="secondary-fieldset">Entregadores</legend>
                     <datalist id="datalist-delivery-person">
                         <option value="Byane">Byane</option>
@@ -121,7 +121,28 @@
                         </fieldset>
                         <hr>
                     </div>
-                    <input type="submit" id="add-delivery-person" value="Outro Entregador" class="add-button" onclick="AddDeliveryPerson()">
+
+                    <div id="delivery-person-extra" class="delivery-person-container">
+                        <fieldset>
+                            <label for="delivery-person-name-6">Nome</label>
+                            <input type="text" id="delivery-person-name-6" list="datalist-delivery-person" onfocus="ClearInput('delivery-person-name-6')" value="" placeholder="Entregador">
+                        </fieldset>
+                        <fieldset>
+                            <label for="deliveries-6">Entregas</label>
+                            <input type="number" id="deliveries-6" placeholder="Quantidade de entregas">
+                        </fieldset>
+                        <fieldset>
+                            <label for="extra-6">Extra</label>
+                            <input type="number" id="extra-6" placeholder="Quantidade de Extra">
+                        </fieldset>
+                        <fieldset>
+                            <label for="consumption-6">Consumo</label>
+                            <input type="text" id="consumption-6" placeholder="Valor de Consumo">
+                        </fieldset>
+                        <hr>
+                    </div>
+                    
+                    <input type="submit" id="add-delivery-person" value="Adicionar Entregador" class="add-button" onclick="AddDeliveryPerson()">
                 </fieldset>
                 <fieldset class="secondary-fieldset" id="report">
                     <legend class="main-legend">Relatório</legend>
@@ -130,9 +151,66 @@
                             content_copy
                         </span>
                     </div>
-                    <div id="formatted-report">
-                    
-                    </div>
+
+                    <section id="report">
+                        <h1 id="date-of-report"></h1>
+                        <h2>Entregadores</h2>
+                        <div>
+                            <p id="p-delivery-person-name-1">Byane</p>
+                            <p id="p-payment-1">pagamento</p>
+                            <p id="p-deliveries-1">entregas</p>
+                            <p id="p-extra-1">extras</p>
+                            <p id="p-consumption-1">consumo</p>
+                            <hr>
+                        </div>
+
+                        <div>
+                            <p id="p-delivery-person-name-2">Guilherme Vieira</p>
+                            <p id="p-payment-2">pagamento</p>
+                            <p id="p-deliveries-2">entregas</p>
+                            <p id="p-extra-2">extras</p>
+                            <p id="p-consumption-2">consumo</p>
+                            <hr>
+                        </div>
+
+                        <div>
+                            <p id="p-delivery-person-name-3">Kaio</p>
+                            <p id="p-payment-3">pagamento</p>
+                            <p id="p-deliveries-3">entregas</p>
+                            <p id="p-extra-3">extras</p>
+                            <p id="p-consumption-3">consumo</p>
+                            <hr>
+                        </div>
+
+                        <div>
+                            <p id="p-delivery-person-name-4">Keven</p>
+                            <p id="p-payment-4">pagamento</p>
+                            <p id="p-deliveries-4">entregas</p>
+                            <p id="p-extra-4">extras</p>
+                            <p id="p-consumption-4">consumo</p>
+                            <hr>
+                        </div>
+
+                        <div>
+                            <p id="p-delivery-person-name-5">João Pedro</p>
+                            <p id="p-payment-5">pagamento</p>
+                            <p id="p-deliveries-5">entregas</p>
+                            <p id="p-extra-5">extras</p>
+                            <p id="p-consumption-5">consumo</p>
+                            <hr>
+                        </div>
+
+                        <div>
+                            <p id="p-delivery-person-name-6">...</p>
+                            <p id="p-payment-6">pagamento</p>
+                            <p id="p-deliveries-6">entregas</p>
+                            <p id="p-extra-6">extras</p>
+                            <p id="p-consumption-6">consumo</p>
+                            <hr>
+                        </div>
+                        <h2>Extra Entregadores</h2>
+                        <h2>Extras</h2>
+                    </section>
                 </fieldset>
             </fieldset>
         </div>
