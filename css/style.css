@@ -66,11 +66,11 @@ h1, h2, h3, h4{
     border: none;
     padding: 2px;
 
-    & input{
+    input{
         flex: 9 1 50px;
     }
 
-    & label{
+    label{
         flex: 1 1 50px;
     }
 }
@@ -127,23 +127,6 @@ hr{
 
 section#report{
     position: relative;
-
-    & .delivery-report-container{
-        flex-flow: row wrap;
-        justify-content: space-around;
-    }
-}
-
-.large-flex-item.small-flex-item{
-    display: block;
-}
-
-.large-flex-item{
-    flex: 0 1 484px;
-}
-
-.small-flex-item{
-    flex: 0 1 241px;
 }
 
 div.break-row{

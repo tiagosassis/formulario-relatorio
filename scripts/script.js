@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', ()=>{
     const currentDate = new Date()
     const h1 = document.querySelector('h1')
-    let dateOfReport = document.querySelector('#date-of-report')
-    let weekDay = currentDate.getDay()
-    let day = currentDate.getDate()
-    let month = currentDate.getMonth() + 1
-    let divDelivery = document.querySelectorAll('.delivery-person-container')
+    const dateOfReport = document.getElementById('date-of-report')
+    const weekDay = currentDate.getDay()
+    const day = currentDate.getDate()
+    const month = currentDate.getMonth() + 1
+    const divDelivery = document.querySelectorAll('.delivery-person-container')
     
     if (currentDate.getHours() >= 5 && currentDate.getHours() <= 17) { // dia
         h1.innerText = 'Relatório Almoço ' + day + '/' + month
@@ -55,10 +55,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
 })
 
 function ToggleExtraDeliveryPerson () { // função que torna visivel ou não o entregador extra
-    const deliveryPersonExtra = document.querySelector('#delivery-person-extra')
-    const button = document.querySelector('#add-delivery-person')
+    const deliveryPersonExtra = document.getElementById('delivery-person-extra')
+    const button = document.getElementById('add-delivery-person')
 
-    if (deliveryPersonExtra.className.includes('hidden')) {
+    if (deliveryPersonExtra.className.includes('hidden')) { // também muda a frase no botão para si adaptar a situação
         button.value = 'Remover Entregador'
     } else {
         button.value = 'Adicionar Entregador'
@@ -78,15 +78,10 @@ function ClearInput(idInput) { // limpa o input para selecionar outro entregador
 function CopyContent() {
     const report = document.getElementById('report-content')
     const spans = report.querySelectorAll('span')
-    const spansHidden = report.querySelectorAll('.hidden')
     
     // Muda o display para contents antes de copiar
     spans.forEach(span => {
         span.classList.toggle('content')
-    })
-
-    spansHidden.forEach(span=>{
-        span.classList.toggle('hidden')
     })
 
     // Copia o conteúdo
@@ -102,10 +97,6 @@ function CopyContent() {
     spans.forEach(span => {
         span.classList.toggle('content')
     })
-
-    spansHidden.forEach(span=>{
-        span.classList.toggle('hidden')
-    })
 }
 
 
@@ -120,6 +111,7 @@ function showPopup() { // Função para mostrar o popup e escondê-lo depois de 
 
 function UpdateReport(event) {
     const deliveryPersonId = event.target.id.match(/\d+/g)[0]
+    const containerOfDeliveryPerson = document.querySelector(`#delivery-person-report-${deliveryPersonId}`)
     PaymentCalculation(event, deliveryPersonId)
 
 
@@ -127,10 +119,10 @@ function UpdateReport(event) {
 
     if(event.target.id.includes('deliveries')){
         document.querySelector(`#p-${event.target.id}`).innerHTML = event.target.value + ' Entregas' // altera a quantidade de entregas no relatorio
-        if (event.target.value == '' && !(document.querySelector(`#delivery-person-report-${deliveryPersonId}`).className.includes('hidden'))) {
-            document.querySelector(`#delivery-person-report-${deliveryPersonId}`).classList.toggle('hidden')
-        } else if(document.querySelector(`#delivery-person-report-${deliveryPersonId}`).className.includes('hidden')){
-            document.querySelector(`#delivery-person-report-${deliveryPersonId}`).classList.toggle('hidden')
+        if (event.target.value == '' && !(containerOfDeliveryPerson.className.includes('hidden'))) {
+            containerOfDeliveryPerson.classList.toggle('hidden')
+        } else if(containerOfDeliveryPerson.className.includes('hidden')){
+            containerOfDeliveryPerson.classList.toggle('hidden')
             
         }
 
