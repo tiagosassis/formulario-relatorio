@@ -129,10 +129,6 @@ section#report{
     position: relative;
 }
 
-div.break-row{
-    display: block;
-}
-
 div.copy-button{
     position: absolute;
     top: 5px;
