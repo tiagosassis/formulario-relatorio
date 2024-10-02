@@ -77,12 +77,8 @@ function ClearInput(idInput) { // limpa o input para selecionar outro entregador
 
 function CopyContent() {
     const report = document.getElementById('report-content')
-    const spans = report.querySelectorAll('span')
     
-    // Muda o display para contents antes de copiar
-    spans.forEach(span => {
-        span.classList.toggle('content')
-    })
+    SwitchDisplay()
 
     // Copia o conteúdo
     const reportContent = report.innerText;
@@ -93,7 +89,13 @@ function CopyContent() {
         alert('Erro ao copiar: ' + err)
     })
 
-    // Reverta o display para block após a cópia
+    SwitchDisplay()
+}
+
+function SwitchDisplay() {
+    const spans = report.querySelectorAll('span')
+    
+    // Muda o display para contents para mudar a disposição dos caracteres e o texto copiado ficar mais organizado
     spans.forEach(span => {
         span.classList.toggle('content')
     })
@@ -111,38 +113,40 @@ function showPopup() { // Função para mostrar o popup e escondê-lo depois de 
 
 function UpdateReport(event) {
     const deliveryPersonId = event.target.id.match(/\d+/g)[0]
-    const containerOfDeliveryPerson = document.querySelector(`#delivery-person-report-${deliveryPersonId}`)
+    
     PaymentCalculation(event, deliveryPersonId)
 
 
-    document.querySelector(`#p-delivery-person-name-${deliveryPersonId}`).innerHTML = document.querySelector(`#delivery-person-name-${deliveryPersonId}`).value + ':' // altera nome do entregador no relatorio
+    document.querySelector(`#p-delivery-person-name-${deliveryPersonId}`).innerHTML = document.querySelector(`#delivery-person-name-${deliveryPersonId}`).value + ':' // atualiza nome do entregador no relatorio
 
     if(event.target.id.includes('deliveries')){
-        document.querySelector(`#p-${event.target.id}`).innerHTML = event.target.value + ' Entregas' // altera a quantidade de entregas no relatorio
-        if (event.target.value == '' && !(containerOfDeliveryPerson.className.includes('hidden'))) {
-            containerOfDeliveryPerson.classList.toggle('hidden')
-        } else if(containerOfDeliveryPerson.className.includes('hidden')){
-            containerOfDeliveryPerson.classList.toggle('hidden')
-            
-        }
+        UpdateDeliveries(event, deliveryPersonId)
 
     } else if(event.target.id.includes('extra')){
         if (event.target.value) // altera o status de consumo no relatorio
             document.querySelector(`#p-${event.target.id}`).innerHTML = ', ' + event.target.value + ' Extra' // altera a quantidade de entregas extras no relatorio
         else
             document.querySelector(`#p-${event.target.id}`).innerHTML = ''
-        
 
     } else if(event.target.id.includes('consumption')){ 
         if (event.target.value) // altera o status de consumo no relatorio
             document.querySelector(`#p-${event.target.id}`).innerHTML = ', 1 Consumo'
         else
             document.querySelector(`#p-${event.target.id}`).innerHTML = ''
+
     } else 
         console.log('erro no if/else dos include')
 
-    
+}
 
+function UpdateDeliveries(event, deliveryPersonId) {
+    const containerOfDeliveryPerson = document.querySelector(`#delivery-person-report-${deliveryPersonId}`)
+    // altera a quantidade de entregas no relatorio, caso não haja entregas para aquele entregador, a visibilidade dele no relatorio é alterar como display none
+    document.querySelector(`#p-${event.target.id}`).innerHTML = event.target.value + ' Entregas' 
+    if (event.target.value == '' && !(containerOfDeliveryPerson.className.includes('hidden'))) 
+        containerOfDeliveryPerson.classList.toggle('hidden')
+    else if(containerOfDeliveryPerson.className.includes('hidden'))
+        containerOfDeliveryPerson.classList.toggle('hidden')
 }
 
 function PaymentCalculation(event, deliveryPersonId) {
