@@ -117,22 +117,22 @@ function UpdateReport(event) {
     PaymentCalculation(event, deliveryPersonId)
 
 
-    document.querySelector(`#p-delivery-person-name-${deliveryPersonId}`).innerHTML = document.querySelector(`#delivery-person-name-${deliveryPersonId}`).value + ':' // atualiza nome do entregador no relatorio
+    document.querySelector(`#textField-delivery-person-name-${deliveryPersonId}`).innerHTML = document.querySelector(`#delivery-person-name-${deliveryPersonId}`).value + ':' // atualiza nome do entregador no relatorio
 
     if(event.target.id.includes('deliveries')){
         UpdateDeliveries(event, deliveryPersonId)
 
     } else if(event.target.id.includes('extra')){
         if (event.target.value) // altera o status de consumo no relatorio
-            document.querySelector(`#p-${event.target.id}`).innerHTML = ', ' + event.target.value + ' Extra' // altera a quantidade de entregas extras no relatorio
+            document.querySelector(`#textField-${event.target.id}`).innerHTML = ', ' + event.target.value + ' Extra' // altera a quantidade de entregas extras no relatorio
         else
-            document.querySelector(`#p-${event.target.id}`).innerHTML = ''
+            document.querySelector(`#textField-${event.target.id}`).innerHTML = ''
 
     } else if(event.target.id.includes('consumption')){ 
         if (event.target.value) // altera o status de consumo no relatorio
-            document.querySelector(`#p-${event.target.id}`).innerHTML = ', 1 Consumo'
+            document.querySelector(`#textField-${event.target.id}`).innerHTML = ', 1 Consumo'
         else
-            document.querySelector(`#p-${event.target.id}`).innerHTML = ''
+            document.querySelector(`#textField-${event.target.id}`).innerHTML = ''
 
     } else 
         console.log('erro no if/else dos include')
@@ -142,7 +142,7 @@ function UpdateReport(event) {
 function UpdateDeliveries(event, deliveryPersonId) {
     const containerOfDeliveryPerson = document.querySelector(`#delivery-person-report-${deliveryPersonId}`)
     // altera a quantidade de entregas no relatorio, caso não haja entregas para aquele entregador, a visibilidade dele no relatorio é alterar como display none
-    document.querySelector(`#p-${event.target.id}`).innerHTML = event.target.value + ' Entregas' 
+    document.querySelector(`#textField-${event.target.id}`).innerHTML = event.target.value + ' Entregas' 
     if (event.target.value == '' && !(containerOfDeliveryPerson.className.includes('hidden'))) 
         containerOfDeliveryPerson.classList.toggle('hidden')
     else if(containerOfDeliveryPerson.className.includes('hidden'))
@@ -175,7 +175,7 @@ function PaymentCalculation(event, deliveryPersonId) {
     }
 
     const totalPayment = ((deliveries + extra) * deliveryFee) + costAssistance - consumption;
-    document.querySelector(`#p-payment-${deliveryPersonId}`).textContent = `R$ ${totalPayment.toFixed(2)}`;
+    document.querySelector(`#textField-payment-${deliveryPersonId}`).textContent = `R$ ${totalPayment.toFixed(2)}`;
 
     /*
         cada entrega vale 6,00 reais, tem uma ajuda de custo de 10,00 reais e o consumo é descontado do valor final

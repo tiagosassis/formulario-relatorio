@@ -1,64 +1,70 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Copiar Relatório</title>
+    <title>Document</title>
     <style>
-        #popup {
+        body{
+            padding: 30px;
+        }
+
+        button{display: block;
+            margin: auto;
+        }
+
+        .flex-container{
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-around;
+            margin: 30px;
+        }
+
+        .flex-item{
+            background-color: gray;
+            height: 150px;
+            width: 150px;
+        }
+
+        .hidden{
             display: none;
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 10px;
-            background-color: #28a745;
-            color: white;
+        }
+
+        hr{
+            border: none;
+            height: 1px;
+            background-color: black;
+            width: 100%;
+            margin: 10px auto;
             border-radius: 5px;
-            transition: opacity 0.5s;
         }
     </style>
 </head>
 <body>
-    <pre id="relatorioFormatado">
-Aqui está seu relatório formatado:
-- Item 1
-- Item 2
-- Item 3
-    </pre>
-    <button id="copiarRelatorio">Copiar Relatório</button>
-
-    <div id="popup">Relatório copiado!</div>
+    <div class="flex-container hidden">
+        <div class="flex-item">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat quisquam, voluptatem eum ea ducimus natus porro excepturi, aut mollitia quam eius corporis voluptas sed facilis. Vero recusandae culpa fugit consectetur!</p>
+            <hr>
+        </div>
+        <div class="flex-item">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat quisquam, voluptatem eum ea ducimus natus porro excepturi, aut mollitia quam eius corporis voluptas sed facilis. Vero recusandae culpa fugit consectetur!</p>
+            <hr>
+        </div>
+        <div class="flex-item">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat quisquam, voluptatem eum ea ducimus natus porro excepturi, aut mollitia quam eius corporis voluptas sed facilis. Vero recusandae culpa fugit consectetur!</p>
+            <hr>
+        </div>
+        
+    </div>
+    <button onclick="AlternarDisplay()">
+        alterar display
+    </button>
 
     <script>
-        document.getElementById('copiarRelatorio').addEventListener('click', function() {
-            const relatorio = document.getElementById('relatorioFormatado');
-            const range = document.createRange();
-            range.selectNode(relatorio);
-            window.getSelection().removeAllRanges();
-            window.getSelection().addRange(range);
+        function AlternarDisplay() {
+            const div = document.querySelector('.flex-container')
 
-            // Tenta copiar o conteúdo
-            try {
-                document.execCommand('copy');
-                showPopup();
-            } catch (err) {
-                console.error('Erro ao copiar: ', err);
-            }
-
-            window.getSelection().removeAllRanges(); // Limpa a seleção
-        });
-
-        function showPopup() {
-            const popup = document.getElementById('popup');
-            popup.style.display = 'block';
-            popup.style.opacity = '1';
-
-            setTimeout(() => {
-                popup.style.opacity = '0';
-                setTimeout(() => {
-                    popup.style.display = 'none';
-                }, 500);
-            }, 1500);
+            div.classList.toggle('hidden')
         }
     </script>
 </body>
