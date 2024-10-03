@@ -143,20 +143,21 @@ function UpdateReport(event) {
 
 function ExtraDeliveryRegister(deliveryPersonId) {
     const container = document.getElementById('extra-delivery-register')
-    let divContainer = document.createElement('div')
-    let div, input, label
+    let div2 = document.createElement('div')
+    let div3, input, label
 
-    divContainer.classList.add('flex-container')
+    div2.classList.add('flex-container')
 
     label = document.createElement('label')
     label.classList.add('flex-item-name')
     label.textContent = document.querySelector(`#delivery-person-name-${deliveryPersonId}`).value
 
-    divContainer.appendChild(label)
+    div2.appendChild(label)
 
-    for (let index = 0; index < 2; index++) {
-        div = document.createElement('div')
-        if (index == 0) {
+    for (let j = 0; j < 2; j++) {
+        div3 = document.createElement('div')
+        if (j == 0) {
+            div3.classList.add('flex-item-number')
             input = document.createElement('input')
             input.setAttribute('type', 'text')
             input.setAttribute('name', 'extra-delivery-number')
@@ -169,10 +170,11 @@ function ExtraDeliveryRegister(deliveryPersonId) {
             label.classList.add('float-label')
             label.textContent = 'Número do pedido'
 
-            div.appendChild(input)
-            div.appendChild(label)
+            div3.appendChild(input)
+            div3.appendChild(label)
         }
         else{
+            div3.classList.add('flex-item-reason')
             input = document.createElement('input')
             input.setAttribute('type', 'text')
             input.setAttribute('name', 'reason-extra-delivery')
@@ -185,15 +187,15 @@ function ExtraDeliveryRegister(deliveryPersonId) {
             label.classList.add('float-label')
             label.textContent = 'Motivo'
 
-            div.appendChild(input)
-            div.appendChild(label)
+            div3.appendChild(input)
+            div3.appendChild(label)
         }
 
-        divContainer.appendChild(div)
+        div2.appendChild(div3)
 
     }
 
-    container.appendChild(divContainer)
+    container.appendChild(div2)
 
     /*
         <div class="flex-container">
