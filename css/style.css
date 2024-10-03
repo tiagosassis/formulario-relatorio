@@ -82,7 +82,7 @@ input{
     border: none;
     border-radius: 2px;
     padding: 5px;
-    font-size: .9em;
+    font-size: 1em;
     color: var(--input-text-color);
 }
 
@@ -127,9 +127,17 @@ hr{
     background-color: var(--hover-button-color);
 }
 
-#extra-delivery-register > .flex-container{
-    justify-content: space-between;
-    margin-top: 25px;
+#extra-delivery-register > div {
+    
+    .flex-container{
+        justify-content: space-between;
+        margin-top: 25px;
+    }
+}
+
+.flex-column-wrap{
+    display: flex;
+    flex-flow: column wrap;
 }
 
 .flex-container > div{
@@ -168,8 +176,8 @@ hr{
 }
 
 .float-input:focus ~ .float-label, .float-input:valid ~ .float-label{
-    top: -18px;
-    font-size: 0.8em;
+    top: -20px;
+    font-size: 0.75em;
 }
 
 section#report{

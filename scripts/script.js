@@ -143,6 +143,8 @@ function UpdateReport(event) {
 
 function ExtraDeliveryRegister(deliveryPersonId) {
     const container = document.getElementById('extra-delivery-register')
+    let div1 = document.createElement('div')
+    div1.classList.add('flex-column-wrap')
     let div2 = document.createElement('div')
     let div3, input, label
 
@@ -194,19 +196,22 @@ function ExtraDeliveryRegister(deliveryPersonId) {
         div2.appendChild(div3)
 
     }
-
-    container.appendChild(div2)
+    div1.appendChild(div2)
+    container.appendChild(div1)
+    
 
     /*
-        <div class="flex-container">
-            <label class="flex-item-name">Guilherme Vieira</label>
-            <div class="flex-item-number">
-                <input type="text" name="extra-delivery-number" id="extra-delivery-number" class="float-input" required>
-                <label for="delivery-extra" class="float-label">Número do pedido</label>
-            </div>
-            <div class="flex-item-reason">
-                <input type="text" name="reason-extra-delivery" id="reason-extra-delivery" class="float-input" required>
-                <label for="delivery-extra" class="float-label">Motivo</label>
+        <div class="flex-column-wrap">
+            <div class="flex-container">
+                <label class="flex-item-name">Guilherme Vieira</label>
+                <div class="flex-item-number">
+                    <input type="text" name="extra-delivery-number" id="extra-delivery-number" class="float-input" required>
+                    <label for="delivery-extra" class="float-label">Número do pedido</label>
+                </div>
+                <div class="flex-item-reason">
+                    <input type="text" name="reason-extra-delivery" id="reason-extra-delivery" class="float-input" required>
+                    <label for="delivery-extra" class="float-label">Motivo</label>
+                </div>
             </div>
         </div>
     */
