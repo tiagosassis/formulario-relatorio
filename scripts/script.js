@@ -143,8 +143,72 @@ function UpdateReport(event) {
 
 function ExtraDeliveryRegister(deliveryPersonId) {
     const container = document.getElementById('extra-delivery-register')
+    let divContainer = document.createElement('div')
+    let div, input, label
 
-    document.querySelector(`#delivery-person-name-${deliveryPersonId}`).value + ':'
+    divContainer.classList.add('flex-container')
+
+    label = document.createElement('label')
+    label.classList.add('flex-item-name')
+    label.textContent = document.querySelector(`#delivery-person-name-${deliveryPersonId}`).value
+
+    divContainer.appendChild(label)
+
+    for (let index = 0; index < 2; index++) {
+        div = document.createElement('div')
+        if (index == 0) {
+            input = document.createElement('input')
+            input.setAttribute('type', 'text')
+            input.setAttribute('name', 'extra-delivery-number')
+            input.setAttribute('id', 'extra-delivery-number')
+            input.setAttribute('class', 'float-input')
+            input.setAttribute('required', '')
+
+            label = document.createElement('label')
+            label.setAttribute('for', 'extra-delivery-number')
+            label.classList.add('float-label')
+            label.textContent = 'Número do pedido'
+
+            div.appendChild(input)
+            div.appendChild(label)
+        }
+        else{
+            input = document.createElement('input')
+            input.setAttribute('type', 'text')
+            input.setAttribute('name', 'reason-extra-delivery')
+            input.setAttribute('id', 'reason-extra-delivery')
+            input.setAttribute('class', 'float-input')
+            input.setAttribute('required', '')
+
+            label = document.createElement('label')
+            label.setAttribute('for', 'reason-extra-delivery')
+            label.classList.add('float-label')
+            label.textContent = 'Motivo'
+
+            div.appendChild(input)
+            div.appendChild(label)
+        }
+
+        divContainer.appendChild(div)
+
+    }
+
+    container.appendChild(divContainer)
+
+    /*
+        <div class="flex-container">
+            <label class="flex-item-name">Guilherme Vieira</label>
+            <div class="flex-item-number">
+                <input type="text" name="extra-delivery-number" id="extra-delivery-number" class="float-input" required>
+                <label for="delivery-extra" class="float-label">Número do pedido</label>
+            </div>
+            <div class="flex-item-reason">
+                <input type="text" name="reason-extra-delivery" id="reason-extra-delivery" class="float-input" required>
+                <label for="delivery-extra" class="float-label">Motivo</label>
+            </div>
+        </div>
+    */
+    
 }
 
 function UpdateDeliveries(event, deliveryPersonId) {
