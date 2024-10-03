@@ -123,8 +123,10 @@ function UpdateReport(event) {
         UpdateDeliveries(event, deliveryPersonId)
 
     } else if(event.target.id.includes('extra')){
-        if (event.target.value) // altera o status de consumo no relatorio
-            document.querySelector(`#textField-${event.target.id}`).innerHTML = ', ' + event.target.value + ' Extra' // altera a quantidade de entregas extras no relatorio
+        if (event.target.value){ // altera a quantidade de extra no relatorio
+            document.querySelector(`#textField-${event.target.id}`).innerHTML = ', ' + event.target.value + ' Extra'
+            ExtraDeliveryRegister(deliveryPersonId)
+        }
         else
             document.querySelector(`#textField-${event.target.id}`).innerHTML = ''
 
@@ -137,6 +139,12 @@ function UpdateReport(event) {
     } else 
         console.log('erro no if/else dos include')
 
+}
+
+function ExtraDeliveryRegister(deliveryPersonId) {
+    const container = document.getElementById('extra-delivery-register')
+
+    document.querySelector(`#delivery-person-name-${deliveryPersonId}`).value + ':'
 }
 
 function UpdateDeliveries(event, deliveryPersonId) {

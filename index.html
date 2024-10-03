@@ -8,10 +8,10 @@
     <title>Relatorio</title>
 </head>
 <body>
-    <main>
+    <main class="flex-container">
         <div class="container">
+            <h1>Relatório</h1>
             <section>
-                <h1>Relatório</h1>
                 <section oninput="UpdateReport(event)">
                     <h2>Entregadores</h2>
                     <datalist id="datalist-delivery-person">
@@ -21,8 +21,7 @@
                         <option value="Keven">Keven</option>
                         <option value="João Pedro">João Pedro</option>
                     </datalist>
-    
-                    <div class="delivery-person-container">
+                    <div class="flex-container delivery-person-container">
                         <fieldset>
                             <label for="delivery-person-name-1">Nome</label>
                             <input type="text" id="delivery-person-name-1" list="datalist-delivery-person" onfocus="ClearInput('delivery-person-name-1')" value="Byane" placeholder="Entregador">
@@ -41,8 +40,7 @@
                         </fieldset>
                         <hr>
                     </div>
-
-                    <div class="delivery-person-container">
+                    <div class="flex-container delivery-person-container">
                         <fieldset>
                             <label for="delivery-person-name-2">Nome</label>
                             <input type="text" id="delivery-person-name-2" list="datalist-delivery-person" onfocus="ClearInput('delivery-person-name-2')" value="Guilherme Vieira" placeholder="Entregador">
@@ -61,8 +59,7 @@
                         </fieldset>
                         <hr>
                     </div>
-    
-                    <div class="delivery-person-container">
+                    <div class="flex-container delivery-person-container">
                         <fieldset>
                             <label for="delivery-person-name-3">Nome</label>
                             <input type="text" id="delivery-person-name-3" list="datalist-delivery-person" onfocus="ClearInput('delivery-person-name-3')" value="Kaio" placeholder="Entregador">
@@ -81,8 +78,7 @@
                         </fieldset>
                         <hr>
                     </div>
-    
-                    <div class="delivery-person-container">
+                    <div class="flex-container delivery-person-container">
                         <fieldset>
                             <label for="delivery-person-name-4">Nome</label>
                             <input type="text" id="delivery-person-name-4" list="datalist-delivery-person" onfocus="ClearInput('delivery-person-name-4')" value="João Pedro" placeholder="Entregador">
@@ -101,8 +97,7 @@
                         </fieldset>
                         <hr>
                     </div>
-
-                    <div class="delivery-person-container">
+                    <div class="flex-container delivery-person-container">
                         <fieldset>
                             <label for="delivery-person-name-5">Nome</label>
                             <input type="text" id="delivery-person-name-5" list="datalist-delivery-person" onfocus="ClearInput('delivery-person-name-5')" value="Keven" placeholder="Entregador">
@@ -121,8 +116,7 @@
                         </fieldset>
                         <hr>
                     </div>
-
-                    <div id="delivery-person-extra" class="delivery-person-container hidden">
+                    <div id="delivery-person-extra" class="flex-container delivery-person-container hidden">
                         <fieldset>
                             <label for="delivery-person-name-6">Nome</label>
                             <input type="text" id="delivery-person-name-6" list="datalist-delivery-person" onfocus="ClearInput('delivery-person-name-6')" value="" placeholder="Entregador">
@@ -143,89 +137,92 @@
                     </div>
                     
                     <input type="submit" id="add-delivery-person" value="Adicionar Entregador" class="add-button" onclick="ToggleExtraDeliveryPerson()">
+                </section>
 
-                    <section class="flex-section">
-                        <div>
-                            <input type="text" name="extra-delivery-number" id="extra-delivery-number">
-                            <label for="delivery-extra">Número do pedido</label>
+                <section id="extra-delivery-register">
+                    <div class="flex-container">
+                        <label class="flex-item-name">Guilherme Vieira</label>
+                        <div class="flex-item-number">
+                            <input type="text" name="extra-delivery-number" id="extra-delivery-number" class="float-input" required>
+                            <label for="delivery-extra" class="float-label">Número do pedido</label>
                         </div>
-    
-                        <div>
-                            <input type="text" name="reason-extra-delivery" id="reason-extra-delivery">
+                        <div class="flex-item-reason">
+                            <input type="text" name="reason-extra-delivery" id="reason-extra-delivery" class="float-input" required>
                             <label for="delivery-extra" class="float-label">Motivo</label>
                         </div>
-                    </section>
-                </section>
-                
-                <section id="report">
-                    <h2>Relatório</h2>
-                    <div class="copy-button" onclick="CopyContent()">
-                        <span class="material-symbols-outlined">
-                            content_copy
-                        </span>
                     </div>
+                </section>
+            </section>
+            <br>
+            <br>
+            <section id="report">
+                <h2>Relatório</h2>
+                <div class="copy-button" onclick="CopyContent()">
+                    <span class="material-symbols-outlined">
+                        content_copy
+                    </span>
+                </div>
 
-                    <section id="report-content">
-                        <h3 id="date-of-report"></h3>
-                        <section>
-                            <h4>Entregadores</h4>
-                            <div id="delivery-person-report-1" class="delivery-report-container hidden">
-                                <span id="textField-delivery-person-name-1"></span>
-                                <span id="textField-payment-1"></span><br>
-                                <span class="hidden">(</span><span id="textField-deliveries-1"></span>
-                                <span id="textField-extra-1"></span>
-                                <span id="textField-consumption-1"></span><span class="hidden">)</span>
-                                <hr>
-                            </div>
-                            <div id="delivery-person-report-2" class="delivery-report-container hidden">
-                                <span id="textField-delivery-person-name-2"></span>
-                                <span id="textField-payment-2"></span><br>
-                                <span class="hidden">(</span><span id="textField-deliveries-2"></span>
-                                <span id="textField-extra-2"></span>
-                                <span id="textField-consumption-2"></span><span class="hidden">)</span>
-                                <hr>
-                            </div>
-                            <div id="delivery-person-report-3" class="delivery-report-container hidden">
-                                <span id="textField-delivery-person-name-3"></span>
-                                <span id="textField-payment-3"></span><br>
-                                <span class="hidden">(</span><span id="textField-deliveries-3"></span>
-                                <span id="textField-extra-3"></span>
-                                <span id="textField-consumption-3"></span><span class="hidden">)</span>
-                                <hr>
-                            </div>
-                            <div id="delivery-person-report-4" class="delivery-report-container hidden">
-                                <span id="textField-delivery-person-name-4"></span>
-                                <span id="textField-payment-4"></span><br>
-                                <span class="hidden">(</span><span id="textField-deliveries-4"></span>
-                                <span id="textField-extra-4"></span>
-                                <span id="textField-consumption-4"></span><span class="hidden">)</span>
-                                <hr>
-                            </div>
-                            <div id="delivery-person-report-5" class="delivery-report-container hidden">
-                                <span id="textField-delivery-person-name-5"></span>
-                                <span id="textField-payment-5"></span><br>
-                                <span class="hidden">(</span><span id="textField-deliveries-5"></span>
-                                <span id="textField-extra-5"></span>
-                                <span id="textField-consumption-5"></span><span class="hidden">)</span>
-                                <hr>
-                            </div>
-                            <div id="delivery-person-report-6" class="delivery-report-container hidden">
-                                <span id="textField-delivery-person-name-6"></span>
-                                <span id="textField-payment-6"></span><br>
-                                <span class="hidden">(</span><span id="textField-deliveries-6"></span>
-                                <span id="textField-extra-6"></span>
-                                <span id="textField-consumption-6"></span><span class="hidden">)</span>
-                                <hr>
-                            </div>
-                        </section>
-                        <p><!--OBS 1--></p>
-                        <section>
-                            <h4>Extra Entregadores</h4>
-                        </section>
-                        <p><!--OBS 1--></p>
-                        <section>
-                            <h4>Extras</h4>
-                        </section>
+                <section id="report-content">
+                    <h3 id="date-of-report"></h3>
+                    <section>
+                        <h4>Entregadores</h4>
+                        <div id="delivery-person-report-1" class="hidden">
+                            <span id="textField-delivery-person-name-1"></span>
+                            <span id="textField-payment-1"></span><br>
+                            <span class="hidden">(</span><span id="textField-deliveries-1"></span>
+                            <span id="textField-extra-1"></span>
+                            <span id="textField-consumption-1"></span><span class="hidden">)</span>
+                            <hr>
+                        </div>
+                        <div id="delivery-person-report-2" class="hidden">
+                            <span id="textField-delivery-person-name-2"></span>
+                            <span id="textField-payment-2"></span><br>
+                            <span class="hidden">(</span><span id="textField-deliveries-2"></span>
+                            <span id="textField-extra-2"></span>
+                            <span id="textField-consumption-2"></span><span class="hidden">)</span>
+                            <hr>
+                        </div>
+                        <div id="delivery-person-report-3" class="hidden">
+                            <span id="textField-delivery-person-name-3"></span>
+                            <span id="textField-payment-3"></span><br>
+                            <span class="hidden">(</span><span id="textField-deliveries-3"></span>
+                            <span id="textField-extra-3"></span>
+                            <span id="textField-consumption-3"></span><span class="hidden">)</span>
+                            <hr>
+                        </div>
+                        <div id="delivery-person-report-4" class="hidden">
+                            <span id="textField-delivery-person-name-4"></span>
+                            <span id="textField-payment-4"></span><br>
+                            <span class="hidden">(</span><span id="textField-deliveries-4"></span>
+                            <span id="textField-extra-4"></span>
+                            <span id="textField-consumption-4"></span><span class="hidden">)</span>
+                            <hr>
+                        </div>
+                        <div id="delivery-person-report-5" class="hidden">
+                            <span id="textField-delivery-person-name-5"></span>
+                            <span id="textField-payment-5"></span><br>
+                            <span class="hidden">(</span><span id="textField-deliveries-5"></span>
+                            <span id="textField-extra-5"></span>
+                            <span id="textField-consumption-5"></span><span class="hidden">)</span>
+                            <hr>
+                        </div>
+                        <div id="delivery-person-report-6" class="hidden">
+                            <span id="textField-delivery-person-name-6"></span>
+                            <span id="textField-payment-6"></span><br>
+                            <span class="hidden">(</span><span id="textField-deliveries-6"></span>
+                            <span id="textField-extra-6"></span>
+                            <span id="textField-consumption-6"></span><span class="hidden">)</span>
+                            <hr>
+                        </div>
+                    </section>
+                    <p><!--OBS 1--></p>
+                    <section>
+                        <h4>Extra Entregadores</h4>
+                    </section>
+                    <p><!--OBS 1--></p>
+                    <section>
+                        <h4>Extras</h4>
                     </section>
                 </section>
             </section>
