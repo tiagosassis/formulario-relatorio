@@ -5,67 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        body{
-            padding: 30px;
-        }
-
-        button{display: block;
-            margin: auto;
-        }
-
-        .flex-container{
+        div{
             display: flex;
-            flex-flow: row nowrap;
-            justify-content: space-around;
-            margin: 30px;
         }
-
-        .flex-item{
-            background-color: gray;
-            height: 150px;
-            width: 150px;
+        .order-0{
+            order: 0;
+            color: red;
         }
-
-        .hidden{
-            display: none;
+        .order-1{
+            order: 1;
+            color: green;
         }
-
-        hr{
-            border: none;
-            height: 1px;
-            background-color: black;
-            width: 100%;
-            margin: 10px auto;
-            border-radius: 5px;
+        .order-2{
+            order: 2;
+            color: blue;
         }
     </style>
 </head>
 <body>
-    <div class="flex-container hidden">
-        <div class="flex-item">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat quisquam, voluptatem eum ea ducimus natus porro excepturi, aut mollitia quam eius corporis voluptas sed facilis. Vero recusandae culpa fugit consectetur!</p>
-            <hr>
-        </div>
-        <div class="flex-item">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat quisquam, voluptatem eum ea ducimus natus porro excepturi, aut mollitia quam eius corporis voluptas sed facilis. Vero recusandae culpa fugit consectetur!</p>
-            <hr>
-        </div>
-        <div class="flex-item">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat quisquam, voluptatem eum ea ducimus natus porro excepturi, aut mollitia quam eius corporis voluptas sed facilis. Vero recusandae culpa fugit consectetur!</p>
-            <hr>
-        </div>
-        
+    <div>
+        <p class="order-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi quo praesentium tenetur accusamus libero a fugiat odio, temporibus blanditiis, earum esse iste natus in similique suscipit consequuntur nulla aut rerum!</p>
+        <h1 class="order-2">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda perferendis accusamus doloribus explicabo corrupti optio fuga eum vero rem ea id possimus quod doloremque debitis obcaecati, quasi iure autem officiis!</h1>
+        <p class="order-1">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero odio neque aperiam iusto explicabo. Aperiam pariatur repellendus dicta, inventore vel porro aliquid odit dolor illum optio similique, quasi ab iure.</p>
     </div>
-    <button onclick="AlternarDisplay()">
-        alterar display
-    </button>
-
-    <script>
-        function AlternarDisplay() {
-            const div = document.querySelector('.flex-container')
-
-            div.classList.toggle('hidden')
-        }
-    </script>
 </body>
 </html>
