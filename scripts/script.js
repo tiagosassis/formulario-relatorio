@@ -153,9 +153,9 @@ function ExtraDeliveryRegister(deliveryPersonId, numberOfExtra) {
         if (currentRegister > 0) {
             CreateNewExtraDeliveryRegister(div1, currentRegister, deliveryPersonId)
         } else if(currentRegister < 0){
-            for (let i = register.length; currentRegister != 0; i--) {
-                if (register[i-1]) {
-                    register[i-1].remove()
+            for (let i = register.length; currentRegister !== 0; i--) {
+                if (register[i - 1]) {
+                    register[i - 1].remove()
                 }
                 currentRegister++
             }
