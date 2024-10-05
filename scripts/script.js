@@ -170,7 +170,7 @@ function ExtraDeliveryRegister(deliveryPersonId, numberOfExtra) {
         div1.classList.add('flex-column-wrap', `order-${deliveryPersonId}`)
         div1.setAttribute('id', `div-delivery-person-${deliveryPersonId}`)
 
-        div1 = CreateNewExtraDeliveryRegister(div1, numberOfExtra, deliveryPersonId)
+        CreateNewExtraDeliveryRegister(div1, numberOfExtra, deliveryPersonId)
 
         container.appendChild(div1)
     }
@@ -226,12 +226,11 @@ function CreateNewExtraDeliveryRegister(div1, numberOfExtra, deliveryPersonId) {
         }
         div1.appendChild(div2)
     }
-    return div1
 }
 
 function UpdateDeliveries(event, deliveryPersonId) {
     const containerOfDeliveryPerson = document.querySelector(`#delivery-person-report-${deliveryPersonId}`)
-    // altera a quantidade de entregas no relatorio, caso não haja entregas para aquele entregador, a visibilidade dele no relatorio é alterar como display none
+    // essa função altera a quantidade de entregas no relatorio, caso não haja entregas para aquele entregador, a visibilidade dele no relatorio é alterar como display none
     document.querySelector(`#textField-${event.target.id}`).innerHTML = event.target.value + ' Entregas' 
     if (event.target.value == '' && !(containerOfDeliveryPerson.className.includes('hidden'))) 
         containerOfDeliveryPerson.classList.toggle('hidden')
@@ -260,13 +259,14 @@ function PaymentCalculation(deliveryPersonId) {
     if (document.querySelector(`#consumption-${deliveryPersonId}`).value == '') 
         consumption = 0
     else 
-        consumption = parseFloat(document.querySelector(`#consumption-${deliveryPersonId}`).value)
+        consumption = parseFloat(document.querySelector(`#consumption-${deliveryPersonId}`).value.replace(',', '.'))
 
-    const totalPayment = ((deliveries + extra) * deliveryFee) + costAssistance - consumption;
-    document.querySelector(`#textField-payment-${deliveryPersonId}`).textContent = `R$ ${totalPayment.toFixed(2)}`;
+    let totalPayment = ((deliveries + extra) * deliveryFee) + costAssistance - consumption
+    document.querySelector(`#textField-payment-${deliveryPersonId}`).textContent = `R$ ${totalPayment.toFixed(2).replace('.', ',')}`
 
     /*
-        cada entrega vale 6,00 reais, tem uma ajuda de custo de 10,00 reais e o consumo é descontado do valor final
+        essa função calcula o pagamento conforme a quantidade de entregas e extras de cada entregador e coloca o resultado já no relatorio para ser copiado
+        cada entrega vale 6,00 reais, tem uma ajuda de custo de 10,00 reais de segunda a quinta e 20,00 de sexta a domingo e o consumo é descontado do valor final
         (((entregas + entregas extras) x 6) + 10) - consumo
     */
 }
