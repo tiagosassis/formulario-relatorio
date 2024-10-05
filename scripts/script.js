@@ -1,13 +1,14 @@
 document.addEventListener('DOMContentLoaded', ConfigDeliveryPerson)
 document.getElementById('section-delivery-person').addEventListener('input', UpdateReport)
 
+const currentDate = new Date()
+
 function ConfigDeliveryPerson() {
-    const currentDate = new Date()
-    const h1 = document.querySelector('h1')
-    const dateOfReport = document.getElementById('date-of-report')
     const weekDay = currentDate.getDay()
     const day = currentDate.getDate()
     const month = currentDate.getMonth() + 1
+    const h1 = document.querySelector('h1')
+    const dateOfReport = document.getElementById('date-of-report')
     const divDelivery = document.querySelectorAll('.delivery-person-container')
     
     if (currentDate.getHours() >= 5 && currentDate.getHours() <= 17) { // dia
@@ -145,7 +146,7 @@ function UpdateReport(event) {
 }
 
 function ExtraDeliveryRegister(deliveryPersonId, numberOfExtra) {
-    const container = document.getElementById('extra-delivery-register')
+    const container = document.getElementById('section-extra-delivery')
     let div1 = document.getElementById(`div-delivery-person-${deliveryPersonId}`)
 
     if (div1) {
@@ -239,9 +240,12 @@ function UpdateDeliveries(event, deliveryPersonId) {
 }
 
 function PaymentCalculation(deliveryPersonId) {
-    const costAssistance = 10
     const deliveryFee = 6
+    let costAssistance = 10
     let deliveries, extra, consumption
+    
+    if (currentDate.getDay() === 0 || currentDate.getDay() === 5 || currentDate.getDay() === 6) // sexta, sabado e domingo a ajuda de custo é R$ 20,00
+        costAssistance = 20
 
     if (document.querySelector(`#deliveries-${deliveryPersonId}`).value == '') 
         deliveries = 0

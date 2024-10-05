@@ -131,7 +131,7 @@ hr{
     background-color: var(--hover-button-color);
 }
 
-#extra-delivery-register > div > .flex-container{
+#section-extra-delivery > div > .flex-container{
     justify-content: space-between;
     margin-top: 25px;
 }
