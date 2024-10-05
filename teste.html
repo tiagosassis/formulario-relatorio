@@ -1,32 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-    </style>
-    <script>
-        document.addEventListener('DOMContentLoaded', ()=>{
-            const div = document.querySelector('div')
-            let h1 = document.createElement('h1')
-            h1.textContent = 'Hello World'
-
-            AlteraTitulo(h1)
-
-            div.appendChild(h1)
-        })
-
-        function AlteraTitulo(h1) {
-            h1.textContent = 'Hellooooooooooooooooooooo World!!!!!!!!!!!!!!!'
-        }
-    </script>
+    <title>Gerar Excel</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
 </head>
 <body>
-    <div>
-        <p class="order-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi quo praesentium tenetur accusamus libero a fugiat odio, temporibus blanditiis, earum esse iste natus in similique suscipit consequuntur nulla aut rerum!</p>
-        
-        <p class="order-1">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero odio neque aperiam iusto explicabo. Aperiam pariatur repellendus dicta, inventore vel porro aliquid odit dolor illum optio similique, quasi ab iure.</p>
-    </div>
+    <h1>Formulário para Excel</h1>
+    <input type="text" id="nome" placeholder="Nome" />
+    <input type="number" id="idade" placeholder="Idade" />
+    <button id="gerar-excel">Gerar Excel</button>
+
+    <script>
+        document.getElementById('gerar-excel').addEventListener('click', function() {
+            const nome = document.getElementById('nome').value;
+            const idade = document.getElementById('idade').value;
+
+            // Criar uma nova planilha
+            const ws = XLSX.utils.json_to_sheet([{ Nome: nome, Idade: idade }]);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "Dados");
+
+            // Exportar para Excel
+            XLSX.writeFile(wb, 'dados.xlsx');
+        });
+    </script>
 </body>
 </html>

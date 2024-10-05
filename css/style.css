@@ -52,6 +52,10 @@ main{
     border-radius: 15px;
 }
 
+.container > section{
+    margin-bottom: 10px;
+}
+
 h1{
     text-align: center;
 }
@@ -121,7 +125,7 @@ hr{
     border-radius: 5px;
     cursor: pointer;
     padding: 10px;
-    margin: 10px 0px;
+    margin: 5px 0px;
     font-size: 1em;
     background-color: var(--background-button-color);
     color: var(--text-color);
@@ -176,7 +180,7 @@ hr{
     font-size: 0.75em;
 }
 
-section#report{
+#section-report{
     position: relative;
 }
 
