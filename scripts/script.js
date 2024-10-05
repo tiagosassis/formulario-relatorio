@@ -43,9 +43,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
                 break;
         }
         if(currentDate.getHours() >= 0 && currentDate.getHours() <= 4){
-            day--
-            h1.innerText = 'Relatório Noite ' + day + '/' + month
-            dateOfReport.innerHTML = '*Noite ' + day + '/' + month + '*<br>'
+            h1.innerText = 'Relatório Noite ' + (day - 1) + '/' + month
+            dateOfReport.innerHTML = '*Noite ' + (day - 1) + '/' + month + '*<br>'
         }else{
             h1.innerText = 'Relatório Noite ' + day + '/' + month
             dateOfReport.innerHTML = '*Noite ' + day + '/' + month + '*<br>'
