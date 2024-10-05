@@ -24,7 +24,7 @@
                     <div class="flex-container delivery-person-container">
                         <fieldset>
                             <label for="delivery-person-name-1">Nome</label>
-                            <input type="text" id="delivery-person-name-1" list="datalist-delivery-person" onfocus="ClearInput('delivery-person-name-1')" value="Byane" placeholder="Entregador">
+                            <input type="text" id="delivery-person-name-1" list="datalist-delivery-person" onfocus="clearInput('delivery-person-name-1')" value="Byane" placeholder="Entregador">
                         </fieldset>
                         <fieldset>
                             <label for="deliveries-1">Entregas</label>
@@ -43,7 +43,7 @@
                     <div class="flex-container delivery-person-container">
                         <fieldset>
                             <label for="delivery-person-name-2">Nome</label>
-                            <input type="text" id="delivery-person-name-2" list="datalist-delivery-person" onfocus="ClearInput('delivery-person-name-2')" value="Guilherme Vieira" placeholder="Entregador">
+                            <input type="text" id="delivery-person-name-2" list="datalist-delivery-person" onfocus="clearInput('delivery-person-name-2')" value="Guilherme Vieira" placeholder="Entregador">
                         </fieldset>
                         <fieldset>
                             <label for="deliveries-2">Entregas</label>
@@ -62,7 +62,7 @@
                     <div class="flex-container delivery-person-container">
                         <fieldset>
                             <label for="delivery-person-name-3">Nome</label>
-                            <input type="text" id="delivery-person-name-3" list="datalist-delivery-person" onfocus="ClearInput('delivery-person-name-3')" value="Kaio" placeholder="Entregador">
+                            <input type="text" id="delivery-person-name-3" list="datalist-delivery-person" onfocus="clearInput('delivery-person-name-3')" value="Kaio" placeholder="Entregador">
                         </fieldset>
                         <fieldset>
                             <label for="deliveries-3">Entregas</label>
@@ -81,7 +81,7 @@
                     <div class="flex-container delivery-person-container">
                         <fieldset>
                             <label for="delivery-person-name-4">Nome</label>
-                            <input type="text" id="delivery-person-name-4" list="datalist-delivery-person" onfocus="ClearInput('delivery-person-name-4')" value="João Pedro" placeholder="Entregador">
+                            <input type="text" id="delivery-person-name-4" list="datalist-delivery-person" onfocus="clearInput('delivery-person-name-4')" value="João Pedro" placeholder="Entregador">
                         </fieldset>
                         <fieldset>
                             <label for="deliveries-4">Entregas</label>
@@ -100,7 +100,7 @@
                     <div class="flex-container delivery-person-container">
                         <fieldset>
                             <label for="delivery-person-name-5">Nome</label>
-                            <input type="text" id="delivery-person-name-5" list="datalist-delivery-person" onfocus="ClearInput('delivery-person-name-5')" value="Keven" placeholder="Entregador">
+                            <input type="text" id="delivery-person-name-5" list="datalist-delivery-person" onfocus="clearInput('delivery-person-name-5')" value="Keven" placeholder="Entregador">
                         </fieldset>
                         <fieldset>
                             <label for="deliveries-5">Entregas</label>
@@ -119,7 +119,7 @@
                     <div id="delivery-person-extra" class="flex-container delivery-person-container hidden">
                         <fieldset>
                             <label for="delivery-person-name-6">Nome</label>
-                            <input type="text" id="delivery-person-name-6" list="datalist-delivery-person" onfocus="ClearInput('delivery-person-name-6')" value="" placeholder="Entregador">
+                            <input type="text" id="delivery-person-name-6" list="datalist-delivery-person" onfocus="clearInput('delivery-person-name-6')" value="" placeholder="Entregador">
                         </fieldset>
                         <fieldset>
                             <label for="deliveries-6">Entregas</label>
@@ -136,7 +136,7 @@
                         <hr>
                     </div>
                     
-                    <input type="submit" id="add-delivery-person" value="Adicionar Entregador" class="add-button" onclick="ToggleExtraDeliveryPerson()">
+                    <input type="submit" id="add-delivery-person" value="Adicionar Entregador" class="add-button" onclick="toggleExtraDeliveryPerson()">
                 </section>
 
                 <section id="section-extra-delivery" class="flex-column-wrap">
@@ -147,7 +147,7 @@
             <br>
             <section id="report">
                 <h2>Relatório</h2>
-                <div class="copy-button" onclick="CopyContent()">
+                <div class="copy-button" onclick="copyContent()">
                     <span class="material-symbols-outlined">
                         content_copy
                     </span>
