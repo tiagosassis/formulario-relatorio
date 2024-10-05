@@ -243,25 +243,20 @@ function PaymentCalculation(deliveryPersonId) {
     const deliveryFee = 6
     let deliveries, extra, consumption
 
-    if (document.querySelector(`#deliveries-${deliveryPersonId}`).value == '') {
+    if (document.querySelector(`#deliveries-${deliveryPersonId}`).value == '') 
         deliveries = 0
-    }
-    else{
+    else
         deliveries = parseFloat(document.querySelector(`#deliveries-${deliveryPersonId}`).value)
-    }
 
-    if (document.querySelector(`#extra-${deliveryPersonId}`).value == '') {
+    if (document.querySelector(`#extra-${deliveryPersonId}`).value == '') 
         extra = 0
-    }
-    else {
+    else 
         extra = parseFloat(document.querySelector(`#extra-${deliveryPersonId}`).value)
-    }
 
-    if (document.querySelector(`#consumption-${deliveryPersonId}`).value == '') {
+    if (document.querySelector(`#consumption-${deliveryPersonId}`).value == '') 
         consumption = 0
-    } else {
+    else 
         consumption = parseFloat(document.querySelector(`#consumption-${deliveryPersonId}`).value)
-    }
 
     const totalPayment = ((deliveries + extra) * deliveryFee) + costAssistance - consumption;
     document.querySelector(`#textField-payment-${deliveryPersonId}`).textContent = `R$ ${totalPayment.toFixed(2)}`;
