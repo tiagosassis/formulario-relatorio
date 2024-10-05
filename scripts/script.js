@@ -1,4 +1,7 @@
-document.addEventListener('DOMContentLoaded', ()=>{
+document.addEventListener('DOMContentLoaded', ConfigDeliveryPerson)
+document.getElementById('section-delivery-person').addEventListener('input', UpdateReport)
+
+function ConfigDeliveryPerson() {
     const currentDate = new Date()
     const h1 = document.querySelector('h1')
     const dateOfReport = document.getElementById('date-of-report')
@@ -10,7 +13,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     if (currentDate.getHours() >= 5 && currentDate.getHours() <= 17) { // dia
         h1.innerText = 'Relatório Almoço ' + day + '/' + month
         dateOfReport.innerHTML = '*Almoço ' + day + '/' + month + '*<br>'
-        divDelivery[0].classList.toggle('hidden') // caso seja de dia, os entregadores da noite não aparecem
+        divDelivery[0].classList.toggle('hidden') // caso seja horário do almoço, os entregadores da noite não aparecem
         divDelivery[1].classList.toggle('hidden')
         divDelivery[2].classList.toggle('hidden')
         switch (weekDay) { // define qual entregador estara de folga
@@ -50,8 +53,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
             dateOfReport.innerHTML = '*Noite ' + day + '/' + month + '*<br>'
         }
     }
-    
-})
+}
 
 function ToggleExtraDeliveryPerson () { // função que torna visivel ou não o entregador extra
     const deliveryPersonExtra = document.getElementById('delivery-person-extra')
@@ -66,7 +68,7 @@ function ToggleExtraDeliveryPerson () { // função que torna visivel ou não o 
 
 }
 
-function ClearInput(idInput) { // limpa o input para selecionar outro entregador
+function ClearInput(idInput) { // limpa o nome do entregador do input para selecionar/escrever outro 
     let input = document.getElementById(idInput)
     input.value = ''
     setTimeout(() => {
@@ -74,7 +76,7 @@ function ClearInput(idInput) { // limpa o input para selecionar outro entregador
     }, 0)
 }
 
-function CopyContent() {
+function CopyContent() { // copia o relatorio pronto
     const report = document.getElementById('report-content')
     
     SwitchDisplay()
@@ -113,7 +115,7 @@ function showPopup() { // Função para mostrar o popup e escondê-lo depois de 
 function UpdateReport(event) {
     const deliveryPersonId = event.target.id.match(/\d+/g)[0]
     
-    PaymentCalculation(event, deliveryPersonId)
+    PaymentCalculation(deliveryPersonId)
 
 
     document.querySelector(`#textField-delivery-person-name-${deliveryPersonId}`).innerHTML = document.querySelector(`#delivery-person-name-${deliveryPersonId}`).value + ':' // atualiza nome do entregador no relatorio
@@ -236,7 +238,7 @@ function UpdateDeliveries(event, deliveryPersonId) {
         containerOfDeliveryPerson.classList.toggle('hidden')
 }
 
-function PaymentCalculation(event, deliveryPersonId) {
+function PaymentCalculation(deliveryPersonId) {
     const costAssistance = 10
     const deliveryFee = 6
     let deliveries, extra, consumption
