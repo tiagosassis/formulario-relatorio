@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', configDeliveryPerson)
 document.getElementById('section-delivery-person').addEventListener('input', updateReport)
+document.getElementById('section-extra-delivery').addEventListener('input', reportExtraDeliveries)
 
 const currentDate = new Date()
 
@@ -146,8 +147,14 @@ function reportDeliveries(params) {
     
 }
 
-function reportExtraDeliveries(params) {
-    
+function reportExtraDeliveries(event) {
+    const div = document.querySelectorAll('.extra-delivery-entry')
+
+    //console.log(event.target.value) // aqui ele pega oque foi digitado no input
+
+    div.forEach(item =>{
+        console.log(item.children[0].textContent) // pegando o nome do entregador
+    })
 }
 
 function reportFreelancer(params) {
@@ -189,7 +196,7 @@ function CreateNewExtraDeliveryRegister(div1, numberOfExtra, deliveryPersonId) {
     let div2, div3, input, label
     for (let i = 0; i < numberOfExtra; i++) {
         div2 = document.createElement('div')
-        div2.classList.add('flex-container', `register-${deliveryPersonId}`)
+        div2.classList.add('flex-container', `register-${deliveryPersonId}`, 'extra-delivery-entry')
 
         label = document.createElement('label')
         label.classList.add('flex-item-name', 'label-name')
