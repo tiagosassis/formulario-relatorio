@@ -3,28 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerar Excel</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+    <title>Input com N Maiúsculo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+        .input-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+        input[type="number"] {
+            padding-left: 20px; /* Espaço para a letra N */
+            font-size: 16px;
+            width: 200px;
+        }
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none; /* Remove as setas no Chrome/Safari */
+            margin: 0;
+        }
+        .input-wrapper::before {
+            content: 'N';
+            position: absolute;
+            left: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: black;
+        }
+    </style>
 </head>
 <body>
-    <h1>Formulário para Excel</h1>
-    <input type="text" id="nome" placeholder="Nome" />
-    <input type="number" id="idade" placeholder="Idade" />
-    <button id="gerar-excel">Gerar Excel</button>
-
-    <script>
-        document.getElementById('gerar-excel').addEventListener('click', function() {
-            const nome = document.getElementById('nome').value;
-            const idade = document.getElementById('idade').value;
-
-            // Criar uma nova planilha
-            const ws = XLSX.utils.json_to_sheet([{ Nome: nome, Idade: idade }]);
-            const wb = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(wb, ws, "Dados");
-
-            // Exportar para Excel
-            XLSX.writeFile(wb, 'dados.xlsx');
-        });
-    </script>
+    <h1>Teste de Input com N Maiúsculo</h1>
+    <div class="input-wrapper">
+        <input type="number" id="inputN" placeholder="Digite aqui" />
+    </div>
 </body>
 </html>
