@@ -79,8 +79,6 @@ function clearInput(idInput) { // limpa o nome do entregador do input para selec
 
 function copyContent() { // copia o relatorio pronto
     const report = document.getElementById('report-content')
-
-    console.log('teste')
     
     switchDisplay()
 
