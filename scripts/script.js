@@ -142,6 +142,18 @@ function updateReport(event) {
     }
 }
 
+function reportDeliveries(params) {
+    
+}
+
+function reportExtraDeliveries(params) {
+    
+}
+
+function reportFreelancer(params) {
+    
+}
+
 function ExtraDeliveryRegister(deliveryPersonId, numberOfExtra) {
     const container = document.getElementById('section-extra-delivery')
     let div1 = document.getElementById(`div-delivery-person-${deliveryPersonId}`)
