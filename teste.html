@@ -18,25 +18,59 @@
             font-size: 16px;
             width: 200px;
         }
-        input[type="number"]::-webkit-outer-spin-button,
-        input[type="number"]::-webkit-inner-spin-button {
-            -webkit-appearance: none; /* Remove as setas no Chrome/Safari */
-            margin: 0;
-        }
         .input-wrapper::before {
-            content: 'N';
+            content: '';
             position: absolute;
             left: 5px;
             top: 50%;
             transform: translateY(-50%);
             color: black;
+            transition: opacity 0.2s; /* Transição suave ao mostrar/ocultar */
+            opacity: 0; /* Inicialmente invisível */
+        }
+        .input-wrapper.focused::before {
+            content: 'N'; /* Adiciona a letra N quando o input está focado */
+            opacity: 1; /* Torna a letra N visível */
+        }
+        .input-wrapper.has-value::before {
+            content: 'N'; /* Adiciona a letra N se o input tem valor */
+            opacity: 1; /* Torna a letra N visível */
         }
     </style>
 </head>
 <body>
     <h1>Teste de Input com N Maiúsculo</h1>
-    <div class="input-wrapper">
-        <input type="number" id="inputN" placeholder="Digite aqui" />
+    <div class="input-wrapper" id="inputWrapper">
+        <input type="number" id="inputN" />
     </div>
+
+    <script>
+        const inputWrapper = document.getElementById('inputWrapper');
+        const inputN = document.getElementById('inputN');
+
+        // Adiciona a classe 'focused' ao wrapper quando o input recebe foco
+        inputN.addEventListener('focus', () => {
+            inputWrapper.classList.add('focused');
+        });
+
+        // Verifica o valor do input ao perder o foco
+        inputN.addEventListener('blur', () => {
+            if (inputN.value.trim() !== '') {
+                inputWrapper.classList.add('has-value'); // Mantém a letra N visível
+            } else {
+                inputWrapper.classList.remove('focused'); // Remove a classe se estiver vazio
+                inputWrapper.classList.remove('has-value'); // Remove a classe se estiver vazio
+            }
+        });
+
+        // Adiciona a classe 'has-value' ao digitar
+        inputN.addEventListener('input', () => {
+            if (inputN.value.trim() !== '') {
+                inputWrapper.classList.add('has-value'); // Mantém a letra N visível
+            } else {
+                inputWrapper.classList.remove('has-value'); // Remove a classe se estiver vazio
+            }
+        });
+    </script>
 </body>
 </html>

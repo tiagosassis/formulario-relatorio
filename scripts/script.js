@@ -1,10 +1,9 @@
 document.addEventListener('DOMContentLoaded', configDeliveryPerson)
 document.getElementById('section-delivery-person').addEventListener('input', updateReport)
-document.getElementById('section-extra-delivery').addEventListener('input', reportExtraDeliveries)
-
-const currentDate = new Date()
+document.getElementById('section-extra-delivery').addEventListener('input', updateReportExtraDeliveries)
 
 function configDeliveryPerson() {
+    const currentDate = new Date()
     const weekDay = currentDate.getDay()
     const day = currentDate.getDate()
     const month = currentDate.getMonth() + 1
@@ -129,10 +128,12 @@ function updateReport(event) {
         if (event.target.value){ // altera a quantidade de extra no relatorio
             document.querySelector(`#textField-${event.target.id}`).innerHTML = ', ' + event.target.value + ' Extra'
             ExtraDeliveryRegister(deliveryPersonId, event.target.value)
+            updateReportTextField(deliveryPersonId, event.target.value)
         }
         else {
             document.querySelector(`#textField-${event.target.id}`).innerHTML = ''
             ExtraDeliveryRegister(deliveryPersonId, 0)
+            updateReportTextField(deliveryPersonId, 0)
         }
 
     } else if(event.target.id.includes('consumption')){ 
@@ -147,29 +148,34 @@ function reportDeliveries(params) {
     
 }
 
-function reportExtraDeliveries(event) {
-    const div = document.querySelectorAll('.extra-delivery-entry')
+function updateReportExtraDeliveries(event) {
+    const deliveryPersonId = event.target.id.match(/\d+/g)[0] // pega o número identificador do entregador
+    const extraDeliveryIndex = event.target.id.match(/\d+/g)[1] // pega o número do input que foi usado
+    let span
 
-    //console.log(event.target.value) // aqui ele pega oque foi digitado no input
-
-    div.forEach(item =>{
-        console.log(item.children[0].textContent) // pegando o nome do entregador
-    })
+    if (event.target.className.includes('number')) { // if usado para selecionar se o input usado foi o de numero de pedido ou de motivo de extra
+        span = document.getElementById(`report-extra-delivery-number-${deliveryPersonId}-${extraDeliveryIndex}`)
+        let requestNumber = event.target.value
+        span.textContent = ' N' + requestNumber
+    } else if(event.target.className.includes('reason')) {
+        span = document.getElementById(`report-extra-delivery-reason-${deliveryPersonId}-${extraDeliveryIndex}`)
+        let reason = event.target.value
+        reason = reason.charAt(0).toUpperCase() + reason.slice(1) // deixa a primeira letra maiúscla
+        span.textContent = ' (' + reason + ')'
+    } else{
+        console.log('um erro detectado na função updateReportExtraDeliveries')
+    }
 }
 
-function reportFreelancer(params) {
-    
-}
+function updateReportTextField(deliveryPersonId, numberOfExtra) {
+    const container = document.getElementById('report-extra-delivery')
+    let div = document.getElementById(`div-report-extra-delivery-${deliveryPersonId}`)
 
-function ExtraDeliveryRegister(deliveryPersonId, numberOfExtra) {
-    const container = document.getElementById('section-extra-delivery')
-    let div1 = document.getElementById(`div-delivery-person-${deliveryPersonId}`)
-
-    if (div1) {
-        let register = document.querySelectorAll(`.register-${deliveryPersonId}`)
-        currentRegister = numberOfExtra - register.length
+    if (div) {
+        let register = document.querySelectorAll(`.register-content-${deliveryPersonId}`)
+        let currentRegister = numberOfExtra - register.length
         if (currentRegister > 0) {
-            CreateNewExtraDeliveryRegister(div1, currentRegister, deliveryPersonId)
+            createReportTextField(deliveryPersonId, currentRegister, div)
         } else if(currentRegister < 0){
             for (let i = register.length; currentRegister !== 0; i--) {
                 if (register[i - 1]) {
@@ -182,21 +188,73 @@ function ExtraDeliveryRegister(deliveryPersonId, numberOfExtra) {
         }
 
     } else {
-        div1 = document.createElement('div')
-        div1.classList.add('flex-column-wrap', `order-${deliveryPersonId}`)
-        div1.setAttribute('id', `div-delivery-person-${deliveryPersonId}`)
+        div = document.createElement('div')
+        div.classList.add('flex-column-wrap', `order-${deliveryPersonId}`)
+        div.setAttribute('id', `div-report-extra-delivery-${deliveryPersonId}`)
 
-        CreateNewExtraDeliveryRegister(div1, numberOfExtra, deliveryPersonId)
+        createReportTextField(deliveryPersonId, numberOfExtra, div)
 
-        container.appendChild(div1)
+        container.appendChild(div)
     }
 }
 
-function CreateNewExtraDeliveryRegister(div1, numberOfExtra, deliveryPersonId) {
+function createReportTextField(deliveryPersonId, numberOfExtra, div) {
+    for (let i = 0; i < numberOfExtra; i++) {
+        let div2 = document.createElement('div')
+        div2.classList.add(`register-content-${deliveryPersonId}`)
+        let name = document.createElement('span')
+        name.setAttribute('id', `report-extra-delivery-name-${deliveryPersonId}-${i}`)
+        name.textContent = '- ' + document.querySelector(`#delivery-person-name-${deliveryPersonId}`).value
+        let number = document.createElement('span')
+        number.setAttribute('id', `report-extra-delivery-number-${deliveryPersonId}-${i}`)
+        let reason = document.createElement('span')
+        reason.setAttribute('id', `report-extra-delivery-reason-${deliveryPersonId}-${i}`)
+
+        div2.append(name, number, reason)
+        div.appendChild(div2)
+    }
+}
+
+function reportFreelancer(params) {
+    
+}
+
+function ExtraDeliveryRegister(deliveryPersonId, numberOfExtra) {
+    const container = document.getElementById('section-extra-delivery')
+    let div = document.getElementById(`div-delivery-person-${deliveryPersonId}`)
+
+    if (div) {
+        let register = document.querySelectorAll(`.register-${deliveryPersonId}`)
+        let currentRegister = numberOfExtra - register.length
+        if (currentRegister > 0) {
+            createExtraDeliveryRegister(div, currentRegister, deliveryPersonId)
+        } else if(currentRegister < 0){
+            for (let i = register.length; currentRegister !== 0; i--) {
+                if (register[i - 1]) {
+                    register[i - 1].remove()
+                }
+                currentRegister++
+            }
+        } else {
+            return
+        }
+
+    } else {
+        div = document.createElement('div')
+        div.classList.add('flex-column-wrap', `order-${deliveryPersonId}`)
+        div.setAttribute('id', `div-delivery-person-${deliveryPersonId}`)
+
+        createExtraDeliveryRegister(div, numberOfExtra, deliveryPersonId)
+
+        container.appendChild(div)
+    }
+}
+
+function createExtraDeliveryRegister(div1, numberOfExtra, deliveryPersonId) {
     let div2, div3, input, label
     for (let i = 0; i < numberOfExtra; i++) {
         div2 = document.createElement('div')
-        div2.classList.add('flex-container', `register-${deliveryPersonId}`, 'extra-delivery-entry')
+        div2.classList.add('flex-container', `register-${deliveryPersonId}`)
 
         label = document.createElement('label')
         label.classList.add('flex-item-name', 'label-name')
@@ -255,6 +313,7 @@ function updateDeliveries(event, deliveryPersonId) {
 }
 
 function paymentCalculation(deliveryPersonId) {
+    const currentDate = new Date()
     const deliveryFee = 6
     let costAssistance = 10
     let deliveries, extra, consumption
