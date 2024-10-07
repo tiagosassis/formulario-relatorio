@@ -114,12 +114,17 @@ function showPopup() { // Função para mostrar o popup e escondê-lo depois de 
 }
 
 function updateReport(event) {
+    /* função que atualiza o relatorio final com as informações que estão sendo inseridas, como a função capta informações de vários input, eles tem que ser separados pelo ID
+    dessa forma temos um if/else que separa delivery, extra e consumo
+    o nome é atualizado de forma automatica e o pagamento é calculado pela função paymentCalculation
+    oque diferencia cada entrega é deliveryPersonId
+    */
     const deliveryPersonId = event.target.id.match(/\d+/g)[0]
+    const sectionExtraDelivery = document.getElementById('report-extra-delivery')
     
-    paymentCalculation(deliveryPersonId)
-
-
-    document.querySelector(`#textField-delivery-person-name-${deliveryPersonId}`).innerHTML = document.querySelector(`#delivery-person-name-${deliveryPersonId}`).value + ':' // atualiza nome do entregador no relatorio
+    paymentCalculation(deliveryPersonId) // calcula o pagamento do entregador(a) com base nas entregas, entregas extras e consumo
+    updateName(deliveryPersonId)
+    
 
     if(event.target.id.includes('deliveries')){
         updateDeliveries(event, deliveryPersonId)
@@ -129,11 +134,13 @@ function updateReport(event) {
             document.querySelector(`#textField-${event.target.id}`).innerHTML = ', ' + event.target.value + ' Extra'
             ExtraDeliveryRegister(deliveryPersonId, event.target.value)
             updateReportTextField(deliveryPersonId, event.target.value)
+            toggleClassHidden(sectionExtraDelivery, true)
         }
         else {
             document.querySelector(`#textField-${event.target.id}`).innerHTML = ''
             ExtraDeliveryRegister(deliveryPersonId, 0)
             updateReportTextField(deliveryPersonId, 0)
+            toggleClassHidden(sectionExtraDelivery, false)
         }
 
     } else if(event.target.id.includes('consumption')){ 
@@ -144,8 +151,21 @@ function updateReport(event) {
     }
 }
 
-function reportDeliveries(params) {
-    
+function updateName(deliveryPersonId) {
+    const newName = document.querySelectorAll(`.class-update-name-${deliveryPersonId}`)
+    newName.forEach(element =>{
+        element.innerHTML = document.querySelector(`#delivery-person-name-${deliveryPersonId}`).value
+    })
+}
+
+function toggleClassHidden(element, toggle) { // alterna a classe hidden em elementos html
+    if(toggle){
+        if(element.classList.contains('hidden'))
+            element.classList.remove('hidden')
+    } else{
+        if(!element.classList.contains('hidden'))
+            element.classList.add('hidden')
+    }
 }
 
 function updateReportExtraDeliveries(event) {
@@ -159,7 +179,7 @@ function updateReportExtraDeliveries(event) {
     } else if(event.target.className.includes('reason')) {
         span = document.getElementById(`report-extra-delivery-reason-${deliveryPersonId}-${extraDeliveryIndex}`)
         let reason = event.target.value
-        reason = reason.charAt(0).toUpperCase() + reason.slice(1) // deixa a primeira letra maiúscla
+        reason = reason.charAt(0).toUpperCase() + reason.slice(1) // deixa a primeira letra maiúscula
         span.textContent = ' (' + reason + ')'
     } else{
         console.log('um erro detectado na função updateReportExtraDeliveries')
@@ -201,9 +221,11 @@ function createReportTextField(deliveryPersonId, numberOfExtra, div) {
     for (let i = 0; i < numberOfExtra; i++) {
         let div2 = document.createElement('div')
         div2.classList.add(`register-content-${deliveryPersonId}`)
+        div2.textContent = '- '
         let name = document.createElement('span')
         name.setAttribute('id', `report-extra-delivery-name-${deliveryPersonId}-${i}`)
-        name.textContent = '- ' + document.querySelector(`#delivery-person-name-${deliveryPersonId}`).value
+        name.classList.add(`class-update-name-${deliveryPersonId}`)
+        name.textContent = document.querySelector(`#delivery-person-name-${deliveryPersonId}`).value
         let number = document.createElement('span')
         number.setAttribute('id', `report-extra-delivery-number-${deliveryPersonId}-${i}`)
         let reason = document.createElement('span')
@@ -266,7 +288,7 @@ function createExtraDeliveryRegister(div1, numberOfExtra, deliveryPersonId) {
             if (j == 0) {
                 div3.classList.add('flex-item-number')
                 input = document.createElement('input')
-                input.setAttribute('type', 'text')
+                input.setAttribute('type', 'number')
                 input.setAttribute('name', 'extra-delivery-number')
                 input.classList.add('float-input', 'request-number-extra')
                 input.setAttribute('required', '')
