@@ -60,7 +60,7 @@ function toggleExtraDeliveryPerson () { // função que torna visivel ou não o 
     const deliveryPersonExtra = document.getElementById('delivery-person-extra')
     const button = document.getElementById('add-delivery-person')
 
-    if (deliveryPersonExtra.className.includes('hidden')) { // também muda a frase no botão para si adaptar a situação
+    if (deliveryPersonExtra.className.contains('hidden')) { // também muda a frase no botão para si adaptar a situação
         button.value = 'Remover Entregador'
     } else {
         button.value = 'Adicionar Entregador'
@@ -151,7 +151,7 @@ function updateReport(event) {
     }
 }
 
-function updateName(deliveryPersonId) {
+function updateName(deliveryPersonId) { // a classe class-update-name-${deliveryPersonId} serve para que o nome do entregador seja atualizo em todos os lugares da pagina ao mesmo tempo
     const newName = document.querySelectorAll(`.class-update-name-${deliveryPersonId}`)
     newName.forEach(element =>{
         element.innerHTML = document.querySelector(`#delivery-person-name-${deliveryPersonId}`).value
@@ -218,6 +218,8 @@ function updateReportTextField(deliveryPersonId, numberOfExtra) {
 }
 
 function createReportTextField(deliveryPersonId, numberOfExtra, div) {
+    // aqui estão sendo criados os spans onde serão adicionados nome do entregador, numero da entrega e motivo de extra para serem exibidos no relatorio e copiados
+    // a classe class-update-name-${deliveryPersonId} serve para que o nome do entregador seja atualiza em todos os lugares da pagina ao mesmo tempo pela função updateName()
     for (let i = 0; i < numberOfExtra; i++) {
         let div2 = document.createElement('div')
         div2.classList.add(`register-content-${deliveryPersonId}`)
@@ -244,23 +246,23 @@ function ExtraDeliveryRegister(deliveryPersonId, numberOfExtra) {
     const container = document.getElementById('section-extra-delivery')
     let div = document.getElementById(`div-delivery-person-${deliveryPersonId}`)
 
-    if (div) {
+    if (div) { // verifica se a div onde as entregas extras vão ficar já existe, se existe então manipula para adicionar ou remover os campos conforme necessário
         let register = document.querySelectorAll(`.register-${deliveryPersonId}`)
         let currentRegister = numberOfExtra - register.length
-        if (currentRegister > 0) {
+        if (currentRegister > 0) { // caso o novo numero de entregas extras seja maior que o anterior, novos inputs são criados
             createExtraDeliveryRegister(div, currentRegister, deliveryPersonId)
-        } else if(currentRegister < 0){
+        } else if(currentRegister < 0){ // caso um novo numero de entregas extras seja menor que o anterior, as ultimas linhas de input serão removidas do DOM
             for (let i = register.length; currentRegister !== 0; i--) {
                 if (register[i - 1]) {
                     register[i - 1].remove()
                 }
                 currentRegister++
             }
-        } else {
+        } else { // se ja tinha uma quantidade x de entregas extras e o numero no input foi substituido pelo mesmo numero, nada acontece
             return
         }
 
-    } else {
+    } else { // caso a div onde as entregas extras vão ficar não existe, ela será criada e os input que ficarão dentro dela também
         div = document.createElement('div')
         div.classList.add('flex-column-wrap', `order-${deliveryPersonId}`)
         div.setAttribute('id', `div-delivery-person-${deliveryPersonId}`)
@@ -272,6 +274,7 @@ function ExtraDeliveryRegister(deliveryPersonId, numberOfExtra) {
 }
 
 function createExtraDeliveryRegister(div1, numberOfExtra, deliveryPersonId) {
+    // Essa função cria a linha onde é colocado o nome do entregador, o número do pedido e o motivo daquela entrega ser uma extra para aquele entregador
     let div2, div3, input, label
     for (let i = 0; i < numberOfExtra; i++) {
         div2 = document.createElement('div')
@@ -324,13 +327,12 @@ function createExtraDeliveryRegister(div1, numberOfExtra, deliveryPersonId) {
 }
 
 function updateDeliveries(event, deliveryPersonId) {
-    const containerOfDeliveryPerson = document.querySelector(`#delivery-person-report-${deliveryPersonId}`)
     // essa função altera a quantidade de entregas no relatorio, caso não haja entregas para aquele entregador, a visibilidade dele no relatorio é alterar como display none
     document.querySelector(`#textField-${event.target.id}`).innerHTML = event.target.value + ' Entregas' 
-    if (event.target.value == '' && !(containerOfDeliveryPerson.className.includes('hidden'))) 
-        containerOfDeliveryPerson.classList.toggle('hidden')
-    else if(containerOfDeliveryPerson.className.includes('hidden'))
-        containerOfDeliveryPerson.classList.toggle('hidden')
+    if (event.target.value) 
+        toggleClassHidden(document.querySelector(`#delivery-person-report-${deliveryPersonId}`), true)
+    else 
+        toggleClassHidden(document.querySelector(`#delivery-person-report-${deliveryPersonId}`), false)
 }
 
 function paymentCalculation(deliveryPersonId) {
