@@ -278,7 +278,7 @@ function createExtraDeliveryRegister(div1, numberOfExtra, deliveryPersonId) {
         div2.classList.add('flex-container', `register-${deliveryPersonId}`)
 
         label = document.createElement('label')
-        label.classList.add('flex-item-name', 'label-name')
+        label.classList.add('flex-item-name', `class-update-name-${deliveryPersonId}`)
         label.textContent = document.querySelector(`#delivery-person-name-${deliveryPersonId}`).value
 
         div2.appendChild(label)

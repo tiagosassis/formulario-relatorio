@@ -13,6 +13,7 @@
     --copy-button-emphasis-color: rgba(255, 255, 255, 1);
     --copy-button-background-emphasis-color: #062d49;
     --popup-background-color: #707070;
+    --input-border-bottom: 1px solid white;
 
 }
 
@@ -146,8 +147,8 @@ hr{
 
 .flex-item-name{
     position: relative;
-    flex: 0 0 29%;
-    border-bottom: 1px solid white;
+    flex: 0 0 19%;
+    border-bottom: var(--input-border-bottom);
 }
 
 .flex-item-number{
@@ -155,14 +156,15 @@ hr{
 }
 
 .flex-item-reason{
-    flex: 0 0 49%;
+    flex: 0 0 59%;
 }
 
 .float-input{
+    height: 100%;
     width: 100%;
     background: none;
-    border-bottom: 1px solid white;
-    color: white;
+    border-bottom: var(--input-border-bottom);
+    color: var(--text-color);
     padding-left: 10px;
 }
 
@@ -172,7 +174,7 @@ hr{
     left: 10px;
     pointer-events: none;
     transition: .5s;
-    color: white;
+    color: var(--text-color);
 }
 
 .float-input:focus ~ .float-label, .float-input:valid ~ .float-label{
