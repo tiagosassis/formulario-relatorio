@@ -36,13 +36,15 @@ main{
     padding-top: 25px;
 }
 
-.flex-container {
-    display: flex;
-}
-
 .flex-column-wrap{
     display: flex;
     flex-flow: column wrap;
+}
+
+.flex-row-wrap{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
 }
 
 .container{
@@ -64,14 +66,7 @@ h1, h2, h3, h4{
     margin-bottom: 20px;
 }
 
-.delivery-person-container{
-    flex-flow: row wrap;
-    justify-content: space-evenly;
-}
-
 .delivery-person-container > fieldset{
-    display: flex;
-    flex-flow: row nowrap;
     flex: 0 1 48%;
     border: none;
     padding: 2px;
@@ -135,27 +130,61 @@ hr{
     background-color: var(--hover-button-color);
 }
 
-#section-extra-delivery > div > .flex-container{
+.flex-container-extra{
     justify-content: space-between;
     margin-top: 25px;
 }
 
-.flex-container > div{
+.float-container{
     position: relative;
+    border: none;
+    border-top: 1px solid white;
+
+    legend{
+        padding: 10px;
+        text-align: center;
+    }
+
+    .flex-container-extra{
+        justify-content: space-between;
+        margin-top: 20px;
+    }
 }
 
-.flex-item-name{
+.float-button{
+    position: absolute;
+    background-color: var(--primary-background-color);
+    font-family: ui-sans-serif, -apple-system, system-ui, "Segoe UI", Helvetica;
+    font-size: .75em;
+    font-weight: 400;
+}
+
+.float-button-style{
+    margin: 15px;
+    padding: 5px 6px;
+    border-radius: 5px;
+    background-color: var(--copy-button-background-color);
+    line-height: 1em;
+    cursor: pointer;
+}
+
+.copy-button{
+    top: -15px;
+    right: -15px;
+}
+
+.add-extra{
+    top: -52px;
+    left: -15px;
+}
+
+.remove-extra{
+    top: -52px;
+    right: -13px;
+}
+
+.flex-row-wrap > div{
     position: relative;
-    flex: 0 0 19%;
-    border-bottom: var(--input-border-bottom);
-}
-
-.flex-item-number{
-    flex: 0 0 19%;
-}
-
-.flex-item-reason{
-    flex: 0 0 59%;
 }
 
 .float-input{
@@ -176,28 +205,48 @@ hr{
     color: var(--text-color);
 }
 
-.float-input:focus ~ .float-label, .float-input:valid ~ .float-label{
+/*Estilização para extra de entregadores*/
+.flex-item-label-name{
+    flex: 0 0 19%;
+    border-bottom: var(--input-border-bottom);
+}
+
+.flex-item-order-number{
+    flex: 0 0 19%;
+}
+
+.flex-item-extra-reason{
+    flex: 0 0 59%;
+}
+
+/*estilização para funcionario extra (diarista)*/
+.flex-item-input-name{
+    flex: 0 0 39.5%;
+
+    .float-input{
+        padding-left: 0px;
+    }
+
+    .float-label{
+        left: 0px;
+    }
+}
+
+.flex-item-daily-payment{
+    flex: 0 0 19.5%;
+}
+
+.flex-item-pix-key{
+    flex: 0 0 38%;
+}
+
+.float-input:focus ~ .float-label, .float-input:valid ~ .float-label{ /*animação do label flutuar sobre o input quando está em foco*/
     top: -20px;
     font-size: 0.75em;
 }
 
 #section-report{
     position: relative;
-}
-
-div.copy-button{
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    font-family: ui-sans-serif, -apple-system, system-ui, "Segoe UI", Helvetica;
-    font-size: .75em;
-    font-weight: 400;
-    border: 1px solid 031725;
-    border-radius: 5px;
-    background-color: var(--copy-button-background-color);
-    padding: 5px;
-    line-height: 1em;
-    cursor: pointer;
 }
 
 div.copy-button:hover{

@@ -278,10 +278,10 @@ function createExtraDeliveryRegister(div1, numberOfExtra, deliveryPersonId) {
     let div2, div3, input, label
     for (let i = 0; i < numberOfExtra; i++) {
         div2 = document.createElement('div')
-        div2.classList.add('flex-container', `register-${deliveryPersonId}`)
+        div2.classList.add('flex-row-wrap', `register-${deliveryPersonId}`, 'flex-container-extra')
 
         label = document.createElement('label')
-        label.classList.add('flex-item-name', `class-update-name-${deliveryPersonId}`)
+        label.classList.add('flex-item-label-name', `class-update-name-${deliveryPersonId}`)
         label.textContent = document.querySelector(`#delivery-person-name-${deliveryPersonId}`).value
 
         div2.appendChild(label)
@@ -289,7 +289,7 @@ function createExtraDeliveryRegister(div1, numberOfExtra, deliveryPersonId) {
         for (let j = 0; j < 2; j++) {
             div3 = document.createElement('div')
             if (j == 0) {
-                div3.classList.add('flex-item-number')
+                div3.classList.add('flex-item-order-number')
                 input = document.createElement('input')
                 input.setAttribute('type', 'number')
                 input.setAttribute('name', 'extra-delivery-number')
@@ -305,7 +305,7 @@ function createExtraDeliveryRegister(div1, numberOfExtra, deliveryPersonId) {
                 div3.appendChild(label)
             }
             else{
-                div3.classList.add('flex-item-reason')
+                div3.classList.add('flex-item-extra-reason')
                 input = document.createElement('input')
                 input.setAttribute('type', 'text')
                 input.setAttribute('name', 'reason-extra-delivery')
