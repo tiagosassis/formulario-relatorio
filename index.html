@@ -143,21 +143,17 @@
                     <!-- Aqui serão adicionados input's para que o usuário digite o número do pedido e o motivo dele ser um extra para o entregador(a) -->
                 </section>
             </section>
-            <fieldset class="float-container">
+            <fieldset class="extra-employee-container">
                 <legend>Extra</legend>
-                <div class="add-extra float-button">
-                    <div class="button-wrapper">
-                        <span class="material-symbols-outlined">person_add</span>
-                    </div>
-                </div>
-                <div class="remove-extra float-button">
-                    <div class="button-wrapper">
-                        <span class="material-symbols-outlined">
-                            person_remove
-                        </span>
-                    </div>
-                </div>
-                <section id="section-extra-employee">
+                <button id="add-extra" class="float-button" type="button">
+                    <span class="material-symbols-outlined">person_add</span>
+                </button>
+                <button id="remove-extra" class="float-button" type="button">
+                    <span class="material-symbols-outlined">
+                        person_remove
+                    </span>
+                </button>
+                <section id="section-">
                     <div class="flex-row-wrap flex-container-extra">
                         <div class="flex-item-input-name">
                             <input type="text" name="extra-employee-name" id="extra-employee-name" class="float-input" required>
@@ -178,11 +174,11 @@
             <br><hr>
             <section id="section-report">
                 <h2>Relatório</h2>
-                <div class="float-button copy-button button-wrapper" onclick="copyContent()">
+                <button id="copy-button" class="float-button">
                     <span class="material-symbols-outlined">
                         content_copy
                     </span>
-                </div>
+                </button>
 
                 <section id="report-content">
                     <h3 id="date-of-report"></h3>

@@ -135,7 +135,7 @@ hr{
     margin-top: 25px;
 }
 
-.float-container{
+.extra-employee-container{
     position: relative;
     border: none;
     border-top: 1px solid white;
@@ -153,34 +153,66 @@ hr{
 
 .float-button{
     position: absolute;
-    background-color: var(--primary-background-color);
     font-family: ui-sans-serif, -apple-system, system-ui, "Segoe UI", Helvetica;
     font-size: .75em;
     font-weight: 400;
-}
-
-.button-wrapper{
-    margin: 15px;
     padding: 5px 6px;
     border-radius: 5px;
+    border: none;
     background-color: var(--copy-button-background-color);
     line-height: 1em;
     cursor: pointer;
 }
 
-.copy-button{
-    top: -15px;
-    right: -15px;
+.extra-employee-container::after { /*criar uma quebra na borda superior do fieldset antes de chegar no botão*/
+    content: '';
+    position: absolute;
+    top: -19px;
+    left: 0px;
+    width: 50px;
+    height: 1px; 
+    background-color: var(--primary-background-color);
+    z-index: 0;
 }
 
-.add-extra{
-    top: -52px;
-    left: -15px;
+.extra-employee-container::before { /*criar uma quebra na borda superior do fieldset antes de chegar no botão*/
+    content: '';
+    position: absolute;
+    top: -19px;
+    right: 0px;
+    width: 50px;
+    height: 1px;
+    background-color: var(--primary-background-color);
+    z-index: 0;
 }
 
-.remove-extra{
-    top: -52px;
-    right: -13px;
+#copy-button{
+    top: 0px;
+    right: 0px;
+    margin: 0px;
+}
+
+#add-extra{
+    top: -37px;
+    left: 0px;
+    z-index: 1;
+}
+
+#remove-extra{
+    top: -37px;
+    right: 0px;
+    z-index: 1;
+}
+
+.float-button:hover{
+    box-shadow: 0px 0px 3px var(--copy-button-emphasis-color);
+}
+
+.float-button:active{
+    transform: scale(0.95);
+    transition: transform 0.1s ease;
+    box-shadow: 0px 0px 3px var(--copy-button-emphasis-color);
+    background-color: var(--copy-button-background-emphasis-color);
 }
 
 .flex-row-wrap > div{
@@ -247,15 +279,6 @@ hr{
 
 #section-report{
     position: relative;
-}
-
-div.copy-button:hover{
-    box-shadow: 0px 0px 3px var(--copy-button-emphasis-color);
-}
-
-div.copy-button:active{
-    box-shadow: 0px 0px 3px var(--copy-button-emphasis-color);
-    background-color: var(--copy-button-background-emphasis-color);
 }
 
 .hidden{
