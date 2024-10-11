@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', configDeliveryPerson)
 document.getElementById('section-delivery-person').addEventListener('input', updateReport)
 document.getElementById('section-extra-delivery').addEventListener('input', updateReportExtraDeliveries)
 document.getElementById('copy-button').addEventListener('click', copyContent)
-document.getElementById('add-extra').addEventListener('click', addExtraEmployee)
+document.getElementById('add-extra').addEventListener('click', createDeliveryPerson)
 document.getElementById('remove-extra').addEventListener('click', removeExtraEmployee)
 
 function configDeliveryPerson() {
@@ -59,7 +59,59 @@ function configDeliveryPerson() {
     }
 }
 
-function createDeliveryPerson() {
+function createDeliveryPerson(deliveryPersonId) {
+    const section = document.getElementById('section-delivery-person')
+    let div1, div2, input, label;
+
+    div1 = document.createElement('div')
+    div1.classList.add('flex-row-wrap', 'delivery-person-container')
+
+    for (let index = 0; index < 4; index++) {
+        div2 = document.createElement('div')
+        input = document.createElement('input')
+        input.classList.add('float-input')
+        label = document.createElement('label')
+        label.classList.add('float-label')
+
+        switch (index) {
+            case 0:
+                div2.classList.add('flex-item-delivery-person-name')
+                input.setAttribute('type', 'text')
+                input.setAttribute('id', `delivery-person-name-${deliveryPersonId}`)
+                input.setAttribute('required', '')
+                break;
+        
+            case 1:
+                div2.classList.add('flex-item-deliveries-amount')
+                input.setAttribute('type', 'number')
+                input.setAttribute('id', `deliveries-${deliveryPersonId}`)
+                input.setAttribute('required', '')
+                break;
+        
+            case 2:
+                div2.classList.add('flex-item-delivery-extra')
+                input.setAttribute('type', 'number')
+                input.setAttribute('id', `extra-${deliveryPersonId}`)
+                input.setAttribute('required', '')
+                break;
+        
+            case 3:
+                div2.classList.add('flex-item-day-consumption')
+                input.setAttribute('type', 'text')
+                input.setAttribute('id', `consumption-${deliveryPersonId}`)
+                input.setAttribute('required', '')
+                break;
+        
+            default:
+                console.log('erro no switch case')
+                break;
+        }
+        div2.appendChild(input)
+        div2.appendChild(label)
+        div1.appendChild(div2)
+    }
+    section.appendChild(div1)
+
     /*
         <div class="flex-row-wrap delivery-person-container">
             <div class="flex-item-delivery-person-name">
