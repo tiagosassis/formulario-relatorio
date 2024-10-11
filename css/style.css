@@ -80,6 +80,10 @@ h1, h2, h3, h4{
     }
 }
 
+.delivery-person-container > div{
+    position: relative;
+}
+
 input{
     outline: none;
     border: none;
@@ -87,6 +91,40 @@ input{
     padding: 5px;
     font-size: 1em;
     color: var(--input-text-color);
+}
+
+.float-input{
+    height: 100%;
+    width: 100%;
+    background: none;
+    border-bottom: var(--input-border-bottom);
+    color: var(--text-color);
+    padding-left: 10px;
+}
+
+.float-label{
+    position: absolute;
+    top: 1px;
+    left: 10px;
+    pointer-events: none;
+    transition: .5s;
+    color: var(--text-color);
+}
+
+.flex-item-delivery-person-name{
+    flex: 0 0 40%;
+}
+
+.flex-item-deliveries-amount{
+    flex: 0 0 19%;
+}
+
+.flex-item-delivery-extra{
+    flex: 0 0 19%;
+}
+
+.flex-item-day-consumption{
+    flex: 0 0 19%;
 }
 
 input[type="number"] {
@@ -153,7 +191,6 @@ hr{
 
 .float-button{
     position: absolute;
-    font-family: ui-sans-serif, -apple-system, system-ui, "Segoe UI", Helvetica;
     font-size: .75em;
     font-weight: 400;
     padding: 5px 6px;
@@ -219,24 +256,6 @@ hr{
     position: relative;
 }
 
-.float-input{
-    height: 100%;
-    width: 100%;
-    background: none;
-    border-bottom: var(--input-border-bottom);
-    color: var(--text-color);
-    padding-left: 10px;
-}
-
-.float-label{
-    position: absolute;
-    top: 1px;
-    left: 10px;
-    pointer-events: none;
-    transition: .5s;
-    color: var(--text-color);
-}
-
 /*Estilização para extra de entregadores*/
 .flex-item-label-name{
     flex: 0 0 19%;
@@ -252,7 +271,7 @@ hr{
 }
 
 /*estilização para funcionario extra (diarista)*/
-.flex-item-input-name{
+.flex-item-employee-name{
     flex: 0 0 39.5%;
 
     .float-input{

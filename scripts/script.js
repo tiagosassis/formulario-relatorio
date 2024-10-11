@@ -1,6 +1,9 @@
 document.addEventListener('DOMContentLoaded', configDeliveryPerson)
 document.getElementById('section-delivery-person').addEventListener('input', updateReport)
 document.getElementById('section-extra-delivery').addEventListener('input', updateReportExtraDeliveries)
+document.getElementById('copy-button').addEventListener('click', copyContent)
+document.getElementById('add-extra').addEventListener('click', copyContent)
+document.getElementById('remove-extra').addEventListener('click', copyContent)
 
 function configDeliveryPerson() {
     const currentDate = new Date()
@@ -67,14 +70,6 @@ function toggleExtraDeliveryPerson () { // função que torna visivel ou não o 
     }
     deliveryPersonExtra.classList.toggle('hidden')
 
-}
-
-function clearInput(idInput) { // limpa o nome do entregador do input para selecionar/escrever outro 
-    let input = document.getElementById(idInput)
-    input.value = ''
-    setTimeout(() => {
-        input.focus()
-    }, 0)
 }
 
 function copyContent() { // copia o relatorio pronto
@@ -324,6 +319,14 @@ function createExtraDeliveryRegister(div1, numberOfExtra, deliveryPersonId) {
         }
         div1.appendChild(div2)
     }
+}
+
+function addExtraEmployee() {
+    
+}
+
+function removeExtraEmployee() {
+    
 }
 
 function updateDeliveries(event, deliveryPersonId) {
