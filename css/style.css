@@ -159,7 +159,7 @@ hr{
     font-weight: 400;
 }
 
-.float-button-style{
+.button-wrapper{
     margin: 15px;
     padding: 5px 6px;
     border-radius: 5px;
