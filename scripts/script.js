@@ -2,8 +2,8 @@ document.addEventListener('DOMContentLoaded', configDeliveryPerson)
 document.getElementById('section-delivery-person').addEventListener('input', updateReport)
 document.getElementById('section-extra-delivery').addEventListener('input', updateReportExtraDeliveries)
 document.getElementById('copy-button').addEventListener('click', copyContent)
-document.getElementById('add-extra').addEventListener('click', copyContent)
-document.getElementById('remove-extra').addEventListener('click', copyContent)
+document.getElementById('add-extra').addEventListener('click', addExtraEmployee)
+document.getElementById('remove-extra').addEventListener('click', removeExtraEmployee)
 
 function configDeliveryPerson() {
     const currentDate = new Date()
@@ -59,11 +59,34 @@ function configDeliveryPerson() {
     }
 }
 
+function createDeliveryPerson() {
+    /*
+        <div class="flex-row-wrap delivery-person-container">
+            <div class="flex-item-delivery-person-name">
+                <input class="float-input" type="text" id="delivery-person-name-5" list="datalist-delivery-person" value="Keven" required>
+                <label class="float-label" for="delivery-person-name-5">Nome</label>
+            </div>
+            <div class="flex-item-deliveries-amount">
+                <input class="float-input" type="number" id="deliveries-5" required>
+                <label class="float-label" for="deliveries-5">Entregas</label>
+            </div>
+            <div class="flex-item-delivery-extra">
+                <input class="float-input" type="number" id="extra-5" required>
+                <label class="float-label" for="extra-5">Extra</label>
+            </div>
+            <div class="flex-item-day-consumption">
+                <input class="float-input" type="text" id="consumption-5" required>
+                <label class="float-label" for="consumption-5">Consumo</label>
+            </div>
+        </div>
+    */
+}
+
 function toggleExtraDeliveryPerson () { // função que torna visivel ou não o entregador extra
     const deliveryPersonExtra = document.getElementById('delivery-person-extra')
     const button = document.getElementById('add-delivery-person')
 
-    if (deliveryPersonExtra.className.contains('hidden')) { // também muda a frase no botão para si adaptar a situação
+    if (deliveryPersonExtra.classList.contains('hidden')) { // também muda a frase no botão para si adaptar a situação
         button.value = 'Remover Entregador'
     } else {
         button.value = 'Adicionar Entregador'

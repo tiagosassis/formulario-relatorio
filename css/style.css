@@ -44,7 +44,8 @@ main{
 .flex-row-wrap{
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    margin-top: 25px;
 }
 
 .container{
@@ -168,12 +169,8 @@ hr{
     background-color: var(--hover-button-color);
 }
 
-.flex-container-extra{
-    justify-content: space-between;
-    margin-top: 25px;
-}
-
 .extra-employee-container{
+    margin-top: 40px;
     position: relative;
     border: none;
     border-top: 1px solid white;
@@ -182,23 +179,6 @@ hr{
         padding: 10px;
         text-align: center;
     }
-
-    .flex-container-extra{
-        justify-content: space-between;
-        margin-top: 20px;
-    }
-}
-
-.float-button{
-    position: absolute;
-    font-size: .75em;
-    font-weight: 400;
-    padding: 5px 6px;
-    border-radius: 5px;
-    border: none;
-    background-color: var(--copy-button-background-color);
-    line-height: 1em;
-    cursor: pointer;
 }
 
 .extra-employee-container::after { /*criar uma quebra na borda superior do fieldset antes de chegar no botão*/
@@ -239,6 +219,18 @@ hr{
     top: -37px;
     right: 0px;
     z-index: 1;
+}
+
+.float-button{
+    position: absolute;
+    font-size: .75em;
+    font-weight: 400;
+    padding: 5px 6px;
+    border-radius: 5px;
+    border: none;
+    background-color: var(--copy-button-background-color);
+    line-height: 1em;
+    cursor: pointer;
 }
 
 .float-button:hover{
