@@ -170,44 +170,10 @@ hr{
     }
 }
 
-.extra-employee-container::after { /*criar uma quebra na borda superior do fieldset antes de chegar no botão*/
-    content: '';
-    position: absolute;
-    top: -19px;
-    left: 0px;
-    width: 50px;
-    height: 1px; 
-    background-color: var(--primary-background-color);
-    z-index: 0;
-}
-
-.extra-employee-container::before { /*criar uma quebra na borda superior do fieldset antes de chegar no botão*/
-    content: '';
-    position: absolute;
-    top: -19px;
-    right: 0px;
-    width: 50px;
-    height: 1px;
-    background-color: var(--primary-background-color);
-    z-index: 0;
-}
-
 #copy-button{
     top: 0px;
     right: 0px;
     margin: 0px;
-}
-
-#add-extra{
-    top: -37px;
-    left: 0px;
-    z-index: 1;
-}
-
-#remove-extra{
-    top: -37px;
-    right: 0px;
-    z-index: 1;
 }
 
 .float-button{

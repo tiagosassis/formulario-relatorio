@@ -2,8 +2,6 @@ document.addEventListener('DOMContentLoaded', configDeliveryPerson)
 document.getElementById('section-delivery-person').addEventListener('input', updateReport)
 document.getElementById('section-extra-delivery').addEventListener('input', updateReportExtraDeliveries)
 document.getElementById('copy-button').addEventListener('click', copyContent)
-document.getElementById('add-extra').addEventListener('click', createDeliveryPerson)
-document.getElementById('remove-extra').addEventListener('click', removeExtraEmployee)
 
 const activeDeliveryPersons = [
     {name: 'Byane', turn: ['night'], dayOff: 'Wednesday'},
