@@ -15,7 +15,7 @@ const activeDeliveryPersons = [
 
 let currentDeliveryPersonCount = activeDeliveryPersons.length
 
-function createDateTimeInfo (params) {
+function createDateTimeInfo () {
     const now = new Date()
     if (now.getHours() < 5) {
         now.setDate(now.getDate() - 1); // Ajusta para o dia anterior
@@ -95,7 +95,7 @@ function configDeliveryPerson() {
 
     activeDeliveryPersons.forEach((person, index) =>{
         if (!(person.dayOff == time.weekDay) && (person.turn[0] == time.turn || person.turn[1] == time.turn)) {
-            // se o entregador não está de folga e ele trabalha naquele turno, seu input será criado e inserido no html
+            // pega o array de objetos global contendo as informações dos entregadores que já trabalham com o estabelecimento, se o entregador não está de folga e ele trabalha naquele turno, seu input será criado e inserido no html
             createDeliveryPerson(index, person.name)
         }
     })
