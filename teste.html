@@ -1,76 +1,80 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Input com N Maiúsculo</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 50px;
-        }
-        .input-wrapper {
-            position: relative;
-            display: inline-block;
-        }
-        input[type="number"] {
-            padding-left: 20px; /* Espaço para a letra N */
-            font-size: 16px;
-            width: 200px;
-        }
-        .input-wrapper::before {
-            content: '';
-            position: absolute;
-            left: 5px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: black;
-            transition: opacity 0.2s; /* Transição suave ao mostrar/ocultar */
-            opacity: 0; /* Inicialmente invisível */
-        }
-        .input-wrapper.focused::before {
-            content: 'N'; /* Adiciona a letra N quando o input está focado */
-            opacity: 1; /* Torna a letra N visível */
-        }
-        .input-wrapper.has-value::before {
-            content: 'N'; /* Adiciona a letra N se o input tem valor */
-            opacity: 1; /* Torna a letra N visível */
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tooltip Suave com CSS</title>
+  <style>
+    /* Faz o body ocupar toda a tela e usa flexbox para centralizar o conteúdo */
+    body {
+      margin: 0;
+      height: 100vh; /* Altura total da janela de visualização */
+      display: flex;
+      justify-content: center; /* Alinha horizontalmente */
+      align-items: center; /* Alinha verticalmente */
+      background-color: #f0f0f0; /* Cor de fundo clara para contraste */
+    }
+
+    /* Container do botão */
+    .icon-container {
+      position: relative; /* Para permitir que o tooltip fique posicionado em relação ao botão */
+      display: inline-block;
+      cursor: pointer;
+      font-size: 24px; /* Tamanho da palavra 'Add' */
+      font-weight: bold; /* Deixa a palavra 'Add' mais destacada */
+      color: #000;
+      padding: 10px;
+    }
+
+    /* Estilo do Tooltip */
+    .tooltip-text {
+      visibility: hidden; /* Tooltip escondido por padrão */
+      width: 140px; /* Um pouco mais largo */
+      background-color: rgba(0, 0, 0, 0.75); /* Fundo preto com opacidade para suavizar */
+      color: rgba(255, 255, 255, 0.9); /* Branco suave com opacidade */
+      text-align: center;
+      padding: 8px;
+      border-radius: 8px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para dar um toque sutil */
+
+      /* Posição do Tooltip */
+      position: absolute;
+      z-index: 1;
+      bottom: 125%; /* Coloca o tooltip acima do texto 'Add' */
+      left: 50%;
+      transform: translateX(-50%);
+      
+      /* Animação mais lenta e suave */
+      opacity: 0;
+      transition: opacity 0.6s ease-in-out;
+    }
+
+    /* Estiliza a setinha do tooltip */
+    .tooltip-text::after {
+      content: '';
+      position: absolute;
+      top: 100%; /* Na parte de baixo do tooltip */
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: rgba(0, 0, 0, 0.75) transparent transparent transparent; /* Setinha com a cor do tooltip mais suave */
+    }
+
+    /* Exibe o tooltip ao passar o mouse sobre o container */
+    .icon-container:hover .tooltip-text {
+      visibility: visible;
+      opacity: 1; /* Suave fade-in com a transição */
+    }
+
+  </style>
 </head>
 <body>
-    <h1>Teste de Input com N Maiúsculo</h1>
-    <div class="input-wrapper" id="inputWrapper">
-        <input type="number" id="inputN" />
-    </div>
 
-    <script>
-        const inputWrapper = document.getElementById('inputWrapper');
-        const inputN = document.getElementById('inputN');
+  <div class="icon-container">
+    Add <!-- Substituí o ícone pela palavra 'Add' -->
+    <span class="tooltip-text">Adicionar novo item</span> <!-- Texto do tooltip -->
+  </div>
 
-        // Adiciona a classe 'focused' ao wrapper quando o input recebe foco
-        inputN.addEventListener('focus', () => {
-            inputWrapper.classList.add('focused');
-        });
-
-        // Verifica o valor do input ao perder o foco
-        inputN.addEventListener('blur', () => {
-            if (inputN.value.trim() !== '') {
-                inputWrapper.classList.add('has-value'); // Mantém a letra N visível
-            } else {
-                inputWrapper.classList.remove('focused'); // Remove a classe se estiver vazio
-                inputWrapper.classList.remove('has-value'); // Remove a classe se estiver vazio
-            }
-        });
-
-        // Adiciona a classe 'has-value' ao digitar
-        inputN.addEventListener('input', () => {
-            if (inputN.value.trim() !== '') {
-                inputWrapper.classList.add('has-value'); // Mantém a letra N visível
-            } else {
-                inputWrapper.classList.remove('has-value'); // Remove a classe se estiver vazio
-            }
-        });
-    </script>
 </body>
 </html>
