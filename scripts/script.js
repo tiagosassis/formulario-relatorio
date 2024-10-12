@@ -59,7 +59,11 @@ function configDeliveryPerson() {
     }
 }
 
-function createDeliveryPerson(deliveryPersonId) {
+function addDeliveryPerson() {
+    
+}
+
+function createDeliveryPerson(deliveryPersonId, name) {
     const section = document.getElementById('section-delivery-person')
     let div1, div2, input, label;
 
@@ -78,7 +82,11 @@ function createDeliveryPerson(deliveryPersonId) {
                 div2.classList.add('flex-item-delivery-person-name')
                 input.setAttribute('type', 'text')
                 input.setAttribute('id', `delivery-person-name-${deliveryPersonId}`)
+                input.setAttribute('list', 'datalist-delivery-person')
+                input.setAttribute('value', name)
                 input.setAttribute('required', '')
+                label.setAttribute('for', `delivery-person-name-${deliveryPersonId}`)
+                label.textContent = 'Nome'
                 break;
         
             case 1:
@@ -86,6 +94,8 @@ function createDeliveryPerson(deliveryPersonId) {
                 input.setAttribute('type', 'number')
                 input.setAttribute('id', `deliveries-${deliveryPersonId}`)
                 input.setAttribute('required', '')
+                label.setAttribute('for', `deliveries-${deliveryPersonId}`)
+                label.textContent = 'Entregas'
                 break;
         
             case 2:
@@ -93,6 +103,8 @@ function createDeliveryPerson(deliveryPersonId) {
                 input.setAttribute('type', 'number')
                 input.setAttribute('id', `extra-${deliveryPersonId}`)
                 input.setAttribute('required', '')
+                label.setAttribute('for', `extra-${deliveryPersonId}`)
+                label.textContent = 'Extra'
                 break;
         
             case 3:
@@ -100,6 +112,8 @@ function createDeliveryPerson(deliveryPersonId) {
                 input.setAttribute('type', 'text')
                 input.setAttribute('id', `consumption-${deliveryPersonId}`)
                 input.setAttribute('required', '')
+                label.setAttribute('for', `consumption-${deliveryPersonId}`)
+                label.textContent = 'Consumo'
                 break;
         
             default:
