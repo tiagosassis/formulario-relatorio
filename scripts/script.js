@@ -115,11 +115,6 @@ function deliveryPersonDatalist() { // cria a datalist de entregador e coloca no
     container.insertBefore(datalist, container.firstChild)
 }
 
-function addDeliveryPerson() {
-
-
-}
-
 function createDeliveryPerson(deliveryPersonId, name) {
     if (!(typeof deliveryPersonId === 'number')) {
         deliveryPersonId = currentDeliveryPersonCount
@@ -298,7 +293,7 @@ function updateReport(event) {
     }
 }
 
-function updateName(deliveryPersonId) { // a classe class-update-name-${deliveryPersonId} serve para que o nome do entregador seja atualizo em todos os lugares da pagina ao mesmo tempo
+function updateName(deliveryPersonId) { // a classe class-update-name-${deliveryPersonId} serve para que o nome do entregador seja atualizado em todos os lugares da pagina ao mesmo tempo
     const newName = document.querySelectorAll(`.class-update-name-${deliveryPersonId}`)
     newName.forEach(element =>{
         element.innerHTML = document.querySelector(`#delivery-person-name-${deliveryPersonId}`).value
