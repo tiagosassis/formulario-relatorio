@@ -46,6 +46,10 @@ main{
     flex-flow: row wrap;
     justify-content: space-between;
     margin-top: 25px;
+
+    div{
+        position: relative;
+    }
 }
 
 .container{
@@ -67,21 +71,7 @@ h1, h2, h3, h4{
     margin-bottom: 20px;
 }
 
-.delivery-person-container > fieldset{
-    flex: 0 1 48%;
-    border: none;
-    padding: 2px;
-
-    input{
-        flex: 9 1 50px;
-    }
-
-    label{
-        flex: 1 1 50px;
-    }
-}
-
-.delivery-person-container > div{
+.container-relative{
     position: relative;
 }
 
@@ -171,7 +161,6 @@ hr{
 
 .extra-employee-container{
     margin-top: 40px;
-    position: relative;
     border: none;
     border-top: 1px solid white;
 
@@ -244,10 +233,6 @@ hr{
     background-color: var(--copy-button-background-emphasis-color);
 }
 
-.flex-row-wrap > div{
-    position: relative;
-}
-
 /*Estilização para extra de entregadores*/
 .flex-item-label-name{
     flex: 0 0 19%;
@@ -286,10 +271,6 @@ hr{
 .float-input:focus ~ .float-label, .float-input:valid ~ .float-label{ /*animação do label flutuar sobre o input quando está em foco*/
     top: -20px;
     font-size: 0.75em;
-}
-
-#section-report{
-    position: relative;
 }
 
 .hidden{

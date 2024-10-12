@@ -6,12 +6,14 @@ document.getElementById('add-extra').addEventListener('click', createDeliveryPer
 document.getElementById('remove-extra').addEventListener('click', removeExtraEmployee)
 
 const activeDeliveryPersons = [
-    {name: 'Byane', turn: ['night']},
-    {name: 'Guilherme Vieira', turn: ['night']},
-    {name: 'Kaio', turn: ['night']},
-    {name: 'Keven', turn: ['morning', 'night']},
-    {name: 'João Pedro', turn: ['morning']}
+    {name: 'Byane', turn: ['night'], dayOff: 3},
+    {name: 'Guilherme Vieira', turn: ['night'], dayOff: 2},
+    {name: 'Kaio', turn: ['night'], dayOff: 4},
+    {name: 'Keven', turn: ['morning', 'night'], dayOff: 1},
+    {name: 'João Pedro', turn: ['morning'], dayOff: 0}
 ]
+
+let currentDeliveryPersonCount = activeDeliveryPersons.length
 
 function configDeliveryPerson() {
     const currentDate = new Date()
@@ -21,6 +23,8 @@ function configDeliveryPerson() {
     const h1 = document.querySelector('h1')
     const dateOfReport = document.getElementById('date-of-report')
     const divDelivery = document.querySelectorAll('.delivery-person-container')
+
+    deliveryPersonDatalist() // cria a datalist de entregador e coloca no html do relatorio
     
     if (currentDate.getHours() >= 5 && currentDate.getHours() <= 17) { // dia
         h1.innerText = 'Relatório Almoço ' + day + '/' + month
@@ -67,25 +71,33 @@ function configDeliveryPerson() {
     }
 }
 
-function addDeliveryPerson() {
+function deliveryPersonDatalist() { // cria a datalist de entregador e coloca no html do relatorio
+    const container = document.getElementById('section-delivery-person')
+    const datalist = document.createElement('datalist')
+    datalist.setAttribute('id', 'datalist-delivery-person')
 
-    activeDeliveryPersons
+    activeDeliveryPersons.forEach(person => {
+        const option = document.createElement('option')
+        option.setAttribute('value', person.name)
+        option.textContent = person.name
+        datalist.appendChild(option)
+    })
+    container.insertBefore(datalist, container.firstChild)
+}
 
-    // <datalist id="datalist-delivery-person">
-    //     <option value="Byane">Byane</option>
-    //     <option value="Guilherme Vieira">Guilherme Vieira</option>
-    //     <option value="Kaio">Kaio</option>
-    //     <option value="Keven">Keven</option>
-    //     <option value="João Pedro">João Pedro</option>
-    // </datalist>
+function addDeliveryPerson(index) {
 }
 
 function createDeliveryPerson(deliveryPersonId, name) {
+    if (!(typeof deliveryPersonId === 'number')) {
+        deliveryPersonId = currentDeliveryPersonCount
+        name = ''
+    }
     const section = document.getElementById('section-delivery-person')
     let div1, div2, input, label;
 
     div1 = document.createElement('div')
-    div1.classList.add('flex-row-wrap', 'delivery-person-container')
+    div1.classList.add('flex-row-wrap', 'delivery-person-container', 'container-relative')
 
     for (let index = 0; index < 4; index++) {
         div2 = document.createElement('div')
@@ -143,8 +155,10 @@ function createDeliveryPerson(deliveryPersonId, name) {
     }
     section.appendChild(div1)
 
+    currentDeliveryPersonCount++
+
     /*
-        <div class="flex-row-wrap delivery-person-container">
+        <div class="flex-row-wrap delivery-person-container container-relative">
             <div class="flex-item-delivery-person-name">
                 <input class="float-input" type="text" id="delivery-person-name-5" list="datalist-delivery-person" value="Keven" required>
                 <label class="float-label" for="delivery-person-name-5">Nome</label>
