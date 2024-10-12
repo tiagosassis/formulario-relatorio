@@ -18,13 +18,13 @@ let currentDeliveryPersonCount = activeDeliveryPersons.length
 function createDateTimeInfo () {
     const now = new Date()
     if (now.getHours() < 5) {
-        now.setDate(now.getDate() - 1); // Ajusta para o dia anterior
+        now.setDate(now.getDate() - 1); // Ajusta para o dia anterior caso a hora esteja entre meia noite e 5 da madrugada
     }
     const day = String(now.getDate()).padStart(2, '0')
     const month = String(now.getMonth() + 1).padStart(2, '0')
     let dayShift, weekDay
 
-    if(now.getHours() > 5 && now.getHours() < 17) // define o turno
+    if(now.getHours() >= 5 && now.getHours() < 17) // define o turno
         dayShift = 'morning'
     else
         dayShift = 'night'
@@ -62,7 +62,7 @@ function createDateTimeInfo () {
             break;
     }
 
-    let time = { // cria um objeto contendo hora, turno, dia, dia da semana, dia do mês, e mês
+    let time = { // cria um objeto contendo hora, turno, dia, dia da semana, dia do mês e mês
         currentHour: now.getHours(),
         turn: dayShift,
         weekDay: weekDay,
