@@ -177,7 +177,7 @@ button:hover{
 
 button:active{
     transform: scale(0.95);
-    transition: transform 0.1s ease;
+    transition: 0.1s ease;
     box-shadow: 0px 0px 3px var(--copy-button-emphasis-color);
     background-color: var(--copy-button-background-emphasis-color);
 }
