@@ -6,69 +6,99 @@ document.getElementById('add-extra').addEventListener('click', createDeliveryPer
 document.getElementById('remove-extra').addEventListener('click', removeExtraEmployee)
 
 const activeDeliveryPersons = [
-    {name: 'Byane', turn: ['night'], dayOff: 3},
-    {name: 'Guilherme Vieira', turn: ['night'], dayOff: 2},
-    {name: 'Kaio', turn: ['night'], dayOff: 4},
-    {name: 'Keven', turn: ['morning', 'night'], dayOff: 1},
-    {name: 'João Pedro', turn: ['morning'], dayOff: 0}
+    {name: 'Byane', turn: ['night'], dayOff: 'Wednesday'},
+    {name: 'Guilherme Vieira', turn: ['night'], dayOff: 'Tuesday'},
+    {name: 'Kaio', turn: ['night'], dayOff: 'Thursday'},
+    {name: 'Keven', turn: ['morning', 'night'], dayOff: 'Monday'},
+    {name: 'João Pedro', turn: ['morning'], dayOff: 'Sunday'}
 ]
 
 let currentDeliveryPersonCount = activeDeliveryPersons.length
 
+function createDateTimeInfo (params) {
+    const now = new Date()
+    if (now.getHours() < 5) {
+        now.setDate(now.getDate() - 1); // Ajusta para o dia anterior
+    }
+    const day = String(now.getDate()).padStart(2, '0')
+    const month = String(now.getMonth() + 1).padStart(2, '0')
+    let dayShift, weekDay
+
+    if(now.getHours() > 5 && now.getHours() < 17) // define o turno
+        dayShift = 'morning'
+    else
+        dayShift = 'night'
+
+    switch (now.getDay()) { // organiza o dia da semana
+        case 1:
+            weekDay = 'Monday'
+            break;
+
+        case 2:
+            weekDay = 'Tuesday'
+            break;
+
+        case 3:
+            weekDay = 'Wednesday'
+            break;
+
+        case 4:
+            weekDay = 'Thursday'
+            break;
+
+        case 5:
+            weekDay = 'Friday'
+            break;
+
+        case 6:
+            weekDay = 'Saturday'
+            break;
+
+        case 0:
+            weekDay = 'Sunday'
+            break;
+    
+        default:
+            break;
+    }
+
+    let time = { // cria um objeto contendo hora, turno, dia, dia da semana, dia do mês, e mês
+        currentHour: now.getHours(),
+        turn: dayShift,
+        weekDay: weekDay,
+        day: day,
+        month: month
+    }
+    return time
+}
+
 function configDeliveryPerson() {
-    const currentDate = new Date()
-    const weekDay = currentDate.getDay()
-    const day = currentDate.getDate()
-    const month = currentDate.getMonth() + 1
+    const time = createDateTimeInfo()
+
     const h1 = document.querySelector('h1')
     const dateOfReport = document.getElementById('date-of-report')
     const divDelivery = document.querySelectorAll('.delivery-person-container')
 
     deliveryPersonDatalist() // cria a datalist de entregador e coloca no html do relatorio
     
-    if (currentDate.getHours() >= 5 && currentDate.getHours() <= 17) { // dia
-        h1.innerText = 'Relatório Almoço ' + day + '/' + month
-        dateOfReport.innerHTML = '*Almoço ' + day + '/' + month + '*<br>'
-        divDelivery[0].classList.toggle('hidden') // caso seja horário do almoço, os entregadores da noite não aparecem
-        divDelivery[1].classList.toggle('hidden')
-        divDelivery[2].classList.toggle('hidden')
-        switch (weekDay) { // define qual entregador estara de folga
-            case 1:
-                divDelivery[4].classList.toggle('hidden')
-                break;
-        
-            case 2:
-                divDelivery[3].classList.toggle('hidden')
-                break;
-        }
-        return
-    } else{ // noite
-        divDelivery[3].classList.toggle('hidden') // desaparece com o entregador do dia
-        switch (weekDay) { // define qual entregador estara de folga
-            case 1:
-                divDelivery[4].classList.toggle('hidden')
-                break;
-        
-            case 2:
-                divDelivery[1].classList.toggle('hidden')
-                break;
-        
-            case 3:
-                divDelivery[0].classList.toggle('hidden')
-                break;
-        
-            case 4:
-                divDelivery[2].classList.toggle('hidden')
-                break;
-        }
-        if(currentDate.getHours() >= 0 && currentDate.getHours() <= 4){
-            h1.innerText = 'Relatório Noite ' + (day - 1) + '/' + month
-            dateOfReport.innerHTML = '*Noite ' + (day - 1) + '/' + month + '*<br>'
-        }else{
-            h1.innerText = 'Relatório Noite ' + day + '/' + month
-            dateOfReport.innerHTML = '*Noite ' + day + '/' + month + '*<br>'
-        }
+    if (time.turn === 'morning') { // dia
+        h1.innerText = `Relatório Almoço ${time.day} / ${time.month}`
+        dateOfReport.innerHTML = '*Almoço ' + time.day + '/' + time.month + '*<br>'
+
+    } else if(time.turn === 'night'){ // noite
+        h1.innerText = `Relatório Noite ${time.day} / ${time.month}`
+        dateOfReport.innerHTML = `*Noite ${time.day} / ${time.month} *<br>`
+
+    } else {
+        console.log('erro na função configDeliveryPerson()')
     }
+
+    activeDeliveryPersons.forEach((person, index) =>{
+        if (!(person.dayOff == time.weekDay) && (person.turn[0] == time.turn || person.turn[1] == time.turn)) {
+            // se o entregador não está de folga e ele trabalha naquele turno, seu input será criado e inserido no html
+            createDeliveryPerson(index, person.name)
+        }
+    })
 }
 
 function deliveryPersonDatalist() { // cria a datalist de entregador e coloca no html do relatorio
@@ -85,7 +115,9 @@ function deliveryPersonDatalist() { // cria a datalist de entregador e coloca no
     container.insertBefore(datalist, container.firstChild)
 }
 
-function addDeliveryPerson(index) {
+function addDeliveryPerson() {
+
+
 }
 
 function createDeliveryPerson(deliveryPersonId, name) {
