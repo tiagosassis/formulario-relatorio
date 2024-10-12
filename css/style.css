@@ -74,7 +74,7 @@ h1{
 }
 
 h1, h2, h3, h4{
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .container-relative{
@@ -84,32 +84,23 @@ h1, h2, h3, h4{
 input{
     outline: none;
     border: none;
-    border-radius: 2px;
     padding: 5px;
     font-size: 1em;
     color: var(--input-text-color);
 }
 
-.float-input{
-    height: 100%;
-    width: 100%;
-    background: none;
-    border-bottom: var(--input-border-bottom);
-    color: var(--text-color);
-    padding-left: 10px;
-}
-
-.float-label{
-    position: absolute;
-    top: 1px;
-    left: 10px;
-    pointer-events: none;
-    transition: .5s;
-    color: var(--text-color);
-}
-
 .flex-item-delivery-person-name{
     flex: 0 0 40%;
+}
+
+.flex-item-delivery-person-name, .flex-item-employee-name{ /*alinha o nome do entregador e diárista rente a esquerda do input*/
+    input{
+        padding-left: 0px;
+    }
+
+    label{
+        left: 0px;
+    }
 }
 
 .flex-item-deliveries-amount{
@@ -140,6 +131,24 @@ label{
     font-size: .9em;
 }
 
+.float-input{
+    height: 100%;
+    width: 100%;
+    background: none;
+    border-bottom: var(--input-border-bottom);
+    color: var(--text-color);
+    padding-left: 10px;
+}
+
+.float-label{
+    position: absolute;
+    top: 1px;
+    left: 10px;
+    pointer-events: none;
+    transition: .5s;
+    color: var(--text-color);
+}
+
 hr{
     border: none;
     height: 1px;
@@ -163,7 +172,7 @@ hr{
 button{
     font-size: .75em;
     font-weight: 400;
-    padding: 5px 9px;
+    padding: 5px 8px;
     border-radius: 5px;
     border: none;
     background-color: var(--copy-button-background-color);
@@ -184,7 +193,7 @@ button:active{
 
 /*Estilização para extra de entregadores*/
 .flex-item-label-name{
-    flex: 0 0 19%;
+    flex: 0 0 20%;
     border-bottom: var(--input-border-bottom);
 }
 
@@ -198,23 +207,15 @@ button:active{
 
 /*estilização para funcionario extra (diarista)*/
 .flex-item-employee-name{
-    flex: 0 0 39.5%;
-
-    .float-input{
-        padding-left: 0px;
-    }
-
-    .float-label{
-        left: 0px;
-    }
+    flex: 0 0 40%;
 }
 
 .flex-item-daily-payment{
-    flex: 0 0 19.5%;
+    flex: 0 0 19%;
 }
 
 .flex-item-pix-key{
-    flex: 0 0 38%;
+    flex: 0 0 39%;
 }
 
 .float-input:focus ~ .float-label, .float-input:valid ~ .float-label{ /*animação do label flutuar sobre o input quando está em foco*/
