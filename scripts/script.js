@@ -5,6 +5,14 @@ document.getElementById('copy-button').addEventListener('click', copyContent)
 document.getElementById('add-extra').addEventListener('click', createDeliveryPerson)
 document.getElementById('remove-extra').addEventListener('click', removeExtraEmployee)
 
+const activeDeliveryPersons = [
+    {name: 'Byane', turn: ['night']},
+    {name: 'Guilherme Vieira', turn: ['night']},
+    {name: 'Kaio', turn: ['night']},
+    {name: 'Keven', turn: ['morning', 'night']},
+    {name: 'João Pedro', turn: ['morning']}
+]
+
 function configDeliveryPerson() {
     const currentDate = new Date()
     const weekDay = currentDate.getDay()
@@ -60,7 +68,16 @@ function configDeliveryPerson() {
 }
 
 function addDeliveryPerson() {
-    
+
+    activeDeliveryPersons
+
+    // <datalist id="datalist-delivery-person">
+    //     <option value="Byane">Byane</option>
+    //     <option value="Guilherme Vieira">Guilherme Vieira</option>
+    //     <option value="Kaio">Kaio</option>
+    //     <option value="Keven">Keven</option>
+    //     <option value="João Pedro">João Pedro</option>
+    // </datalist>
 }
 
 function createDeliveryPerson(deliveryPersonId, name) {
