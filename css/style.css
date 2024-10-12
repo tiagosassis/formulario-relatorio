@@ -59,6 +59,12 @@ main{
     border-radius: 15px;
 }
 
+.title-container{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
 .container > section{
     margin-bottom: 10px;
 }
@@ -143,22 +149,6 @@ hr{
     border-radius: 5px;
 }
 
-.add-button{
-    width: 100%;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    padding: 10px;
-    margin: 5px 0px;
-    font-size: 1em;
-    background-color: var(--background-button-color);
-    color: var(--text-color);
-}
-
-.add-button:hover{
-    background-color: var(--hover-button-color);
-}
-
 .extra-employee-container{
     margin-top: 40px;
     border: none;
@@ -170,17 +160,10 @@ hr{
     }
 }
 
-#copy-button{
-    top: 0px;
-    right: 0px;
-    margin: 0px;
-}
-
-.float-button{
-    position: absolute;
+button{
     font-size: .75em;
     font-weight: 400;
-    padding: 5px 6px;
+    padding: 5px 9px;
     border-radius: 5px;
     border: none;
     background-color: var(--copy-button-background-color);
@@ -188,11 +171,11 @@ hr{
     cursor: pointer;
 }
 
-.float-button:hover{
+button:hover{
     box-shadow: 0px 0px 3px var(--copy-button-emphasis-color);
 }
 
-.float-button:active{
+button:active{
     transform: scale(0.95);
     transition: transform 0.1s ease;
     box-shadow: 0px 0px 3px var(--copy-button-emphasis-color);

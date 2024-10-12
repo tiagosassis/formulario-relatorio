@@ -13,9 +13,15 @@
             <h1>Relatório</h1>
             <section>
                 <section id="section-delivery-person">
-                    <h2>Entregadores</h2>
+                    <div class="title-container">
+                        <h2>Entregadores</h2>
+                        <button type="button" id="add-delivery-person-button">
+                            <span class="material-symbols-outlined">
+                                person_add
+                                </span>
+                        </button>
+                    </div>
                     <!-- Aqui serão adicionados input's para que o usuário digite o nome do entregador, quantidade de entregas, quantidade de entregas extras e valor de consumo -->
-                    <input type="submit" id="add-delivery-person" value="Adicionar Entregador" class="add-button" onclick="toggleExtraDeliveryPerson()">
                 </section>
 
                 <section id="section-extra-delivery" class="flex-column-wrap">
@@ -44,12 +50,14 @@
             </fieldset>
             <br><hr>
             <section id="section-report" class="container-relative">
-                <h2>Relatório</h2>
-                <button id="copy-button" class="float-button">
-                    <span class="material-symbols-outlined">
-                        content_copy
-                    </span>
-                </button>
+                <div class="title-container">
+                    <h2>Relatório</h2>
+                    <button id="copy-button">
+                        <span class="material-symbols-outlined">
+                            content_copy
+                        </span>
+                    </button>
+                </div>
 
                 <section id="report-content">
                     <h3 id="date-of-report"></h3>

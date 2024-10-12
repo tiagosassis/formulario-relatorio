@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', configDeliveryPerson)
 document.getElementById('section-delivery-person').addEventListener('input', updateReport)
 document.getElementById('section-extra-delivery').addEventListener('input', updateReportExtraDeliveries)
 document.getElementById('copy-button').addEventListener('click', copyContent)
+document.getElementById('add-delivery-person-button').addEventListener('click', createDeliveryPerson)
 
 const activeDeliveryPersons = [
     {name: 'Byane', turn: ['night'], dayOff: 'Wednesday'},
@@ -118,6 +119,7 @@ function createDeliveryPerson(deliveryPersonId, name) {
         deliveryPersonId = currentDeliveryPersonCount
         name = ''
     }
+
     const section = document.getElementById('section-delivery-person')
     let div1, div2, input, label;
 
@@ -202,19 +204,6 @@ function createDeliveryPerson(deliveryPersonId, name) {
             </div>
         </div>
     */
-}
-
-function toggleExtraDeliveryPerson () { // função que torna visivel ou não o entregador extra
-    const deliveryPersonExtra = document.getElementById('delivery-person-extra')
-    const button = document.getElementById('add-delivery-person')
-
-    if (deliveryPersonExtra.classList.contains('hidden')) { // também muda a frase no botão para si adaptar a situação
-        button.value = 'Remover Entregador'
-    } else {
-        button.value = 'Adicionar Entregador'
-    }
-    deliveryPersonExtra.classList.toggle('hidden')
-
 }
 
 function copyContent() { // copia o relatorio pronto
