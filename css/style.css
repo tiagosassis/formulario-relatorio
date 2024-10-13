@@ -132,22 +132,6 @@ input{
     padding-left: 10px;
 }
 
-.flex-item-delivery-person-name{
-    flex: 0 0 40%;
-}
-
-.flex-item-deliveries-amount{
-    flex: 0 0 19%;
-}
-
-.flex-item-delivery-extra{
-    flex: 0 0 19%;
-}
-
-.flex-item-day-consumption{
-    flex: 0 0 19%;
-}
-
 input[type="number"] {
     /* Ajusta a aparência no Firefox */
     appearance: textfield;
@@ -162,15 +146,34 @@ input[type="number"]::-webkit-outer-spin-button {
 label{
     padding-top: 5px;
     font-size: .9em;
+    height: 29px;
+    padding-left: 10px;
 }
 
 .float-label{
     position: absolute;
     top: 1px;
     left: 10px;
+    padding-left: 0px;
     pointer-events: none;
     transition: .5s;
     color: var(--text-color);
+}
+
+.flex-item-delivery-person-name{
+    flex: 0 0 40%;
+}
+
+.flex-item-deliveries-amount{
+    flex: 0 0 19%;
+}
+
+.flex-item-delivery-extra{
+    flex: 0 0 19%;
+}
+
+.flex-item-day-consumption{
+    flex: 0 0 19%;
 }
 
 hr{
