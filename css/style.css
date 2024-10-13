@@ -2,18 +2,46 @@
 
 :root{
     --primary-background-color: #052338;
-    --secondary-background-color: #1e90ff;
-    --body-background: linear-gradient(to right, #1493dc, #113647);
+    --secondary-background-color: #113647;
+
+    --background-button-color: rgb(0, 92, 197);
+    --copy-button-background-color: #031725;
+    --copy-button-emphasis-color: rgba(255, 255, 255, 1);
+    --copy-button-background-emphasis-color: #062d49;
+    --hover-button-color: rgb(0, 79, 170);
+
     --text-color: #ffffff;
     --input-text-color: #000000;
+
+    --input-background-color: none;
+
     --hr-color: rgba(204, 204, 204, 0.5);
+    
+    --popup-background-color: #707070;
+    --input-border-bottom: 1px solid white;
+    --input-border-radius: 0px;
+}
+
+.light-mode:root{
+    --primary-background-color: #E3EBEF;
+    --secondary-background-color: #ffffff;
+    
     --background-button-color: rgb(0, 92, 197);
     --hover-button-color: rgb(0, 79, 170);
     --copy-button-background-color: #031725;
     --copy-button-emphasis-color: rgba(255, 255, 255, 1);
     --copy-button-background-emphasis-color: #062d49;
+
+    --text-color: #000000;
+    --input-text-color: #000000;
+    
+    --input-background-color: #F2F5F4;
+
+    --hr-color: rgba(204, 204, 204, 0.5);
+
     --popup-background-color: #707070;
-    --input-border-bottom: 1px solid white;
+    --input-border-bottom: none;
+    --input-border-radius: 4px;
 }
 
 *{
@@ -27,13 +55,21 @@ body{
     height: 100vh;
     width: 100vw;
     font-family: Arial, Helvetica, sans-serif;
-    background-image: var(--body-background);
+    background-color: var(--primary-background-color);
     overflow-x: hidden;
 }
 
 main{
     align-items: center;
     padding-top: 25px;
+}
+
+.light-mode{
+    display: block;
+}
+
+.dark-mode{
+    display: none;
 }
 
 .flex-column-wrap{
@@ -54,7 +90,7 @@ main{
 
 .container{
     width: 800px;
-    background-color: var(--primary-background-color);
+    background-color: var(--secondary-background-color);
     padding: 15px;
     border-radius: 15px;
 }
@@ -87,20 +123,17 @@ input{
     padding: 5px;
     font-size: 1em;
     color: var(--input-text-color);
+    height: 100%;
+    width: 100%;
+    background: var(--input-background-color);
+    border-bottom: var(--input-border-bottom);
+    border-radius: var(--input-border-radius);
+    color: var(--text-color);
+    padding-left: 10px;
 }
 
 .flex-item-delivery-person-name{
     flex: 0 0 40%;
-}
-
-.flex-item-delivery-person-name, .flex-item-employee-name{ /*alinha o nome do entregador e diárista rente a esquerda do input*/
-    input{
-        padding-left: 0px;
-    }
-
-    label{
-        left: 0px;
-    }
 }
 
 .flex-item-deliveries-amount{
@@ -129,15 +162,6 @@ input[type="number"]::-webkit-outer-spin-button {
 label{
     padding-top: 5px;
     font-size: .9em;
-}
-
-.float-input{
-    height: 100%;
-    width: 100%;
-    background: none;
-    border-bottom: var(--input-border-bottom);
-    color: var(--text-color);
-    padding-left: 10px;
 }
 
 .float-label{

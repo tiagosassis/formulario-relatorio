@@ -3,6 +3,7 @@ document.getElementById('section-delivery-person').addEventListener('input', upd
 document.getElementById('section-extra-delivery').addEventListener('input', updateReportExtraDeliveries)
 document.getElementById('copy-button').addEventListener('click', copyContent)
 document.getElementById('add-delivery-person-button').addEventListener('click', createDeliveryPerson)
+document.getElementById('theme').addEventListener('click', darkMode)
 
 const activeDeliveryPersons = [
     {name: 'Byane', turn: ['night'], dayOff: 'Wednesday'},
@@ -504,4 +505,8 @@ function paymentCalculation(deliveryPersonId) {
         cada entrega vale 6,00 reais, tem uma ajuda de custo de 10,00 reais de segunda a quinta e 20,00 de sexta a domingo e o consumo é descontado do valor final
         (((entregas + entregas extras) x 6) + 10) - consumo
     */
+}
+
+function darkMode() {
+    document.querySelector('html').classList.toggle('light-mode')
 }
