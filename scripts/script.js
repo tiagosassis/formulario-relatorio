@@ -4,6 +4,7 @@ document.getElementById('section-extra-delivery').addEventListener('input', upda
 document.getElementById('copy-button').addEventListener('click', copyContent)
 document.getElementById('add-delivery-person-button').addEventListener('click', createDeliveryPerson)
 document.getElementById('theme').addEventListener('click', darkMode)
+document.querySelector('main').addEventListener('input', createTextField)
 
 const activeDeliveryPersons = [
     {name: 'Byane', turn: ['night'], dayOff: 'Wednesday'},
@@ -456,14 +457,6 @@ function createExtraDeliveryRegister(div1, numberOfExtra, deliveryPersonId) {
     }
 }
 
-function addExtraEmployee() {
-    
-}
-
-function removeExtraEmployee() {
-    
-}
-
 function updateDeliveries(event, deliveryPersonId) {
     // essa função altera a quantidade de entregas no relatorio, caso não haja entregas para aquele entregador, a visibilidade dele no relatorio é alterar como display none
     document.querySelector(`#textField-${event.target.id}`).innerHTML = event.target.value + ' Entregas' 
@@ -505,6 +498,23 @@ function paymentCalculation(deliveryPersonId) {
         cada entrega vale 6,00 reais, tem uma ajuda de custo de 10,00 reais de segunda a quinta e 20,00 de sexta a domingo e o consumo é descontado do valor final
         (((entregas + entregas extras) x 6) + 10) - consumo
     */
+}
+
+function createTextField() {
+    const deliveryPerson = document.querySelectorAll('.delivery-person-container')
+
+    deliveryPerson.forEach(person =>{
+        console.log(person)
+    })
+
+    // <div id="delivery-person-report-1" class="hidden">
+    //     <span id="textField-delivery-person-name-1" class="class-update-name-1"></span>:
+    //     <span id="textField-payment-1"></span><br>
+    //     <span class="hidden">(</span><span id="textField-deliveries-1"></span>
+    //     <span id="textField-extra-1"></span>
+    //     <span id="textField-consumption-1"></span><span class="hidden">)</span>
+    //     <hr>
+    // </div>
 }
 
 function darkMode() {
