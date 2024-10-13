@@ -1,0 +1,22 @@
+.dark-mode:root{
+    --primary-background-color: #052338;
+    --secondary-background-color: #113647;
+
+    --button-bg-color: #031725;
+    --button-shadow-color: rgba(255, 255, 255, 1);
+    --active-background-button-color: #062d49;
+    --theme-button-bg-color: #031725;
+
+    --text-color: white;
+    --button-text-color: white;
+
+    --input-background-color: none;
+    --input-border-bottom: 1px solid white;
+    --input-border-radius: 0px;
+
+    --divider-color: rgba(204, 204, 204, 0.5);
+    
+    --popup-background-color: #707070;
+    --popup-text-color: white;
+    
+}

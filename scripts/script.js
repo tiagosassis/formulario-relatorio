@@ -10,7 +10,7 @@ const activeDeliveryPersons = [
     {name: 'Guilherme Vieira', turn: ['night'], dayOff: 'Tuesday'},
     {name: 'Kaio', turn: ['night'], dayOff: 'Thursday'},
     {name: 'Keven', turn: ['morning', 'night'], dayOff: 'Monday'},
-    {name: 'João Pedro', turn: ['morning'], dayOff: 'Sunday'}
+    {name: 'João Pedro', turn: ['morning'], dayOff: ''}
 ]
 
 let currentDeliveryPersonCount = activeDeliveryPersons.length
@@ -508,5 +508,7 @@ function paymentCalculation(deliveryPersonId) {
 }
 
 function darkMode() {
-    document.querySelector('html').classList.toggle('light-mode')
+    document.querySelector('html').classList.toggle('dark-mode')
+    document.querySelector('span.dark-mode').classList.toggle('hidden')
+    document.querySelector('span.light-mode').classList.toggle('hidden')
 }

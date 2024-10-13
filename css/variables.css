@@ -1,0 +1,21 @@
+:root{
+    --primary-background-color: #E3EBEF;
+    --secondary-background-color: white;
+    
+    --button-bg-color: #0D6EFD;
+    --button-shadow-color: rgb(51, 51, 51);
+    --active-background-button-color: #0956c9;
+    --theme-button-bg-color: #E3EBEF;
+
+    --text-color: #373737;
+    --button-text-color: white;
+    
+    --input-background-color: #F2F5F4;
+    --input-border-bottom: none;
+    --input-border-radius: 5px;
+
+    --divider-color: rgba(33, 33, 33, 1);
+
+    --popup-background-color: #444444;
+    --popup-text-color: white;
+}
