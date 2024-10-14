@@ -99,7 +99,6 @@ function configDeliveryPerson() {
             createDeliveryPerson(index, person.name)
         }
     })
-    createTextField()
 }
 
 function deliveryPersonDatalist() { // cria a datalist de entregador e coloca no html do relatorio
@@ -185,6 +184,7 @@ function createDeliveryPerson(deliveryPersonId, name) {
     section.appendChild(div1)
 
     currentDeliveryPersonCount++
+    createTextField()
 
     /*
         <div class="flex-row-wrap delivery-person-container container-relative">
