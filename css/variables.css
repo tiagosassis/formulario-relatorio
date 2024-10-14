@@ -14,6 +14,9 @@
     --input-border-bottom: none;
     --input-border-radius: 5px;
 
+    --label-name-border-bottom: none;
+    --label-background-color: #F2F5F4;
+
     --divider-color: rgba(33, 33, 33, 1);
 
     --popup-background-color: #444444;

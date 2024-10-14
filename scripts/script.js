@@ -4,7 +4,6 @@ document.getElementById('section-extra-delivery').addEventListener('input', upda
 document.getElementById('copy-button').addEventListener('click', copyContent)
 document.getElementById('add-delivery-person-button').addEventListener('click', createDeliveryPerson)
 document.getElementById('theme').addEventListener('click', darkMode)
-document.querySelector('main').addEventListener('input', createTextField)
 
 const activeDeliveryPersons = [
     {name: 'Byane', turn: ['night'], dayOff: 'Wednesday'},
@@ -100,6 +99,7 @@ function configDeliveryPerson() {
             createDeliveryPerson(index, person.name)
         }
     })
+    createTextField()
 }
 
 function deliveryPersonDatalist() { // cria a datalist de entregador e coloca no html do relatorio
@@ -430,7 +430,7 @@ function createExtraDeliveryRegister(div1, numberOfExtra, deliveryPersonId) {
                 label = document.createElement('label')
                 label.setAttribute('for', `extra-delivery-number-${deliveryPersonId}-${i}`)
                 label.classList.add('float-label')
-                label.textContent = 'Número do pedido'
+                label.textContent = 'Nº do pedido'
 
                 div3.appendChild(input)
                 div3.appendChild(label)
@@ -502,9 +502,46 @@ function paymentCalculation(deliveryPersonId) {
 
 function createTextField() {
     const deliveryPerson = document.querySelectorAll('.delivery-person-container')
+    let div, span, br, hr
+    br = document.createElement('br')
+    hr = document.createElement('hr')
+    
 
     deliveryPerson.forEach(person =>{
-        console.log(person)
+        const container = document.getElementById('report-delivery')
+        const deliveryPersonId = person.firstChild.firstChild.id.match(/\d+/g); // pega o número identificador do entregador
+        div = document.createElement('div')
+        div.classList.add('hidden')
+        div.setAttribute('id', `delivery-person-report-${deliveryPersonId}`)
+        
+        span = document.createElement('span')
+        span.setAttribute('id', `textField-delivery-person-name-${deliveryPersonId}`)
+        span.classList.add(`class-update-name-${deliveryPersonId}`)
+        div.append(span, ': ')
+        span = document.createElement('span')
+        span.setAttribute('id', `textField-payment-${deliveryPersonId}`)
+        div.append(span, br)
+        span = document.createElement('span')
+        span.classList.add('hidden')
+        span.textContent = '('
+        div.appendChild(span)
+        span = document.createElement('span')
+        span.setAttribute('id', `textField-deliveries-${deliveryPersonId}`)
+        div.appendChild(span)
+        span = document.createElement('span')
+        span.setAttribute('id', `textField-extra-${deliveryPersonId}`)
+        div.appendChild(span)
+        span = document.createElement('span')
+        span.setAttribute('id', `textField-consumption-${deliveryPersonId}`)
+        div.appendChild(span)
+        span = document.createElement('span')
+        span.classList.add('hidden')
+        span.textContent = ')'
+        div.appendChild(span, hr)
+
+
+
+        container.appendChild(div)
     })
 
     // <div id="delivery-person-report-1" class="hidden">

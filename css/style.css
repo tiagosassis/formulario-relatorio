@@ -118,7 +118,7 @@ label{
 }
 
 .float-input:focus ~ .float-label, .float-input:valid ~ .float-label{ /*animação do label flutuar sobre o input quando está em foco*/
-    top: -20px;
+    top: -21px;
     font-size: 0.8em;
 }
 
@@ -184,7 +184,8 @@ button:active{
 /*Estilização para extra de entregadores*/
 .flex-item-label-name{
     flex: 0 0 20%;
-    border-bottom: var(--input-border-bottom);
+    border-bottom: var(--label-name-border-bottom);
+    background-color: var(--label-background-color);
 }
 
 .flex-item-order-number{
