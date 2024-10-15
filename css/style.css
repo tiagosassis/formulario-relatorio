@@ -8,12 +8,12 @@
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
+    font-family: Poppins, Arial, Helvetica, sans-serif;
 }
 
 body{
     height: 100vh;
     width: 100vw;
-    font-family: Poppins, Arial, Helvetica, sans-serif;
     background-color: var(--primary-background-color);
     overflow-x: hidden;
     color: var(--text-color);
@@ -43,6 +43,17 @@ main{
 
     div{
         position: relative;
+    }
+}
+
+.flex-container-button{
+    display: flex;
+    flex-flow: row nowrap;
+    margin-top: 10px;
+    justify-content: space-between;
+
+    button{
+        flex: 0 1 49%;
     }
 }
 
@@ -159,15 +170,22 @@ hr{
 }
 
 button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 8px;
+
     background-color: var(--button-bg-color);
     color: var(--button-text-color);
+
     font-size: .75em;
     font-weight: 400;
     line-height: 1em;
+
     cursor: pointer;
-    padding: 5px 8px;
     border-radius: 5px;
     border: none;
+    gap: 5px;
 }
 
 button:hover{

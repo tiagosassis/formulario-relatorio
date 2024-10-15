@@ -4,6 +4,8 @@ document.getElementById('section-extra-delivery').addEventListener('input', upda
 document.getElementById('copy-button').addEventListener('click', copyContent)
 document.getElementById('add-delivery-person-button').addEventListener('click', createDeliveryPerson)
 document.getElementById('theme').addEventListener('click', darkMode)
+document.getElementById('add-extra-employee').addEventListener('click', createExtraEmployee)
+document.getElementById('remove-extra-employee').addEventListener('click', removeExtraEmployee)
 
 const activeDeliveryPersons = [
     {name: 'Byane', turn: ['night'], dayOff: 'Wednesday'},
@@ -100,7 +102,7 @@ function configDeliveryPerson() {
         }
     })
 
-    createExtraEmployee()
+    createExtraEmployee() // cria o input para o primeiro diarista, mais serão adicionados conforme necessário
 }
 
 function deliveryPersonDatalist() { // cria a datalist de entregador e coloca no html do relatorio
@@ -556,8 +558,19 @@ function createTextField() {
     // </div>
 }
 
+function removeExtraEmployee() {
+    const extraEmployee = document.querySelectorAll('#section-extra-employee > div')
+
+    extraEmployee[extraEmployee.length - 1].remove()
+    
+}
+
 function createExtraEmployee() {
     const container = document.getElementById('section-extra-employee')
+    const extraEmployeeCount = document.querySelectorAll('#section-extra-employee > div')
+
+    extraEmployeeId = extraEmployeeCount.length + 1
+
     const div1 = document.createElement('div')
     div1.classList.add('flex-row-wrap', 'extra-employee')
 
@@ -567,13 +580,13 @@ function createExtraEmployee() {
     div2 = document.createElement('div')
     div2.classList.add('flex-item-employee-name')
     input = document.createElement('input')
-    input.setAttribute('id', 'extra-employee-name')
+    input.setAttribute('id', `extra-employee-name-${extraEmployeeId}`)
     input.classList.add('float-input')
     input.setAttribute('type', 'text')
-    input.setAttribute('name', 'extra-employee-name')
+    input.setAttribute('name', `extra-employee-name-${extraEmployeeId}`)
     input.setAttribute('required', '')
     label = document.createElement('label')
-    label.setAttribute('for', 'extra-employee-name')
+    label.setAttribute('for', `extra-employee-name-${extraEmployeeId}`)
     label.classList.add('float-label')
     label.textContent = 'Nome'
     div2.append(input, label)
@@ -582,13 +595,13 @@ function createExtraEmployee() {
     div2 = document.createElement('div')
     div2.classList.add('flex-item-daily-payment')
     input = document.createElement('input')
-    input.setAttribute('id', 'extra-employee-payment')
+    input.setAttribute('id', `extra-employee-payment-${extraEmployeeId}`)
     input.classList.add('float-input')
     input.setAttribute('type', 'number')
-    input.setAttribute('name', 'extra-employee-payment')
+    input.setAttribute('name', `extra-employee-payment-${extraEmployeeId}`)
     input.setAttribute('required', '')
     label = document.createElement('label')
-    label.setAttribute('for', 'extra-employee-payment')
+    label.setAttribute('for', `extra-employee-payment-${extraEmployeeId}`)
     label.classList.add('float-label')
     label.textContent = 'Diária'
     div2.append(input, label)
@@ -597,13 +610,13 @@ function createExtraEmployee() {
     div2 = document.createElement('div')
     div2.classList.add('flex-item-pix-key')
     input = document.createElement('input')
-    input.setAttribute('id', 'extra-employee-pix-key')
+    input.setAttribute('id', `extra-employee-pix-key-${extraEmployeeId}`)
     input.classList.add('float-input')
     input.setAttribute('type', 'text')
-    input.setAttribute('name', 'extra-employee-pix-key')
+    input.setAttribute('name', `extra-employee-pix-key-${extraEmployeeId}`)
     input.setAttribute('required', '')
     label = document.createElement('label')
-    label.setAttribute('for', 'extra-employee-pix-key')
+    label.setAttribute('for', `extra-employee-pix-key-${extraEmployeeId}`)
     label.classList.add('float-label')
     label.textContent = 'Chave Pix'
     div2.append(input, label)
