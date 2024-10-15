@@ -99,6 +99,8 @@ function configDeliveryPerson() {
             createDeliveryPerson(index, person.name)
         }
     })
+
+    createExtraEmployee()
 }
 
 function deliveryPersonDatalist() { // cria a datalist de entregador e coloca no html do relatorio
@@ -551,6 +553,78 @@ function createTextField() {
     //     <span id="textField-extra-1"></span>
     //     <span id="textField-consumption-1"></span><span class="hidden">)</span>
     //     <hr>
+    // </div>
+}
+
+function createExtraEmployee() {
+    const container = document.getElementById('section-extra-employee')
+    const div1 = document.createElement('div')
+    div1.classList.add('flex-row-wrap', 'extra-employee')
+
+    let div2, input, label
+
+    
+    div2 = document.createElement('div')
+    div2.classList.add('flex-item-employee-name')
+    input = document.createElement('input')
+    input.setAttribute('id', 'extra-employee-name')
+    input.classList.add('float-input')
+    input.setAttribute('type', 'text')
+    input.setAttribute('name', 'extra-employee-name')
+    input.setAttribute('required', '')
+    label = document.createElement('label')
+    label.setAttribute('for', 'extra-employee-name')
+    label.classList.add('float-label')
+    label.textContent = 'Nome'
+    div2.append(input, label)
+    div1.appendChild(div2)
+
+    div2 = document.createElement('div')
+    div2.classList.add('flex-item-daily-payment')
+    input = document.createElement('input')
+    input.setAttribute('id', 'extra-employee-payment')
+    input.classList.add('float-input')
+    input.setAttribute('type', 'number')
+    input.setAttribute('name', 'extra-employee-payment')
+    input.setAttribute('required', '')
+    label = document.createElement('label')
+    label.setAttribute('for', 'extra-employee-payment')
+    label.classList.add('float-label')
+    label.textContent = 'Diária'
+    div2.append(input, label)
+    div1.appendChild(div2)
+
+    div2 = document.createElement('div')
+    div2.classList.add('flex-item-pix-key')
+    input = document.createElement('input')
+    input.setAttribute('id', 'extra-employee-pix-key')
+    input.classList.add('float-input')
+    input.setAttribute('type', 'text')
+    input.setAttribute('name', 'extra-employee-pix-key')
+    input.setAttribute('required', '')
+    label = document.createElement('label')
+    label.setAttribute('for', 'extra-employee-pix-key')
+    label.classList.add('float-label')
+    label.textContent = 'Chave Pix'
+    div2.append(input, label)
+    div1.appendChild(div2)
+
+    container.appendChild(div1)
+
+
+    // <div class="flex-row-wrap extra-employee">
+    //     <div class="flex-item-employee-name">
+    //         <input type="text" name="extra-employee-name" id="extra-employee-name" class="float-input" required>
+    //         <label for="extra-employee-name" class="float-label">Nome</label>
+    //     </div>
+    //     <div class="flex-item-daily-payment">
+    //         <input type="number" name="extra-employee-payment" id="extra-employee-payment" class="float-input" required>
+    //         <label for="extra-employee-payment" class="float-label">Diária</label>
+    //     </div>
+    //     <div class="flex-item-pix-key">
+    //         <input type="text" name="extra-employee-pix-key" id="extra-employee-pix-key" class="float-input" required>
+    //         <label for="extra-employee-pix-key" class="float-label">Chave Pix</label>
+    //     </div>
     // </div>
 }
 
