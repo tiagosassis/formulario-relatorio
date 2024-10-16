@@ -123,6 +123,7 @@ function deliveryPersonDatalist() { // cria a datalist de entregador e coloca no
 function createDeliveryPerson(deliveryPersonId, name) {
     if (!(typeof deliveryPersonId === 'number')) {
         deliveryPersonId = currentDeliveryPersonCount
+        currentDeliveryPersonCount++
         name = ''
     }
 
@@ -188,8 +189,7 @@ function createDeliveryPerson(deliveryPersonId, name) {
     }
     section.appendChild(div1)
 
-    currentDeliveryPersonCount++
-    createTextField()
+    createTextField(deliveryPersonId)
 
     /*
         <div class="flex-row-wrap delivery-person-container container-relative">
@@ -512,49 +512,43 @@ function paymentCalculation(deliveryPersonId) {
     */
 }
 
-function createTextField() {
-    const deliveryPerson = document.querySelectorAll('.delivery-person-container')
+function createTextField(deliveryPersonId) {
     let div, span, br, hr
     br = document.createElement('br')
     hr = document.createElement('hr')
     
 
-    deliveryPerson.forEach(person =>{
-        const container = document.getElementById('report-delivery')
-        const deliveryPersonId = person.firstChild.firstChild.id.match(/\d+/g) // pega o número identificador do entregador
-        div = document.createElement('div')
-        div.classList.add('hidden')
-        div.setAttribute('id', `delivery-person-report-${deliveryPersonId}`)
-        
-        span = document.createElement('span')
-        span.setAttribute('id', `textField-delivery-person-name-${deliveryPersonId}`)
-        span.classList.add(`class-update-name-${deliveryPersonId}`)
-        div.append(span, ': ')
-        span = document.createElement('span')
-        span.setAttribute('id', `textField-payment-${deliveryPersonId}`)
-        div.append(span, br)
-        span = document.createElement('span')
-        span.classList.add('hidden')
-        span.textContent = '('
-        div.appendChild(span)
-        span = document.createElement('span')
-        span.setAttribute('id', `textField-deliveries-${deliveryPersonId}`)
-        div.appendChild(span)
-        span = document.createElement('span')
-        span.setAttribute('id', `textField-extra-${deliveryPersonId}`)
-        div.appendChild(span)
-        span = document.createElement('span')
-        span.setAttribute('id', `textField-consumption-${deliveryPersonId}`)
-        div.appendChild(span)
-        span = document.createElement('span')
-        span.classList.add('hidden')
-        span.textContent = ')'
-        div.appendChild(span, hr)
+    const container = document.getElementById('report-delivery')
+    div = document.createElement('div')
+    div.classList.add('hidden')
+    div.setAttribute('id', `delivery-person-report-${deliveryPersonId}`)
+    
+    span = document.createElement('span')
+    span.setAttribute('id', `textField-delivery-person-name-${deliveryPersonId}`)
+    span.classList.add(`class-update-name-${deliveryPersonId}`)
+    div.append(span, ': ')
+    span = document.createElement('span')
+    span.setAttribute('id', `textField-payment-${deliveryPersonId}`)
+    div.append(span, br)
+    span = document.createElement('span')
+    span.classList.add('hidden')
+    span.textContent = '('
+    div.appendChild(span)
+    span = document.createElement('span')
+    span.setAttribute('id', `textField-deliveries-${deliveryPersonId}`)
+    div.appendChild(span)
+    span = document.createElement('span')
+    span.setAttribute('id', `textField-extra-${deliveryPersonId}`)
+    div.appendChild(span)
+    span = document.createElement('span')
+    span.setAttribute('id', `textField-consumption-${deliveryPersonId}`)
+    div.appendChild(span)
+    span = document.createElement('span')
+    span.classList.add('hidden')
+    span.textContent = ')'
+    div.appendChild(span, hr)
 
-
-
-        container.appendChild(div)
-    })
+    container.appendChild(div)
 
     // <div id="delivery-person-report-1" class="hidden">
     //     <span id="textField-delivery-person-name-1" class="class-update-name-1"></span>:
