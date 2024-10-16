@@ -597,13 +597,13 @@ function addExtraEmployee() {
     div2 = document.createElement('div')
     div2.classList.add('flex-item-daily-payment')
     input = document.createElement('input')
-    input.setAttribute('id', `extra-employee-payment-${extraEmployeeId}`)
+    input.setAttribute('id', `extra-employee-daily-payment-${extraEmployeeId}`)
     input.classList.add('float-input')
     input.setAttribute('type', 'number')
-    input.setAttribute('name', `extra-employee-payment-${extraEmployeeId}`)
+    input.setAttribute('name', `extra-employee-daily-payment-${extraEmployeeId}`)
     input.setAttribute('required', '')
     label = document.createElement('label')
-    label.setAttribute('for', `extra-employee-payment-${extraEmployeeId}`)
+    label.setAttribute('for', `extra-employee-daily-payment-${extraEmployeeId}`)
     label.classList.add('float-label')
     label.textContent = 'Diária'
     div2.append(input, label)
@@ -635,8 +635,8 @@ function addExtraEmployee() {
     //         <label for="extra-employee-name" class="float-label">Nome</label>
     //     </div>
     //     <div class="flex-item-daily-payment">
-    //         <input type="number" name="extra-employee-payment" id="extra-employee-payment" class="float-input" required>
-    //         <label for="extra-employee-payment" class="float-label">Diária</label>
+    //         <input type="number" name="extra-employee-daily-payment" id="extra-employee-daily-payment" class="float-input" required>
+    //         <label for="extra-employee-daily-payment" class="float-label">Diária</label>
     //     </div>
     //     <div class="flex-item-pix-key">
     //         <input type="text" name="extra-employee-pix-key" id="extra-employee-pix-key" class="float-input" required>
@@ -672,8 +672,24 @@ function createReportExtraEmployee(extraEmployeeId) {
 }
 
 function updateReportExtraEmployee(event) {
-    const extraEmployeeId = event.target.id.match(/\d+/g)
-    console.log(extraEmployeeId)
+    const extraEmployeeId = event.target.id.match(/\d+/g) // pega o ID de qual input recebeu alguma informação
+    const inputName = document.getElementById(`extra-employee-name-${extraEmployeeId}`)
+    const inputPayment = document.getElementById(`extra-employee-daily-payment-${extraEmployeeId}`)
+    const inputPixKey = document.getElementById(`extra-employee-pix-key-${extraEmployeeId}`)
+
+    const name = document.getElementById(`textField-employee-name-${extraEmployeeId}`)
+    const payment = document.getElementById(`textField-employee-daily-payment-${extraEmployeeId}`)
+    const pixKey = document.getElementById(`textField-employee-pix-key-${extraEmployeeId}`)
+
+    inputName.value ? name.textContent = `- ${inputName.value}` : name.textContent = ''
+    inputPayment.value ? payment.textContent = `: R$ ${parseFloat(inputPayment.value).toFixed(2).replace('.', ',')}` : payment.textContent = ''
+    inputPixKey.value ? pixKey.textContent = ` (Pix: ${inputPixKey.value})` : pixKey.textContent = ''
+
+    
+    name.textContent.length >= 1 // caso tenha algum diarista, a section onde eles são colocados no relatorio fica visivel
+        ? toggleClassHidden(document.getElementById('report-freelancer'), true)
+        : toggleClassHidden(document.getElementById('report-freelancer'), false)
+
 }
 
 function darkMode() {
