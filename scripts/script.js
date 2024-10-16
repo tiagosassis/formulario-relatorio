@@ -22,7 +22,7 @@ function createDateTimeInfo () {
     const now = new Date()
     if (now.getHours() < 5)
         now.setDate(now.getDate() - 1) // Ajusta para o dia anterior caso a hora esteja entre meia noite e 5 da madrugada
-    
+
     const day = String(now.getDate()).padStart(2, '0')
     const month = String(now.getMonth() + 1).padStart(2, '0')
     let dayShift, weekDay
