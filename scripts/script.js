@@ -267,17 +267,20 @@ function updateReport(event) {
 
     } else if(event.target.id.includes('extra')){
         if (event.target.value){ // altera a quantidade de extra no relatorio
+            console.log(event.target.value)
             document.querySelector(`#textField-${event.target.id}`).innerHTML = ', ' + event.target.value + ' Extra'
             ExtraDeliveryRegister(deliveryPersonId, event.target.value)
             updateReportTextField(deliveryPersonId, event.target.value)
-            toggleClassHidden(sectionExtraDelivery, true)
         }
         else {
             document.querySelector(`#textField-${event.target.id}`).innerHTML = ''
             ExtraDeliveryRegister(deliveryPersonId, 0)
             updateReportTextField(deliveryPersonId, 0)
-            toggleClassHidden(sectionExtraDelivery, false)
         }
+        
+        document.querySelectorAll('.flex-container-extra').length < 1 // caso haja entregas extras a parte do relatorio fica visivel, se não, ficava com display none
+            ? toggleClassHidden(sectionExtraDelivery, false)
+            : toggleClassHidden(sectionExtraDelivery, true)
 
     } else if(event.target.id.includes('consumption')){ 
         if (event.target.value) // altera o status de consumo no relatorio
@@ -306,6 +309,10 @@ function toggleClassHidden(element, toggle) { // alterna a classe hidden em elem
 
 function updateReportExtraDeliveries(event) {
     const [deliveryPersonId, extraDeliveryIndex] = event.target.id.match(/\d+/g); // pega o número identificador do entregador e pega o número do input que foi usado
+    const teste = document.querySelectorAll('#report-extra-delivery > div')
+    if (teste){
+        console.log(teste.length)
+    }
     let span
 
     if (event.target.className.includes('number')) { // if usado para selecionar se o input usado foi o de numero de pedido ou de motivo de extra
