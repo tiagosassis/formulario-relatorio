@@ -9,11 +9,11 @@ document.getElementById('remove-extra-employee').addEventListener('click', remov
 document.getElementById('section-extra-employee').addEventListener('input', updateReportExtraEmployee)
 
 const activeDeliveryPersons = [
-    {name: 'Byane', turn: ['night'], dayOff: 'Wednesday'},
-    {name: 'Guilherme Vieira', turn: ['night'], dayOff: 'Tuesday'},
-    {name: 'Kaio', turn: ['night'], dayOff: 'Thursday'},
-    {name: 'Keven', turn: ['morning', 'night'], dayOff: 'Monday'},
-    {name: 'João Pedro', turn: ['morning'], dayOff: ''}
+    {name: 'Byane', turn: ['Night'], dayOff: 'Wednesday'},
+    {name: 'Guilherme Vieira', turn: ['Night'], dayOff: 'Tuesday'},
+    {name: 'Kaio', turn: ['Night'], dayOff: 'Thursday'},
+    {name: 'Keven', turn: ['Morning', 'Night'], dayOff: 'Monday'},
+    {name: 'João Pedro', turn: ['Morning'], dayOff: ''}
 ]
 
 let currentDeliveryPersonCount = activeDeliveryPersons.length
@@ -28,9 +28,9 @@ function createDateTimeInfo () {
     let dayShift, weekDay
 
     if(now.getHours() >= 5 && now.getHours() < 17) // define o turno
-        dayShift = 'morning'
+        dayShift = 'Morning'
     else
-        dayShift = 'night'
+        dayShift = 'Night'
 
     switch (now.getDay()) { // organiza o dia da semana
         case 1:
@@ -84,11 +84,11 @@ function configDeliveryPerson() {
 
     deliveryPersonDatalist() // cria a datalist de entregador e coloca no html do relatorio
     
-    if (time.turn === 'morning') { // dia
+    if (time.turn === 'Morning') { // dia
         h1.innerText = `Relatório Almoço ${time.day} / ${time.month}`
         dateOfReport.innerHTML = '*Almoço ' + time.day + '/' + time.month + '*<br>'
 
-    } else if(time.turn === 'night'){ // noite
+    } else if(time.turn === 'Night'){ // noite
         h1.innerText = `Relatório Noite ${time.day} / ${time.month}`
         dateOfReport.innerHTML = `*Noite ${time.day} / ${time.month} *<br>`
 
@@ -479,13 +479,14 @@ function updateDeliveries(event, deliveryPersonId) {
 }
 
 function paymentCalculation(deliveryPersonId) {
-    const currentDate = new Date()
+    const time = createDateTimeInfo()
     const deliveryFee = 6
-    let costAssistance = 10
-    let deliveries, extra, consumption
-    
-    if (currentDate.getDay() === 0 || currentDate.getDay() === 5 || currentDate.getDay() === 6) // sexta, sabado e domingo a ajuda de custo é R$ 20,00
+    let deliveries, extra, consumption, costAssistance
+
+    if ((time.weekDay == 'Friday' || time.weekDay == 'Saturday' || time.weekDay == 'Sunday') && time.turn == 'Night') // sexta, sabado e domingo a ajuda de custo é R$ 20,00
         costAssistance = 20
+    else 
+        costAssistance = 10
 
     if (document.querySelector(`#deliveries-${deliveryPersonId}`).value == '') 
         deliveries = 0
