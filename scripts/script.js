@@ -4,8 +4,9 @@ document.getElementById('section-extra-delivery').addEventListener('input', upda
 document.getElementById('copy-button').addEventListener('click', copyContent)
 document.getElementById('add-delivery-person-button').addEventListener('click', createDeliveryPerson)
 document.getElementById('theme').addEventListener('click', darkMode)
-document.getElementById('add-extra-employee').addEventListener('click', createExtraEmployee)
+document.getElementById('add-extra-employee').addEventListener('click', addExtraEmployee)
 document.getElementById('remove-extra-employee').addEventListener('click', removeExtraEmployee)
+document.getElementById('section-extra-employee').addEventListener('input', updateExtraEmployee)
 
 const activeDeliveryPersons = [
     {name: 'Byane', turn: ['night'], dayOff: 'Wednesday'},
@@ -102,7 +103,7 @@ function configDeliveryPerson() {
         }
     })
 
-    createExtraEmployee() // cria o input para o primeiro diarista, mais serão adicionados conforme necessário
+    addExtraEmployee() // cria o input para o primeiro diarista, mais serão adicionados conforme necessário
 }
 
 function deliveryPersonDatalist() { // cria a datalist de entregador e coloca no html do relatorio
@@ -513,7 +514,7 @@ function createTextField() {
 
     deliveryPerson.forEach(person =>{
         const container = document.getElementById('report-delivery')
-        const deliveryPersonId = person.firstChild.firstChild.id.match(/\d+/g); // pega o número identificador do entregador
+        const deliveryPersonId = person.firstChild.firstChild.id.match(/\d+/g) // pega o número identificador do entregador
         div = document.createElement('div')
         div.classList.add('hidden')
         div.setAttribute('id', `delivery-person-report-${deliveryPersonId}`)
@@ -561,15 +562,14 @@ function createTextField() {
 function removeExtraEmployee() {
     const extraEmployee = document.querySelectorAll('#section-extra-employee > div')
 
-    extraEmployee[extraEmployee.length - 1].remove()
+    extraEmployee[extraEmployee.length - 1].remove() // remove o ultimo extra criado
     
 }
 
-function createExtraEmployee() {
+function addExtraEmployee() {
     const container = document.getElementById('section-extra-employee')
-    const extraEmployeeCount = document.querySelectorAll('#section-extra-employee > div')
-
-    extraEmployeeId = extraEmployeeCount.length + 1
+    const extraEmployeeCount = document.querySelectorAll('#section-extra-employee > div') // seleciona todos os campos ja criados para saber a quantidade de extras
+    const extraEmployeeId = extraEmployeeCount.length + 1
 
     const div1 = document.createElement('div')
     div1.classList.add('flex-row-wrap', 'extra-employee')
@@ -639,6 +639,11 @@ function createExtraEmployee() {
     //         <label for="extra-employee-pix-key" class="float-label">Chave Pix</label>
     //     </div>
     // </div>
+}
+
+function updateExtraEmployee(event) {
+    const extraEmployeeId = event.target.id.match(/\d+/g)
+    console.log(extraEmployeeId)
 }
 
 function darkMode() {
