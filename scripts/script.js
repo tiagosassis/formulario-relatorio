@@ -6,7 +6,7 @@ document.getElementById('add-delivery-person-button').addEventListener('click', 
 document.getElementById('theme').addEventListener('click', darkMode)
 document.getElementById('add-extra-employee').addEventListener('click', addExtraEmployee)
 document.getElementById('remove-extra-employee').addEventListener('click', removeExtraEmployee)
-document.getElementById('section-extra-employee').addEventListener('input', updateExtraEmployee)
+document.getElementById('section-extra-employee').addEventListener('input', updateReportExtraEmployee)
 
 const activeDeliveryPersons = [
     {name: 'Byane', turn: ['night'], dayOff: 'Wednesday'},
@@ -568,7 +568,8 @@ function createTextField() {
 
 function removeExtraEmployee() {
     const extraEmployee = document.querySelectorAll('#section-extra-employee > div')
-
+    const extraEmployeeId = extraEmployee[extraEmployee.length - 1].firstChild.firstChild.id.match(/\d+/g)
+    document.getElementById(`report-freelancer-${extraEmployeeId}`).remove() // remove a div onde os dados são inseridos no relatorio
     extraEmployee[extraEmployee.length - 1].remove() // remove o ultimo extra criado
     
 }
@@ -631,6 +632,8 @@ function addExtraEmployee() {
 
     container.appendChild(div1)
 
+    createReportExtraEmployee(extraEmployeeId) // cria a div onde as informações do funcionario extra serão colocadas para mostrar no relatorio
+
 
     // <div class="flex-row-wrap extra-employee">
     //     <div class="flex-item-employee-name">
@@ -648,7 +651,33 @@ function addExtraEmployee() {
     // </div>
 }
 
-function updateExtraEmployee(event) {
+function createReportExtraEmployee(extraEmployeeId) {
+    const container = document.getElementById('report-freelancer')
+    const div = document.createElement('div')
+    let span
+    div.setAttribute('id', `report-freelancer-${extraEmployeeId}`)
+    span = document.createElement('span')
+    span.setAttribute('id', `textField-employee-name-${extraEmployeeId}`)
+    div.appendChild(span)
+
+    span = document.createElement('span')
+    span.setAttribute('id', `textField-employee-daily-payment-${extraEmployeeId}`)
+    div.appendChild(span)
+
+    span = document.createElement('span')
+    span.setAttribute('id', `textField-employee-pix-key-${extraEmployeeId}`)
+    div.appendChild(span)
+
+    container.appendChild(div)
+
+    // <div id="report-freelancer-1">
+    //     <span id="textField-employee-name-1">- Fernando Vieira</span>
+    //     <span id="textField-employee-daily-payment-1">: R$ 80,00</span>
+    //     <span id="textField-employee-pix-key-1"> asudbaisudbiasdubaib</span>
+    // </div>
+}
+
+function updateReportExtraEmployee(event) {
     const extraEmployeeId = event.target.id.match(/\d+/g)
     console.log(extraEmployeeId)
 }
