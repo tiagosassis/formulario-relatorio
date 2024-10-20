@@ -32,8 +32,6 @@ function createDateTimeInfo () {
     else
         dayShift = 'Night'
 
-    dayShift = 'Night'
-
     switch (now.getDay()) { // organiza o dia da semana
         case 1:
             weekDay = 'Monday'
@@ -477,14 +475,12 @@ function updateDeliveries(event, deliveryPersonId) {
 }
 
 function paymentRules(deliveryValues, time) {
-    deliveryValues.deliveryFee = 6
-
     if (time.turn === 'Night') {
-        if (time.weekDay == 'Friday' || time.weekDay == 'Saturday' || time.weekDay == 'Sunday') // sexta, sabado e domingo a ajuda de custo é R$ 20,00
+        if (time.weekDay == 'Friday' || time.weekDay == 'Saturday' || time.weekDay == 'Sunday') // sexta, sabado e domingo a noite a ajuda de custo é R$ 20,00
             deliveryValues.costAssistance = 20
         
     } else if (time.turn === 'Morning') {
-        if (time.weekDay == 'Sunday') // domingo a ajuda de custo é R$ 20,00
+        if (time.weekDay == 'Sunday') // domingo no almoço a ajuda de custo é R$ 20,00
             deliveryValues.costAssistance = 20
 
     } else {
@@ -495,7 +491,10 @@ function paymentRules(deliveryValues, time) {
 function paymentCalculation(deliveryPersonId) {
     const time = createDateTimeInfo()
     let deliveries, extra, consumption, totalPayment
-    let deliveryValues = {}
+    let deliveryValues = {
+        deliveryFee: 6,
+        costAssistance: 10
+    }
 
     paymentRules(deliveryValues, time)
 
