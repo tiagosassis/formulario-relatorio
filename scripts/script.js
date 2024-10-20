@@ -32,6 +32,8 @@ function createDateTimeInfo () {
     else
         dayShift = 'Night'
 
+    dayShift = 'Night'
+
     switch (now.getDay()) { // organiza o dia da semana
         case 1:
             weekDay = 'Monday'
@@ -267,7 +269,6 @@ function updateReport(event) {
 
     } else if(event.target.id.includes('extra')){
         if (event.target.value){ // altera a quantidade de extra no relatorio
-            console.log(event.target.value)
             document.querySelector(`#textField-${event.target.id}`).innerHTML = ', ' + event.target.value + ' Extra'
             ExtraDeliveryRegister(deliveryPersonId, event.target.value)
             updateReportTextField(deliveryPersonId, event.target.value)
@@ -310,9 +311,6 @@ function toggleClassHidden(element, toggle) { // alterna a classe hidden em elem
 function updateReportExtraDeliveries(event) {
     const [deliveryPersonId, extraDeliveryIndex] = event.target.id.match(/\d+/g); // pega o número identificador do entregador e pega o número do input que foi usado
     const teste = document.querySelectorAll('#report-extra-delivery > div')
-    if (teste){
-        console.log(teste.length)
-    }
     let span
 
     if (event.target.className.includes('number')) { // if usado para selecionar se o input usado foi o de numero de pedido ou de motivo de extra
@@ -478,15 +476,28 @@ function updateDeliveries(event, deliveryPersonId) {
         toggleClassHidden(document.querySelector(`#delivery-person-report-${deliveryPersonId}`), false)
 }
 
+function paymentRules(deliveryValues, time) {
+    deliveryValues.deliveryFee = 6
+
+    if (time.turn === 'Night') {
+        if (time.weekDay == 'Friday' || time.weekDay == 'Saturday' || time.weekDay == 'Sunday') // sexta, sabado e domingo a ajuda de custo é R$ 20,00
+            deliveryValues.costAssistance = 20
+        
+    } else if (time.turn === 'Morning') {
+        if (time.weekDay == 'Sunday') // domingo a ajuda de custo é R$ 20,00
+            deliveryValues.costAssistance = 20
+
+    } else {
+        console.log('erro na função paymentRules()')
+    }
+}
+
 function paymentCalculation(deliveryPersonId) {
     const time = createDateTimeInfo()
-    const deliveryFee = 6
-    let deliveries, extra, consumption, costAssistance
+    let deliveries, extra, consumption, totalPayment
+    let deliveryValues = {}
 
-    if ((time.weekDay == 'Friday' || time.weekDay == 'Saturday' || time.weekDay == 'Sunday') && time.turn == 'Night') // sexta, sabado e domingo a ajuda de custo é R$ 20,00
-        costAssistance = 20
-    else 
-        costAssistance = 10
+    paymentRules(deliveryValues, time)
 
     if (document.querySelector(`#deliveries-${deliveryPersonId}`).value == '') 
         deliveries = 0
@@ -503,7 +514,16 @@ function paymentCalculation(deliveryPersonId) {
     else 
         consumption = parseFloat(document.querySelector(`#consumption-${deliveryPersonId}`).value.replace(',', '.'))
 
-    let totalPayment = ((deliveries + extra) * deliveryFee) + costAssistance - consumption
+    if (time.turn === 'Morning') {
+        if ((deliveries + extra) < 10) 
+            totalPayment = 60
+        else 
+            totalPayment = ((deliveries + extra) * deliveryValues.deliveryFee) + deliveryValues.costAssistance - consumption
+    } else if (time.turn === 'Night') 
+        totalPayment = ((deliveries + extra) * deliveryValues.deliveryFee) + deliveryValues.costAssistance - consumption
+    else 
+        console.log('erro na função paymentCalculation()')
+    
     document.querySelector(`#textField-payment-${deliveryPersonId}`).textContent = `R$ ${totalPayment.toFixed(2).replace('.', ',')}`
 
     /*
