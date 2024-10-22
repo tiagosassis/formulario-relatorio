@@ -1,6 +1,16 @@
 import { createDateTimeInfo } from "./utils.js"
 
 function paymentRules(deliveryValues, time) {
+    /**
+     * Define as regras de pagamento para as entregas com base no turno e no dia da semana.
+     * 
+     * - Durante a noite (turno "Night"), se for sexta-feira, sábado ou domingo, a ajuda de custo será de R$ 20,00.
+     * - No almoço (turno "Morning"), se for domingo, a ajuda de custo será de R$ 20,00.
+     * - Em todos os casos, a taxa de entrega padrão é R$ 6,00.
+     * 
+     * @param {Object} deliveryValues - Objeto contendo os valores da entrega, como taxa e ajuda de custo.
+     * @param {Object} time - Objeto contendo as informações de tempo, incluindo turno e dia da semana.
+     */
     deliveryValues.deliveryFee = 6
     
     if (time.turn === 'Night') {
@@ -17,6 +27,12 @@ function paymentRules(deliveryValues, time) {
 }
 
 export function paymentCalculation(deliveryPersonId) {
+    /**
+     * Calcula o pagamento de um entregador com base no número de entregas, extras, turno e consumo.
+     * Ajusta o pagamento com base em regras de turno e ajuda de custo, e exibe o resultado no relatório.
+     * 
+     * @param {string} deliveryPersonId - ID do entregador para identificar os campos de entrada de dados.
+     */
     const time = createDateTimeInfo()
     let deliveries, extra, consumption, totalPayment
     let deliveryValues = {
