@@ -68,10 +68,4 @@ export function paymentCalculation(deliveryPersonId) {
         console.log('erro na função paymentCalculation()')
     
     document.querySelector(`#textField-payment-${deliveryPersonId}`).textContent = `R$ ${totalPayment.toFixed(2).replace('.', ',')}`
-
-    /*
-        essa função calcula o pagamento conforme a quantidade de entregas e extras de cada entregador e coloca o resultado já no relatorio para ser copiado
-        cada entrega vale 6,00 reais, tem uma ajuda de custo de 10,00 reais de segunda a quinta e 20,00 de sexta a domingo e o consumo é descontado do valor final
-        (((entregas + entregas extras) x 6) + 10) - consumo
-    */
 }
