@@ -1,9 +1,11 @@
-export function copyContent() { // copia o relatorio pronto
+export function copyContent() {
+    /**
+     * Copia o conteúdo do relatório para a área de transferência e exibe um popup de confirmação.
+     */
     const report = document.getElementById('report-content')
     
     switchDisplay()
 
-    // Copia o conteúdo
     const reportContent = report.innerText;
 
     navigator.clipboard.writeText(reportContent).then(() => {
@@ -15,7 +17,10 @@ export function copyContent() { // copia o relatorio pronto
     switchDisplay()
 }
 
-function showPopup() { // Função para mostrar o popup e escondê-lo depois de 3 segundos
+function showPopup() {
+    /**
+     * Exibe um popup de confirmação e o oculta após 3 segundos.
+     */
     const popup = document.getElementById('popup')
     popup.classList.add('show')
     
@@ -25,9 +30,10 @@ function showPopup() { // Função para mostrar o popup e escondê-lo depois de 
 }
 
 function switchDisplay() {
+    /**
+     * Alterna a visibilidade dos spans, ajustando o layout para melhor formatação do texto copiado.
+     */
     const spans = document.querySelectorAll('span')
-    
-    // Muda o display para contents para mudar a disposição dos caracteres e o texto copiado ficar mais organizado
     spans.forEach(span => {
         span.classList.toggle('content')
     })
