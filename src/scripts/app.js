@@ -383,9 +383,8 @@ function updateDeliveries(event, deliveryPersonId) {
 }
 
 function createTextField(deliveryPersonId) {
-    let div, span, br, hr
+    let div, span, br
     br = document.createElement('br')
-    hr = document.createElement('hr')
     
 
     const container = document.getElementById('report-delivery')
@@ -416,7 +415,7 @@ function createTextField(deliveryPersonId) {
     span = document.createElement('span')
     span.classList.add('hidden')
     span.textContent = ')'
-    div.appendChild(span, hr)
+    div.appendChild(span)
 
     container.appendChild(div)
 
@@ -426,6 +425,5 @@ function createTextField(deliveryPersonId) {
     //     <span class="hidden">(</span><span id="textField-deliveries-1"></span>
     //     <span id="textField-extra-1"></span>
     //     <span id="textField-consumption-1"></span><span class="hidden">)</span>
-    //     <hr>
     // </div>
 }
