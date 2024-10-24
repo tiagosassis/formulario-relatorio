@@ -146,7 +146,7 @@ function createDeliveryPerson(deliveryPersonId, name) {
     /*
         <div class="flex-row-wrap delivery-person-container container-relative">
             <div class="flex-item-delivery-person-name">
-                <input class="float-input" type="text" id="delivery-person-name-5" list="datalist-delivery-person" value="Keven" required>
+                <input class="float-input" type="text" id="delivery-person-name-5" list="datalist-delivery-person" value="" required>
                 <label class="float-label" for="delivery-person-name-5">Nome</label>
             </div>
             <div class="flex-item-deliveries-amount">
@@ -543,9 +543,9 @@ function createReportExtraEmployee(extraEmployeeId) {
     container.appendChild(div)
 
     // <div id="report-freelancer-1">
-    //     <span id="textField-employee-name-1">- Fernando Vieira</span>
-    //     <span id="textField-employee-daily-payment-1">: R$ 80,00</span>
-    //     <span id="textField-employee-pix-key-1"> asudbaisudbiasdubaib</span>
+    //     <span id="textField-employee-name-1">- </span>
+    //     <span id="textField-employee-daily-payment-1"></span>
+    //     <span id="textField-employee-pix-key-1"></span>
     // </div>
 }
 
