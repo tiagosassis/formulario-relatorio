@@ -1,7 +1,9 @@
 import { darkMode, detectUserTheme } from "./theme.js"
 import { copyContent } from "./clipboard.js"
-import { createDateTimeInfo } from "./utils.js"
+import { createDateTimeInfo, toggleClassHidden } from "./utils.js"
 import { paymentCalculation } from "./payment.js"
+import { updateReportExtraEmployee, removeExtraEmployee } from "./formDataHandler.js"
+import { addExtraEmployee } from "./formFields.js"
 
 document.addEventListener('DOMContentLoaded', () =>{
     configDeliveryPerson()
@@ -42,7 +44,7 @@ function configDeliveryPerson() {
 
     } else if(time.turn === 'Night'){ // noite
         h1.innerText = `Relatório Noite ${time.day} / ${time.month}`
-        dateOfReport.innerHTML = `*Noite ${time.day} / ${time.month} *<br>`
+        dateOfReport.innerHTML = `*Noite ${time.day} / ${time.month}*<br>`
 
     } else {
         console.log('erro na função configDeliveryPerson()')
@@ -210,16 +212,6 @@ function updateName(deliveryPersonId) { // a classe class-update-name-${delivery
     newName.forEach(element =>{
         element.innerHTML = document.querySelector(`#delivery-person-name-${deliveryPersonId}`).value
     })
-}
-
-function toggleClassHidden(element, toggle) { // alterna a classe hidden em elementos html
-    if(toggle){
-        if(element.classList.contains('hidden'))
-            element.classList.remove('hidden')
-    } else{
-        if(!element.classList.contains('hidden'))
-            element.classList.add('hidden')
-    }
 }
 
 function updateReportExtraDeliveries(event) {
@@ -436,136 +428,4 @@ function createTextField(deliveryPersonId) {
     //     <span id="textField-consumption-1"></span><span class="hidden">)</span>
     //     <hr>
     // </div>
-}
-
-function removeExtraEmployee() {
-    const extraEmployee = document.querySelectorAll('#section-extra-employee > div')
-    const extraEmployeeId = extraEmployee[extraEmployee.length - 1].firstChild.firstChild.id.match(/\d+/g)
-    document.getElementById(`report-freelancer-${extraEmployeeId}`).remove() // remove a div onde os dados são inseridos no relatorio
-    extraEmployee[extraEmployee.length - 1].remove() // remove o ultimo extra criado
-    
-}
-
-function addExtraEmployee() {
-    const container = document.getElementById('section-extra-employee')
-    const extraEmployeeCount = document.querySelectorAll('#section-extra-employee > div') // seleciona todos os campos ja criados para saber a quantidade de extras
-    const extraEmployeeId = extraEmployeeCount.length + 1
-
-    const div1 = document.createElement('div')
-    div1.classList.add('flex-row-wrap', 'extra-employee')
-
-    let div2, input, label
-
-    
-    div2 = document.createElement('div')
-    div2.classList.add('flex-item-employee-name')
-    input = document.createElement('input')
-    input.setAttribute('id', `extra-employee-name-${extraEmployeeId}`)
-    input.classList.add('float-input')
-    input.setAttribute('type', 'text')
-    input.setAttribute('name', `extra-employee-name-${extraEmployeeId}`)
-    input.setAttribute('required', '')
-    label = document.createElement('label')
-    label.setAttribute('for', `extra-employee-name-${extraEmployeeId}`)
-    label.classList.add('float-label')
-    label.textContent = 'Nome'
-    div2.append(input, label)
-    div1.appendChild(div2)
-
-    div2 = document.createElement('div')
-    div2.classList.add('flex-item-daily-payment')
-    input = document.createElement('input')
-    input.setAttribute('id', `extra-employee-daily-payment-${extraEmployeeId}`)
-    input.classList.add('float-input')
-    input.setAttribute('type', 'number')
-    input.setAttribute('name', `extra-employee-daily-payment-${extraEmployeeId}`)
-    input.setAttribute('required', '')
-    label = document.createElement('label')
-    label.setAttribute('for', `extra-employee-daily-payment-${extraEmployeeId}`)
-    label.classList.add('float-label')
-    label.textContent = 'Diária'
-    div2.append(input, label)
-    div1.appendChild(div2)
-
-    div2 = document.createElement('div')
-    div2.classList.add('flex-item-pix-key')
-    input = document.createElement('input')
-    input.setAttribute('id', `extra-employee-pix-key-${extraEmployeeId}`)
-    input.classList.add('float-input')
-    input.setAttribute('type', 'text')
-    input.setAttribute('name', `extra-employee-pix-key-${extraEmployeeId}`)
-    input.setAttribute('required', '')
-    label = document.createElement('label')
-    label.setAttribute('for', `extra-employee-pix-key-${extraEmployeeId}`)
-    label.classList.add('float-label')
-    label.textContent = 'Chave Pix'
-    div2.append(input, label)
-    div1.appendChild(div2)
-
-    container.appendChild(div1)
-
-    createReportExtraEmployee(extraEmployeeId) // cria a div onde as informações do funcionario extra serão colocadas para mostrar no relatorio
-
-
-    // <div class="flex-row-wrap extra-employee">
-    //     <div class="flex-item-employee-name">
-    //         <input type="text" name="extra-employee-name" id="extra-employee-name" class="float-input" required>
-    //         <label for="extra-employee-name" class="float-label">Nome</label>
-    //     </div>
-    //     <div class="flex-item-daily-payment">
-    //         <input type="number" name="extra-employee-daily-payment" id="extra-employee-daily-payment" class="float-input" required>
-    //         <label for="extra-employee-daily-payment" class="float-label">Diária</label>
-    //     </div>
-    //     <div class="flex-item-pix-key">
-    //         <input type="text" name="extra-employee-pix-key" id="extra-employee-pix-key" class="float-input" required>
-    //         <label for="extra-employee-pix-key" class="float-label">Chave Pix</label>
-    //     </div>
-    // </div>
-}
-
-function createReportExtraEmployee(extraEmployeeId) {
-    const container = document.getElementById('report-freelancer')
-    const div = document.createElement('div')
-    let span
-    div.setAttribute('id', `report-freelancer-${extraEmployeeId}`)
-    span = document.createElement('span')
-    span.setAttribute('id', `textField-employee-name-${extraEmployeeId}`)
-    div.appendChild(span)
-
-    span = document.createElement('span')
-    span.setAttribute('id', `textField-employee-daily-payment-${extraEmployeeId}`)
-    div.appendChild(span)
-
-    span = document.createElement('span')
-    span.setAttribute('id', `textField-employee-pix-key-${extraEmployeeId}`)
-    div.appendChild(span)
-
-    container.appendChild(div)
-
-    // <div id="report-freelancer-1">
-    //     <span id="textField-employee-name-1">- </span>
-    //     <span id="textField-employee-daily-payment-1"></span>
-    //     <span id="textField-employee-pix-key-1"></span>
-    // </div>
-}
-
-function updateReportExtraEmployee(event) {
-    const extraEmployeeId = event.target.id.match(/\d+/g) // pega o ID de qual input recebeu alguma informação
-    const inputName = document.getElementById(`extra-employee-name-${extraEmployeeId}`)
-    const inputPayment = document.getElementById(`extra-employee-daily-payment-${extraEmployeeId}`)
-    const inputPixKey = document.getElementById(`extra-employee-pix-key-${extraEmployeeId}`)
-
-    const name = document.getElementById(`textField-employee-name-${extraEmployeeId}`)
-    const payment = document.getElementById(`textField-employee-daily-payment-${extraEmployeeId}`)
-    const pixKey = document.getElementById(`textField-employee-pix-key-${extraEmployeeId}`)
-
-    inputName.value ? name.textContent = `- ${inputName.value}` : name.textContent = ''
-    inputPayment.value ? payment.textContent = `: R$ ${parseFloat(inputPayment.value).toFixed(2).replace('.', ',')}` : payment.textContent = ''
-    inputPixKey.value ? pixKey.textContent = ` (Pix: ${inputPixKey.value})` : pixKey.textContent = ''
-
-    
-    name.textContent.length >= 1 // caso tenha algum diarista, a section onde eles são colocados no relatorio fica visivel
-        ? toggleClassHidden(document.getElementById('report-freelancer'), true)
-        : toggleClassHidden(document.getElementById('report-freelancer'), false)
-
 }

@@ -70,3 +70,16 @@ export function createDateTimeInfo(){
     }
     return time
 }
+
+export function toggleClassHidden(element, toggle) {
+    /**
+     * Alterna a classe hidden em elementos html, está classe da aos elementos o display none
+     */
+    if(toggle){
+        if(element.classList.contains('hidden'))
+            element.classList.remove('hidden')
+    } else{
+        if(!element.classList.contains('hidden'))
+            element.classList.add('hidden')
+    }
+}
