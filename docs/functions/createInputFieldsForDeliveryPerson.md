@@ -1,4 +1,4 @@
-# Documentação da Função `createInputFieldsForDeliveryPerson(deliveryPersonId, name)`
+# Documentação da Função `createInputFieldsForDeliveryPerson()`
 
 ## Descrição
 Cria uma estrutura de entrada de dados para o entregador na seção "section-delivery-person".
