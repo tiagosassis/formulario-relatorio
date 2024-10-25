@@ -1,13 +1,22 @@
-# Documentação da Função `createInputFieldsForDeliveryPerson`
+# Documentação da Função `createInputFieldsForDeliveryPerson(deliveryPersonId, name)`
 
 ## Descrição
-Cria uma estrutura de entrada de dados para o entregador e a adiciona na seção "section-delivery-person" com campos para nome, quantidade de entregas, valor extra e consumo diário.
+Cria uma estrutura de entrada de dados para o entregador na seção "section-delivery-person".
 
-## Parâmetros
-- **`deliveryPersonId`** (number): O identificador numérico do entregador.
-- **`name`** (string, opcional): O nome do entregador.
+- **Parâmetros:**
+  - `{number} deliveryPersonId` - O identificador numérico do entregador. Se não for um número, será gerado automaticamente.
+  - `{string} name` - O nome do entregador (opcional).
 
-## Estrutura HTML Resultante
+## Dependências
+- Requer a função `createTextField(deliveryPersonId)` para criar o campo de exibição correspondente aos dados do entregador.
+
+## Funcionamento
+1. Verifica se `deliveryPersonId` é um número. Se não for, gera um ID baseado na contagem atual de entregadores e inicializa `name` como uma string vazia.
+2. Cria um `div` que contém quatro campos de entrada: nome, quantidade de entregas, valor extra e consumo diário.
+3. Cada campo de entrada é configurado com um ID específico baseado no `deliveryPersonId`.
+4. Adiciona o `div` gerado à seção correspondente no DOM.
+
+## Estrutura HTML resultante
 ```html
 <div class="flex-row-wrap delivery-person-container container-relative">
     <div class="flex-item-delivery-person-name">
