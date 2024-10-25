@@ -31,37 +31,8 @@ let currentDeliveryPersonCount = activeDeliveryPersons.length
 
 function createInputFieldsForDeliveryPerson(deliveryPersonId, name) {
     /**
-     * Cria uma estrutura de entrada de dados para o entregador e a adiciona na seção "section-delivery-person" com campos para nome, quantidade de entregas, valor extra, e consumo diário. 
-     * 
-     * @param {number} deliveryPersonId - O identificador numérico do entregador.
-     * @param {string} name - O nome do entregador (opcional).
-     * 
-     * Estrutura HTML resultante:
-     * <div class="flex-row-wrap delivery-person-container container-relative">
-     *     <div class="flex-item-delivery-person-name">
-     *         <input class="float-input" type="text" id="delivery-person-name-5" list="datalist-delivery-person" value="" required>
-     *         <label class="float-label" for="delivery-person-name-5">Nome</label>
-     *     </div>
-     *     <div class="flex-item-deliveries-amount">
-     *         <input class="float-input" type="number" id="deliveries-5" required>
-     *         <label class="float-label" for="deliveries-5">Entregas</label>
-     *     </div>
-     *     <div class="flex-item-delivery-extra">
-     *         <input class="float-input" type="number" id="extra-5" required>
-     *         <label class="float-label" for="extra-5">Extra</label>
-     *     </div>
-     *     <div class="flex-item-day-consumption">
-     *         <input class="float-input" type="number" id="consumption-5" required>
-     *         <label class="float-label" for="consumption-5">Consumo</label>
-     *     </div>
-     * </div>
-     * 
-     * Dependências:
-     * - Requer a função `createTextField(deliveryPersonId)` para criar o campo de exibição correspondente aos dados do entregador.
-     * 
-     * Observações:
-     * - Caso o deliveryPersonId não seja um número, a função o define automaticamente com base na quantidade de entregadores atual e inicializa o nome como uma string vazia.
-     * - Cada `div` e `input` é configurado de acordo com o índice do switch, que ajusta atributos e classes específicos para os campos.
+     * Cria uma estrutura de entrada de dados para o entregador na seção "section-delivery-person".
+     * Dependências: Requer a função `createTextField(deliveryPersonId)` para criar o campo de exibição.
      */
     if (!(typeof deliveryPersonId === 'number')) {
         deliveryPersonId = currentDeliveryPersonCount
