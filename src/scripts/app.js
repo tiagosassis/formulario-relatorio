@@ -2,8 +2,9 @@ import { darkMode, detectUserTheme } from "./theme.js"
 import { copyContent } from "./clipboard.js"
 import { createDateTimeInfo, toggleClassHidden } from "./utils.js"
 import { paymentCalculation } from "./payment.js"
-import { updateReportExtraEmployee, removeExtraEmployee } from "./formDataHandler.js"
 import { addExtraEmployee } from "./formFields.js"
+import { updateReportExtraEmployee, removeExtraEmployee } from "./formDataHandler.js"
+import { createTextField } from "./displayFields.js"
 
 document.addEventListener('DOMContentLoaded', () =>{
     configDeliveryPerson()
@@ -380,50 +381,4 @@ function updateDeliveries(event, deliveryPersonId) {
         toggleClassHidden(document.querySelector(`#delivery-person-report-${deliveryPersonId}`), true)
     else 
         toggleClassHidden(document.querySelector(`#delivery-person-report-${deliveryPersonId}`), false)
-}
-
-function createTextField(deliveryPersonId) {
-    let div, span, br
-    br = document.createElement('br')
-    
-
-    const container = document.getElementById('report-delivery')
-    div = document.createElement('div')
-    div.classList.add('hidden')
-    div.setAttribute('id', `delivery-person-report-${deliveryPersonId}`)
-    
-    span = document.createElement('span')
-    span.setAttribute('id', `textField-delivery-person-name-${deliveryPersonId}`)
-    span.classList.add(`class-update-name-${deliveryPersonId}`)
-    div.append(span, ': ')
-    span = document.createElement('span')
-    span.setAttribute('id', `textField-payment-${deliveryPersonId}`)
-    div.append(span, br)
-    span = document.createElement('span')
-    span.classList.add('hidden')
-    span.textContent = '('
-    div.appendChild(span)
-    span = document.createElement('span')
-    span.setAttribute('id', `textField-deliveries-${deliveryPersonId}`)
-    div.appendChild(span)
-    span = document.createElement('span')
-    span.setAttribute('id', `textField-extra-${deliveryPersonId}`)
-    div.appendChild(span)
-    span = document.createElement('span')
-    span.setAttribute('id', `textField-consumption-${deliveryPersonId}`)
-    div.appendChild(span)
-    span = document.createElement('span')
-    span.classList.add('hidden')
-    span.textContent = ')'
-    div.appendChild(span)
-
-    container.appendChild(div)
-
-    // <div id="delivery-person-report-1" class="hidden">
-    //     <span id="textField-delivery-person-name-1" class="class-update-name-1"></span>:
-    //     <span id="textField-payment-1"></span><br>
-    //     <span class="hidden">(</span><span id="textField-deliveries-1"></span>
-    //     <span id="textField-extra-1"></span>
-    //     <span id="textField-consumption-1"></span><span class="hidden">)</span>
-    // </div>
 }

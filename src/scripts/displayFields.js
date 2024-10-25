@@ -34,3 +34,54 @@ export function createReportExtraEmployee(extraEmployeeId) {
 
     container.appendChild(div)
 }
+
+export function createTextField(deliveryPersonId) {
+    /**
+     * Cria um campo de texto para exibir informações do entregador no relatório.
+     * 
+     * Estrutura HTML gerada:
+     * <div id="delivery-person-report-1" class="hidden">
+     *     <span id="textField-delivery-person-name-1" class="class-update-name-1"></span>:
+     *     <span id="textField-payment-1"></span><br>
+     *     <span class="hidden">(</span><span id="textField-deliveries-1"></span>
+     *     <span id="textField-extra-1"></span>
+     *     <span id="textField-consumption-1"></span><span class="hidden">)</span>
+     * </div>
+     */
+
+    let div, span, br
+    br = document.createElement('br')
+    
+
+    const container = document.getElementById('report-delivery')
+    div = document.createElement('div')
+    div.classList.add('hidden')
+    div.setAttribute('id', `delivery-person-report-${deliveryPersonId}`)
+    
+    span = document.createElement('span')
+    span.setAttribute('id', `textField-delivery-person-name-${deliveryPersonId}`)
+    span.classList.add(`class-update-name-${deliveryPersonId}`)
+    div.append(span, ': ')
+    span = document.createElement('span')
+    span.setAttribute('id', `textField-payment-${deliveryPersonId}`)
+    div.append(span, br)
+    span = document.createElement('span')
+    span.classList.add('hidden')
+    span.textContent = '('
+    div.appendChild(span)
+    span = document.createElement('span')
+    span.setAttribute('id', `textField-deliveries-${deliveryPersonId}`)
+    div.appendChild(span)
+    span = document.createElement('span')
+    span.setAttribute('id', `textField-extra-${deliveryPersonId}`)
+    div.appendChild(span)
+    span = document.createElement('span')
+    span.setAttribute('id', `textField-consumption-${deliveryPersonId}`)
+    div.appendChild(span)
+    span = document.createElement('span')
+    span.classList.add('hidden')
+    span.textContent = ')'
+    div.appendChild(span)
+
+    container.appendChild(div)
+}
