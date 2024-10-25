@@ -89,15 +89,17 @@ export function createDisplayFieldsForDeliveryPerson(deliveryPersonId) {
 export function createDisplayFieldsForExtraDelivery(deliveryPersonId, numberOfExtra, div) {
     /**
      * Cria campos de exibição para entregas extras no relatório.
-     *
-     * Esta função gera elementos DOM (spans) que mostram o nome do entregador, o número da entrega e o motivo para entregas extras.
-     * O span contém a classe `class-update-name-${deliveryPersonId}`
-     * que permite a atualização simultânea do nome do entregador no relatorio caso isso seja alterado no input.
-     *
-     * @param {number} deliveryPersonId - O ID do entregador.
-     * @param {number} numberOfExtra - O número de entregas extras a serem exibidas.
-     * @param {HTMLElement} div - O elemento DOM onde os campos de exibição serão adicionados.
-    */
+     * 
+     * Gera elementos DOM que mostram:
+     * - Nome do entregador
+     * - Número da entrega
+     * - Motivo da entrega extra
+     * 
+     * @param {number} deliveryPersonId - ID do entregador.
+     * @param {number} numberOfExtra - Número de entregas extras a serem exibidas.
+     * @param {HTMLElement} div - Elemento DOM onde os campos serão adicionados.
+     */
+   
     for (let i = 0; i < numberOfExtra; i++) {
         const div2 = document.createElement('div')
         div2.classList.add(`register-content-${deliveryPersonId}`)
