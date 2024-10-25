@@ -35,7 +35,7 @@ export function createReportExtraEmployee(extraEmployeeId) {
     container.appendChild(div)
 }
 
-export function createTextField(deliveryPersonId) {
+export function createDisplayFieldsForDeliveryPerson(deliveryPersonId) {
     /**
      * Cria um campo de texto para exibir informações do entregador no relatório.
      * 

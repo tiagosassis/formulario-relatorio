@@ -1,0 +1,100 @@
+# Documentação da Função `configDeliveryPerson`
+
+## Descrição
+Configura o relatório de entregadores para o turno atual (Almoço ou Noite).
+
+- Atualiza o título e a data do relatório.
+- Cria campos de entrada para entregadores ativos conforme o turno.
+- Adiciona campo para o primeiro funcionário diarista.
+
+## Dependências
+- `createDateTimeInfo()`
+- `deliveryPersonDatalist()`
+- `createInputFieldsForDeliveryPerson()`
+- `addExtraEmployee()`
+
+## Variáveis Globais
+- **`activeDeliveryPersons`**: Array contendo informações dos entregadores.
+
+## Funcionamento
+1. Obtém a informação do horário atual (turno e data) usando a função `createDateTimeInfo()`.
+2. Atualiza o título do relatório e a data exibida, dependendo do turno (Almoço ou Noite).
+3. Cria uma lista de entregadores ativos, ignorando aqueles que estão de folga no dia.
+4. Para cada entregador ativo, chama a função `createInputFieldsForDeliveryPerson()` para criar campos de entrada.
+5. Chama a função `addExtraEmployee()` para adicionar um campo para o primeiro funcionário diarista.
+
+## Observações
+- Caso ocorra um erro no turno, uma mensagem de erro será registrada no console.
+
+# Documentação da Função `createInputFieldsForDeliveryPerson()`
+
+## Descrição
+Cria uma estrutura de entrada de dados para o entregador na seção "section-delivery-person".
+
+- **Parâmetros:**
+  - `{number} deliveryPersonId` - O identificador numérico do entregador. Se não for um número, será gerado automaticamente.
+  - `{string} name` - O nome do entregador (opcional).
+
+## Dependências
+- Requer a função `createDisplayFieldsForDeliveryPerson(deliveryPersonId)` para criar o campo de exibição correspondente aos dados do entregador.
+
+## Funcionamento
+1. Verifica se `deliveryPersonId` é um número. Se não for, gera um ID baseado na contagem atual de entregadores e inicializa `name` como uma string vazia.
+2. Cria um `div` que contém quatro campos de entrada: nome, quantidade de entregas, valor extra e consumo diário.
+3. Cada campo de entrada é configurado com um ID específico baseado no `deliveryPersonId`.
+4. Adiciona o `div` gerado à seção correspondente no DOM.
+
+## Estrutura HTML resultante
+```html
+<div class="flex-row-wrap delivery-person-container container-relative">
+    <div class="flex-item-delivery-person-name">
+        <input class="float-input" type="text" id="delivery-person-name-5" list="datalist-delivery-person" value="" required>
+        <label class="float-label" for="delivery-person-name-5">Nome</label>
+    </div>
+    <div class="flex-item-deliveries-amount">
+        <input class="float-input" type="number" id="deliveries-5" required>
+        <label class="float-label" for="deliveries-5">Entregas</label>
+    </div>
+    <div class="flex-item-delivery-extra">
+        <input class="float-input" type="number" id="extra-5" required>
+        <label class="float-label" for="extra-5">Extra</label>
+    </div>
+    <div class="flex-item-day-consumption">
+        <input class="float-input" type="number" id="consumption-5" required>
+        <label class="float-label" for="consumption-5">Consumo</label>
+    </div>
+</div>
+
+# Documentação da Função `createDisplayFieldsForDeliveryPerson`
+
+## Descrição
+Cria um campo de texto para exibir informações do entregador no relatório.
+
+- Gera uma estrutura HTML que contém informações como nome, pagamento, entregas, entregas extras e consumo.
+- As informações são exibidas de forma organizada, com os campos visíveis apenas quando necessário.
+
+## Dependências
+- Nenhuma função externa é necessária para o funcionamento desta função.
+
+## Variáveis Globais
+- **`deliveryPersonId`**: Identificador único do entregador para o qual os campos de exibição estão sendo criados.
+
+## Funcionamento
+1. Cria um elemento `<div>` que servirá como contêiner para os dados do entregador. Este elemento é configurado para ser inicialmente oculto, utilizando a classe `hidden`.
+2. Define o atributo `id` do `<div>` com base no `deliveryPersonId` passado como parâmetro.
+3. Cria um elemento `<span>` para exibir o nome do entregador, configurando seu `id` de acordo com o `deliveryPersonId`.
+4. Adiciona um `<br>` após o nome do entregador para organizar a exibição dos campos.
+5. Cria elementos `<span>` para exibir informações de pagamento, entregas, entregas extras e consumo, utilizando `id`s únicos para cada um com base no `deliveryPersonId`.
+6. Inclui elementos `<span>` ocultos para delimitar os campos de exibição (parenteses) quando necessário.
+7. Anexa o `<div>` criado ao contêiner principal do relatório (`report-delivery`).
+
+## Estrutura HTML gerada:
+```html
+<div id="delivery-person-report-1" class="hidden">
+    <span id="textField-delivery-person-name-1" class="class-update-name-1"></span>:
+    <span id="textField-payment-1"></span><br>
+    <span class="hidden">(</span><span id="textField-deliveries-1"></span>
+    <span id="textField-extra-1"></span>
+    <span id="textField-consumption-1"></span><span class="hidden">)</span>
+</div>
+

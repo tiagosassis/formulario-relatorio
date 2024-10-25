@@ -4,7 +4,7 @@ import { createDateTimeInfo, toggleClassHidden } from "./utils.js"
 import { paymentCalculation } from "./payment.js"
 import { addExtraEmployee } from "./formFields.js"
 import { updateReportExtraEmployee, removeExtraEmployee, updateDeliveries, updateName, ExtraDeliveryRegister } from "./formDataHandler.js"
-import { createTextField, createDisplayFieldsForExtraDelivery } from "./displayFields.js";
+import { createDisplayFieldsForDeliveryPerson, createDisplayFieldsForExtraDelivery } from "./displayFields.js";
 
 document.addEventListener('DOMContentLoaded', () =>{
     configDeliveryPerson()
@@ -32,7 +32,7 @@ let currentDeliveryPersonCount = activeDeliveryPersons.length
 function createInputFieldsForDeliveryPerson(deliveryPersonId, name) {
     /**
      * Cria uma estrutura de entrada de dados para o entregador na seção "section-delivery-person".
-     * Dependências: Requer a função `createTextField(deliveryPersonId)` para criar o campo de exibição.
+     * Dependências: Requer a função `createDisplayFieldsForDeliveryPerson(deliveryPersonId)` para criar o campo de exibição.
      */
     if (!(typeof deliveryPersonId === 'number')) {
         deliveryPersonId = currentDeliveryPersonCount
@@ -102,7 +102,7 @@ function createInputFieldsForDeliveryPerson(deliveryPersonId, name) {
     }
     section.appendChild(div1)
 
-    createTextField(deliveryPersonId)
+    createDisplayFieldsForDeliveryPerson(deliveryPersonId)
 }
 
 function configDeliveryPerson() {
