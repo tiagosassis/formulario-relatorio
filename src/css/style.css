@@ -200,6 +200,8 @@ button:active{
 
 /*Estilização para extra de entregadores*/
 .flex-item-label-name{
+    padding-top: 6px;
+    height: 36px;
     flex: 0 0 20%;
     border-bottom: var(--label-name-border-bottom);
     background-color: var(--label-background-color);
