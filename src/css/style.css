@@ -89,7 +89,7 @@ h4{
 input{
     outline: none;
     border: none;
-    padding: 5px;
+    padding: 5px 5px 0px 0px;
     font-size: 1em;
     height: 100%;
     width: 100%;
@@ -116,6 +116,7 @@ label{
     font-size: .9em;
     height: 29px;
     padding-left: 10px;
+    border-radius: var(--label-border-radius);
 }
 
 .float-label{
@@ -200,8 +201,9 @@ button:active{
 
 /*Estilização para extra de entregadores*/
 .flex-item-label-name{
-    padding-top: 6px;
-    height: 36px;
+    padding-top: 5px;
+    font-size: 1em;
+    height: 31px;
     flex: 0 0 20%;
     border-bottom: var(--label-name-border-bottom);
     background-color: var(--label-background-color);
