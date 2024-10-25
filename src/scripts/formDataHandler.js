@@ -49,3 +49,33 @@ export function removeExtraEmployee() {
     // remove a div onde os dados são inseridos
     extraEmployee[extraEmployee.length - 1].remove()
 }
+
+export function updateDeliveries(event, deliveryPersonId) {
+    /**
+     * Atualiza a quantidade de entregas no relatório e altera a visibilidade do entregador
+     * conforme a quantidade informada.
+     *
+     * @param {Event} event - O evento de entrada com a nova quantidade de entregas.
+     * @param {number} deliveryPersonId - O ID do entregador cujas entregas estão sendo atualizadas.
+     *
+     */
+    document.querySelector(`#textField-${event.target.id}`).innerHTML = event.target.value + ' Entregas' 
+    
+    if (event.target.value) 
+        toggleClassHidden(document.querySelector(`#delivery-person-report-${deliveryPersonId}`), true)
+    else 
+        toggleClassHidden(document.querySelector(`#delivery-person-report-${deliveryPersonId}`), false)
+}
+
+export function updateName(deliveryPersonId) {
+    /**
+     * Atualiza o nome do entregador em todos os elementos da página que possuem a classe
+     * `class-update-name-${deliveryPersonId}` com o valor do input correspondente.
+     *
+     * @param {number} deliveryPersonId - O ID do entregador cujo nome está sendo atualizado.
+     */
+    const newName = document.querySelectorAll(`.class-update-name-${deliveryPersonId}`)
+    newName.forEach(element =>{
+        element.innerHTML = document.querySelector(`#delivery-person-name-${deliveryPersonId}`).value
+    })
+}

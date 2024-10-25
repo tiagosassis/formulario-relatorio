@@ -3,7 +3,7 @@ import { copyContent } from "./clipboard.js"
 import { createDateTimeInfo, toggleClassHidden } from "./utils.js"
 import { paymentCalculation } from "./payment.js"
 import { addExtraEmployee } from "./formFields.js"
-import { updateReportExtraEmployee, removeExtraEmployee } from "./formDataHandler.js"
+import { updateReportExtraEmployee, removeExtraEmployee, updateDeliveries, updateName } from "./formDataHandler.js"
 import { createTextField } from "./displayFields.js";
 
 document.addEventListener('DOMContentLoaded', () =>{
@@ -229,13 +229,6 @@ function updateReport(event) {
     }
 }
 
-function updateName(deliveryPersonId) { // a classe class-update-name-${deliveryPersonId} serve para que o nome do entregador seja atualizado em todos os lugares da pagina ao mesmo tempo
-    const newName = document.querySelectorAll(`.class-update-name-${deliveryPersonId}`)
-    newName.forEach(element =>{
-        element.innerHTML = document.querySelector(`#delivery-person-name-${deliveryPersonId}`).value
-    })
-}
-
 function updateReportExtraDeliveries(event) {
     const [deliveryPersonId, extraDeliveryIndex] = event.target.id.match(/\d+/g); // pega o número identificador do entregador e pega o número do input que foi usado
     const teste = document.querySelectorAll('#report-extra-delivery > div')
@@ -319,7 +312,7 @@ function ExtraDeliveryRegister(deliveryPersonId, numberOfExtra) {
         let register = document.querySelectorAll(`.register-${deliveryPersonId}`)
         let currentRegister = numberOfExtra - register.length
         if (currentRegister > 0) { // caso o novo numero de entregas extras seja maior que o anterior, novos inputs são criados
-            createExtraDeliveryRegister(div, currentRegister, deliveryPersonId)
+            createInputFieldsForExtraDelivery(div, currentRegister, deliveryPersonId)
         } else if(currentRegister < 0){ // caso um novo numero de entregas extras seja menor que o anterior, as ultimas linhas de input serão removidas do DOM
             for (let i = register.length; currentRegister !== 0; i--) {
                 if (register[i - 1]) {
@@ -336,13 +329,13 @@ function ExtraDeliveryRegister(deliveryPersonId, numberOfExtra) {
         div.classList.add('flex-column-wrap', `order-${deliveryPersonId}`)
         div.setAttribute('id', `div-delivery-person-${deliveryPersonId}`)
 
-        createExtraDeliveryRegister(div, numberOfExtra, deliveryPersonId)
+        createInputFieldsForExtraDelivery(div, numberOfExtra, deliveryPersonId)
 
         container.appendChild(div)
     }
 }
 
-function createExtraDeliveryRegister(div1, numberOfExtra, deliveryPersonId) {
+function createInputFieldsForExtraDelivery(div1, numberOfExtra, deliveryPersonId) {
     // Essa função cria a linha onde é colocado o nome do entregador, o número do pedido e o motivo daquela entrega ser uma extra para aquele entregador
     let div2, div3, input, label
     for (let i = 0; i < numberOfExtra; i++) {
@@ -393,13 +386,4 @@ function createExtraDeliveryRegister(div1, numberOfExtra, deliveryPersonId) {
         }
         div1.appendChild(div2)
     }
-}
-
-function updateDeliveries(event, deliveryPersonId) {
-    // essa função altera a quantidade de entregas no relatorio, caso não haja entregas para aquele entregador, a visibilidade dele no relatorio é alterar como display none
-    document.querySelector(`#textField-${event.target.id}`).innerHTML = event.target.value + ' Entregas' 
-    if (event.target.value) 
-        toggleClassHidden(document.querySelector(`#delivery-person-report-${deliveryPersonId}`), true)
-    else 
-        toggleClassHidden(document.querySelector(`#delivery-person-report-${deliveryPersonId}`), false)
 }
