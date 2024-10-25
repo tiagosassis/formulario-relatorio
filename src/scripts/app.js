@@ -4,7 +4,7 @@ import { createDateTimeInfo, toggleClassHidden } from "./utils.js"
 import { paymentCalculation } from "./payment.js"
 import { addExtraEmployee } from "./formFields.js"
 import { updateReportExtraEmployee, removeExtraEmployee, updateDeliveries, updateName, ExtraDeliveryRegister } from "./formDataHandler.js"
-import { createTextField } from "./displayFields.js";
+import { createTextField, createDisplayFieldsForExtraDelivery } from "./displayFields.js";
 
 document.addEventListener('DOMContentLoaded', () =>{
     configDeliveryPerson()
@@ -256,7 +256,7 @@ function updateReportTextField(deliveryPersonId, numberOfExtra) {
         let register = document.querySelectorAll(`.register-content-${deliveryPersonId}`)
         let currentRegister = numberOfExtra - register.length
         if (currentRegister > 0) {
-            createReportTextField(deliveryPersonId, currentRegister, div)
+            createDisplayFieldsForExtraDelivery(deliveryPersonId, currentRegister, div)
         } else if(currentRegister < 0){
             for (let i = register.length; currentRegister !== 0; i--) {
                 if (register[i - 1]) {
@@ -273,29 +273,8 @@ function updateReportTextField(deliveryPersonId, numberOfExtra) {
         div.classList.add('flex-column-wrap', `order-${deliveryPersonId}`)
         div.setAttribute('id', `div-report-extra-delivery-${deliveryPersonId}`)
 
-        createReportTextField(deliveryPersonId, numberOfExtra, div)
+        createDisplayFieldsForExtraDelivery(deliveryPersonId, numberOfExtra, div)
 
         container.appendChild(div)
-    }
-}
-
-function createReportTextField(deliveryPersonId, numberOfExtra, div) {
-    // aqui estão sendo criados os spans onde serão adicionados nome do entregador, numero da entrega e motivo de extra para serem exibidos no relatorio e copiados
-    // a classe class-update-name-${deliveryPersonId} serve para que o nome do entregador seja atualiza em todos os lugares da pagina ao mesmo tempo pela função updateName()
-    for (let i = 0; i < numberOfExtra; i++) {
-        let div2 = document.createElement('div')
-        div2.classList.add(`register-content-${deliveryPersonId}`)
-        div2.textContent = '- '
-        let name = document.createElement('span')
-        name.setAttribute('id', `report-extra-delivery-name-${deliveryPersonId}-${i}`)
-        name.classList.add(`class-update-name-${deliveryPersonId}`)
-        name.textContent = document.querySelector(`#delivery-person-name-${deliveryPersonId}`).value
-        let number = document.createElement('span')
-        number.setAttribute('id', `report-extra-delivery-number-${deliveryPersonId}-${i}`)
-        let reason = document.createElement('span')
-        reason.setAttribute('id', `report-extra-delivery-reason-${deliveryPersonId}-${i}`)
-
-        div2.append(name, number, reason)
-        div.appendChild(div2)
     }
 }
