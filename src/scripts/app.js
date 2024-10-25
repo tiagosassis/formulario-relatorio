@@ -3,7 +3,7 @@ import { copyContent } from "./clipboard.js"
 import { createDateTimeInfo, toggleClassHidden } from "./utils.js"
 import { paymentCalculation } from "./payment.js"
 import { addExtraEmployee } from "./formFields.js"
-import { updateReportExtraEmployee, removeExtraEmployee, updateDeliveries, updateName } from "./formDataHandler.js"
+import { updateReportExtraEmployee, removeExtraEmployee, updateDeliveries, updateName, ExtraDeliveryRegister } from "./formDataHandler.js"
 import { createTextField } from "./displayFields.js";
 
 document.addEventListener('DOMContentLoaded', () =>{
@@ -297,93 +297,5 @@ function createReportTextField(deliveryPersonId, numberOfExtra, div) {
 
         div2.append(name, number, reason)
         div.appendChild(div2)
-    }
-}
-
-function reportFreelancer(params) {
-    
-}
-
-function ExtraDeliveryRegister(deliveryPersonId, numberOfExtra) {
-    const container = document.getElementById('section-extra-delivery')
-    let div = document.getElementById(`div-delivery-person-${deliveryPersonId}`)
-
-    if (div) { // verifica se a div onde as entregas extras vão ficar já existe, se existe então manipula para adicionar ou remover os campos conforme necessário
-        let register = document.querySelectorAll(`.register-${deliveryPersonId}`)
-        let currentRegister = numberOfExtra - register.length
-        if (currentRegister > 0) { // caso o novo numero de entregas extras seja maior que o anterior, novos inputs são criados
-            createInputFieldsForExtraDelivery(div, currentRegister, deliveryPersonId)
-        } else if(currentRegister < 0){ // caso um novo numero de entregas extras seja menor que o anterior, as ultimas linhas de input serão removidas do DOM
-            for (let i = register.length; currentRegister !== 0; i--) {
-                if (register[i - 1]) {
-                    register[i - 1].remove()
-                }
-                currentRegister++
-            }
-        } else { // se ja tinha uma quantidade x de entregas extras e o numero no input foi substituido pelo mesmo numero, nada acontece
-            return
-        }
-
-    } else { // caso a div onde as entregas extras vão ficar não existe, ela será criada e os input que ficarão dentro dela também
-        div = document.createElement('div')
-        div.classList.add('flex-column-wrap', `order-${deliveryPersonId}`)
-        div.setAttribute('id', `div-delivery-person-${deliveryPersonId}`)
-
-        createInputFieldsForExtraDelivery(div, numberOfExtra, deliveryPersonId)
-
-        container.appendChild(div)
-    }
-}
-
-function createInputFieldsForExtraDelivery(div1, numberOfExtra, deliveryPersonId) {
-    // Essa função cria a linha onde é colocado o nome do entregador, o número do pedido e o motivo daquela entrega ser uma extra para aquele entregador
-    let div2, div3, input, label
-    for (let i = 0; i < numberOfExtra; i++) {
-        div2 = document.createElement('div')
-        div2.classList.add('flex-row-wrap', `register-${deliveryPersonId}`, 'flex-container-extra')
-
-        label = document.createElement('label')
-        label.classList.add('flex-item-label-name', `class-update-name-${deliveryPersonId}`)
-        label.textContent = document.querySelector(`#delivery-person-name-${deliveryPersonId}`).value
-
-        div2.appendChild(label)
-
-        for (let j = 0; j < 2; j++) {
-            div3 = document.createElement('div')
-            if (j == 0) {
-                div3.classList.add('flex-item-order-number')
-                input = document.createElement('input')
-                input.setAttribute('type', 'number')
-                input.setAttribute('name', 'extra-delivery-number')
-                input.classList.add('float-input', 'request-number-extra')
-                input.setAttribute('required', '')
-                input.setAttribute('id', `extra-delivery-number-${deliveryPersonId}-${i}`)
-                label = document.createElement('label')
-                label.setAttribute('for', `extra-delivery-number-${deliveryPersonId}-${i}`)
-                label.classList.add('float-label')
-                label.textContent = 'Nº do pedido'
-
-                div3.appendChild(input)
-                div3.appendChild(label)
-            }
-            else{
-                div3.classList.add('flex-item-extra-reason')
-                input = document.createElement('input')
-                input.setAttribute('type', 'text')
-                input.setAttribute('name', 'reason-extra-delivery')
-                input.classList.add('float-input', 'reason-delivery-extra')
-                input.setAttribute('required', '')
-                input.setAttribute('id', `reason-extra-delivery-${deliveryPersonId}-${i}`)
-                label = document.createElement('label')
-                label.setAttribute('for', `reason-extra-delivery-${deliveryPersonId}-${i}`)
-                label.classList.add('float-label')
-                label.textContent = 'Motivo'
-
-                div3.appendChild(input)
-                div3.appendChild(label)
-            }
-            div2.appendChild(div3)
-        }
-        div1.appendChild(div2)
     }
 }
