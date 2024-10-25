@@ -4,7 +4,7 @@ import { createDateTimeInfo, toggleClassHidden } from "./utils.js"
 import { paymentCalculation } from "./payment.js"
 import { addExtraEmployee } from "./formFields.js"
 import { updateReportExtraEmployee, removeExtraEmployee } from "./formDataHandler.js"
-import { createTextField } from "./displayFields.js"
+import { createTextField } from "./displayFields.js";
 
 document.addEventListener('DOMContentLoaded', () =>{
     configDeliveryPerson()
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 document.getElementById('section-delivery-person').addEventListener('input', updateReport)
 document.getElementById('section-extra-delivery').addEventListener('input', updateReportExtraDeliveries)
 document.getElementById('copy-button').addEventListener('click', copyContent)
-document.getElementById('add-delivery-person-button').addEventListener('click', createDeliveryPerson)
+document.getElementById('add-delivery-person-button').addEventListener('click', createInputFieldsForDeliveryPerson)
 document.getElementById('theme').addEventListener('click', darkMode)
 document.getElementById('add-extra-employee').addEventListener('click', addExtraEmployee)
 document.getElementById('remove-extra-employee').addEventListener('click', removeExtraEmployee)
@@ -29,53 +29,40 @@ const activeDeliveryPersons = [
 
 let currentDeliveryPersonCount = activeDeliveryPersons.length
 
-function configDeliveryPerson() {
-    
-    const time = createDateTimeInfo()
-
-    const h1 = document.querySelector('h1')
-    const dateOfReport = document.getElementById('date-of-report')
-    const divDelivery = document.querySelectorAll('.delivery-person-container')
-
-    deliveryPersonDatalist() // cria a datalist de entregador e coloca no html do relatorio
-    
-    if (time.turn === 'Morning') { // dia
-        h1.innerText = `Relatório Almoço ${time.day} / ${time.month}`
-        dateOfReport.innerHTML = '*Almoço ' + time.day + '/' + time.month + '*<br>'
-
-    } else if(time.turn === 'Night'){ // noite
-        h1.innerText = `Relatório Noite ${time.day} / ${time.month}`
-        dateOfReport.innerHTML = `*Noite ${time.day} / ${time.month}*<br>`
-
-    } else {
-        console.log('erro na função configDeliveryPerson()')
-    }
-
-    activeDeliveryPersons.forEach((person, index) =>{
-        if (!(person.dayOff == time.weekDay) && (person.turn[0] == time.turn || person.turn[1] == time.turn)) {
-            // pega o array de objetos global contendo as informações dos entregadores que já trabalham com o estabelecimento, se o entregador não está de folga e ele trabalha naquele turno, seu input será criado e inserido no DOM
-            createDeliveryPerson(index, person.name)
-        }
-    })
-
-    addExtraEmployee() // cria o input para o primeiro diarista, mais serão adicionados conforme necessário
-}
-
-function deliveryPersonDatalist() { // cria a datalist de entregador e coloca no html do relatorio
-    const container = document.getElementById('section-delivery-person')
-    const datalist = document.createElement('datalist')
-    datalist.setAttribute('id', 'datalist-delivery-person')
-
-    activeDeliveryPersons.forEach(person => {
-        const option = document.createElement('option')
-        option.setAttribute('value', person.name)
-        option.textContent = person.name
-        datalist.appendChild(option)
-    })
-    container.insertBefore(datalist, container.firstChild)
-}
-
-function createDeliveryPerson(deliveryPersonId, name) {
+function createInputFieldsForDeliveryPerson(deliveryPersonId, name) {
+    /**
+     * Cria uma estrutura de entrada de dados para o entregador e a adiciona na seção "section-delivery-person" com campos para nome, quantidade de entregas, valor extra, e consumo diário. 
+     * 
+     * @param {number} deliveryPersonId - O identificador numérico do entregador.
+     * @param {string} name - O nome do entregador (opcional).
+     * 
+     * Estrutura HTML resultante:
+     * <div class="flex-row-wrap delivery-person-container container-relative">
+     *     <div class="flex-item-delivery-person-name">
+     *         <input class="float-input" type="text" id="delivery-person-name-5" list="datalist-delivery-person" value="" required>
+     *         <label class="float-label" for="delivery-person-name-5">Nome</label>
+     *     </div>
+     *     <div class="flex-item-deliveries-amount">
+     *         <input class="float-input" type="number" id="deliveries-5" required>
+     *         <label class="float-label" for="deliveries-5">Entregas</label>
+     *     </div>
+     *     <div class="flex-item-delivery-extra">
+     *         <input class="float-input" type="number" id="extra-5" required>
+     *         <label class="float-label" for="extra-5">Extra</label>
+     *     </div>
+     *     <div class="flex-item-day-consumption">
+     *         <input class="float-input" type="text" id="consumption-5" required>
+     *         <label class="float-label" for="consumption-5">Consumo</label>
+     *     </div>
+     * </div>
+     * 
+     * Dependências:
+     * - Requer a função `createTextField(deliveryPersonId)` para criar o campo de exibição correspondente aos dados do entregador.
+     * 
+     * Observações:
+     * - Caso o deliveryPersonId não seja um número, a função o define automaticamente com base na quantidade de entregadores atual e inicializa o nome como uma string vazia.
+     * - Cada `div` e `input` é configurado de acordo com o índice do switch, que ajusta atributos e classes específicos para os campos.
+     */
     if (!(typeof deliveryPersonId === 'number')) {
         deliveryPersonId = currentDeliveryPersonCount
         currentDeliveryPersonCount++
@@ -145,27 +132,52 @@ function createDeliveryPerson(deliveryPersonId, name) {
     section.appendChild(div1)
 
     createTextField(deliveryPersonId)
+}
 
-    /*
-        <div class="flex-row-wrap delivery-person-container container-relative">
-            <div class="flex-item-delivery-person-name">
-                <input class="float-input" type="text" id="delivery-person-name-5" list="datalist-delivery-person" value="" required>
-                <label class="float-label" for="delivery-person-name-5">Nome</label>
-            </div>
-            <div class="flex-item-deliveries-amount">
-                <input class="float-input" type="number" id="deliveries-5" required>
-                <label class="float-label" for="deliveries-5">Entregas</label>
-            </div>
-            <div class="flex-item-delivery-extra">
-                <input class="float-input" type="number" id="extra-5" required>
-                <label class="float-label" for="extra-5">Extra</label>
-            </div>
-            <div class="flex-item-day-consumption">
-                <input class="float-input" type="text" id="consumption-5" required>
-                <label class="float-label" for="consumption-5">Consumo</label>
-            </div>
-        </div>
-    */
+function configDeliveryPerson() {
+    
+    const time = createDateTimeInfo()
+
+    const h1 = document.querySelector('h1')
+    const dateOfReport = document.getElementById('date-of-report')
+    const divDelivery = document.querySelectorAll('.delivery-person-container')
+
+    deliveryPersonDatalist() // cria a datalist de entregador e coloca no html do relatorio
+    
+    if (time.turn === 'Morning') { // dia
+        h1.innerText = `Relatório Almoço ${time.day} / ${time.month}`
+        dateOfReport.innerHTML = '*Almoço ' + time.day + '/' + time.month + '*<br>'
+
+    } else if(time.turn === 'Night'){ // noite
+        h1.innerText = `Relatório Noite ${time.day} / ${time.month}`
+        dateOfReport.innerHTML = `*Noite ${time.day} / ${time.month}*<br>`
+
+    } else {
+        console.log('erro na função configDeliveryPerson()')
+    }
+
+    activeDeliveryPersons.forEach((person, index) =>{
+        if (!(person.dayOff == time.weekDay) && (person.turn[0] == time.turn || person.turn[1] == time.turn)) {
+            // pega o array de objetos global contendo as informações dos entregadores que já trabalham com o estabelecimento, se o entregador não está de folga e ele trabalha naquele turno, seu input será criado e inserido no DOM
+            createInputFieldsForDeliveryPerson(index, person.name)
+        }
+    })
+
+    addExtraEmployee() // cria o input para o primeiro diarista, mais serão adicionados conforme necessário
+}
+
+function deliveryPersonDatalist() { // cria a datalist de entregador e coloca no html do relatorio
+    const container = document.getElementById('section-delivery-person')
+    const datalist = document.createElement('datalist')
+    datalist.setAttribute('id', 'datalist-delivery-person')
+
+    activeDeliveryPersons.forEach(person => {
+        const option = document.createElement('option')
+        option.setAttribute('value', person.name)
+        option.textContent = person.name
+        datalist.appendChild(option)
+    })
+    container.insertBefore(datalist, container.firstChild)
 }
 
 function updateReport(event) {
