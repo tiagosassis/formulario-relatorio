@@ -63,7 +63,7 @@ Cria uma estrutura de entrada de dados para o entregador na seção "section-del
         <input class="float-input" type="number" id="consumption-5" required>
         <label class="float-label" for="consumption-5">Consumo</label>
     </div>
-</div>
+</div>```
 
 # Documentação da Função `createDisplayFieldsForDeliveryPerson`
 
@@ -96,5 +96,5 @@ Cria um campo de texto para exibir informações do entregador no relatório.
     <span class="hidden">(</span><span id="textField-deliveries-1"></span>
     <span id="textField-extra-1"></span>
     <span id="textField-consumption-1"></span><span class="hidden">)</span>
-</div>
+</div>```
 
