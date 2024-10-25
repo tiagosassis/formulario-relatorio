@@ -100,3 +100,32 @@ Cria um campo de texto para exibir informações do entregador no relatório.
     </div>
 ```
 
+# Documentação da Função `createDisplayFieldsForExtraDelivery`
+
+## Descrição
+Cria campos de exibição para entregas extras no relatório.
+
+- Gera elementos DOM (spans) que mostram o nome do entregador, o número da entrega e o motivo para entregas extras.
+- Os spans contêm a classe `class-update-name-${deliveryPersonId}`, permitindo a atualização simultânea do nome do entregador no relatório caso isso seja alterado no input.
+
+## Dependências
+- Nenhuma função externa é necessária para o funcionamento desta função.
+
+## Variáveis Globais
+- **`deliveryPersonId`**: O ID do entregador.
+- **`numberOfExtra`**: O número de entregas extras a serem exibidas.
+- **`div`**: O elemento DOM onde os campos de exibição serão adicionados.
+
+## Funcionamento
+1. Cria um loop que itera de 0 até `numberOfExtra`.
+2. Para cada iteração, cria um novo elemento `<div>` que serve como contêiner para os campos de exibição das entregas extras.
+3. Define a classe do `<div>` com base no `deliveryPersonId`.
+4. Cria um `<span>` para exibir o nome do entregador, obtendo o valor do input correspondente no DOM.
+5. Cria um `<span>` para exibir o número da entrega e outro `<span>` para o motivo da entrega extra.
+6. Anexa os spans ao contêiner `<div>` e, em seguida, adiciona este contêiner ao elemento `div` passado como parâmetro.
+
+## Observações
+- A função não retorna nenhum valor; ela apenas modifica o DOM ao adicionar novos elementos.
+- A estrutura gerada permite fácil acesso e manipulação das informações das entregas extras no relatório.
+
+
