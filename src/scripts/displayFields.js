@@ -97,7 +97,7 @@ export function createDisplayFieldsForExtraDelivery(deliveryPersonId, numberOfEx
      * @param {number} deliveryPersonId - O ID do entregador.
      * @param {number} numberOfExtra - O número de entregas extras a serem exibidas.
      * @param {HTMLElement} div - O elemento DOM onde os campos de exibição serão adicionados.
- */
+    */
     for (let i = 0; i < numberOfExtra; i++) {
         const div2 = document.createElement('div')
         div2.classList.add(`register-content-${deliveryPersonId}`)
