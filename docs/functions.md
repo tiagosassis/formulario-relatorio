@@ -77,7 +77,7 @@ Cria um campo de texto para exibir informações do entregador no relatório.
 ## Dependências
 - Nenhuma função externa é necessária para o funcionamento desta função.
 
-## Variáveis Globais
+## Parâmetros
 - **`deliveryPersonId`**: Identificador único do entregador para o qual os campos de exibição estão sendo criados.
 
 ## Funcionamento
@@ -111,7 +111,7 @@ Cria campos de exibição para entregas extras no relatório.
 ## Dependências
 - Nenhuma função externa é necessária para o funcionamento desta função.
 
-## Variáveis Globais
+## Parâmetros
 - **`deliveryPersonId`**: O ID do entregador.
 - **`numberOfExtra`**: O número de entregas extras a serem exibidas.
 - **`div`**: O elemento DOM onde os campos de exibição serão adicionados.
