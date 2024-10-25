@@ -135,6 +135,17 @@ function createInputFieldsForDeliveryPerson(deliveryPersonId, name) {
 }
 
 function configDeliveryPerson() {
+    /**
+     * Configura o relatório de entregadores para o turno atual (Almoço ou Noite).
+     *
+     * - Atualiza o título e a data do relatório.
+     * - Cria campos de entrada para entregadores ativos conforme o turno.
+     * - Adiciona campo para o primeiro funcionário diarista.
+     * 
+     * Dependências: createDateTimeInfo(), deliveryPersonDatalist(), createInputFieldsForDeliveryPerson(), addExtraEmployee()
+     * 
+     * @global activeDeliveryPersons Array contendo informações dos entregadores.
+     */
     
     const time = createDateTimeInfo()
 
@@ -158,12 +169,10 @@ function configDeliveryPerson() {
 
     activeDeliveryPersons.forEach((person, index) =>{
         if (!(person.dayOff == time.weekDay) && (person.turn[0] == time.turn || person.turn[1] == time.turn)) {
-            // pega o array de objetos global contendo as informações dos entregadores que já trabalham com o estabelecimento, se o entregador não está de folga e ele trabalha naquele turno, seu input será criado e inserido no DOM
             createInputFieldsForDeliveryPerson(index, person.name)
         }
     })
-
-    addExtraEmployee() // cria o input para o primeiro diarista, mais serão adicionados conforme necessário
+    addExtraEmployee()
 }
 
 function deliveryPersonDatalist() { // cria a datalist de entregador e coloca no html do relatorio
