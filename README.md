@@ -1,2 +1,2 @@
 # Formulario-Relatorio
- Formulário para agilizar a criação de relatório
+ Formulário para melhorar a criação de relatório
