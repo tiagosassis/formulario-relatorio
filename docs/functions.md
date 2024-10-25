@@ -46,24 +46,25 @@ Cria uma estrutura de entrada de dados para o entregador na seção "section-del
 
 ## Estrutura HTML resultante
 ```html
-<div class="flex-row-wrap delivery-person-container container-relative">
-    <div class="flex-item-delivery-person-name">
-        <input class="float-input" type="text" id="delivery-person-name-5" list="datalist-delivery-person" value="" required>
-        <label class="float-label" for="delivery-person-name-5">Nome</label>
+    <div class="flex-row-wrap delivery-person-container container-relative">
+        <div class="flex-item-delivery-person-name">
+            <input class="float-input" type="text" id="delivery-person-name-5" list="datalist-delivery-person" value="" required>
+            <label class="float-label" for="delivery-person-name-5">Nome</label>
+        </div>
+        <div class="flex-item-deliveries-amount">
+            <input class="float-input" type="number" id="deliveries-5" required>
+            <label class="float-label" for="deliveries-5">Entregas</label>
+        </div>
+        <div class="flex-item-delivery-extra">
+            <input class="float-input" type="number" id="extra-5" required>
+            <label class="float-label" for="extra-5">Extra</label>
+        </div>
+        <div class="flex-item-day-consumption">
+            <input class="float-input" type="number" id="consumption-5" required>
+            <label class="float-label" for="consumption-5">Consumo</label>
+        </div>
     </div>
-    <div class="flex-item-deliveries-amount">
-        <input class="float-input" type="number" id="deliveries-5" required>
-        <label class="float-label" for="deliveries-5">Entregas</label>
-    </div>
-    <div class="flex-item-delivery-extra">
-        <input class="float-input" type="number" id="extra-5" required>
-        <label class="float-label" for="extra-5">Extra</label>
-    </div>
-    <div class="flex-item-day-consumption">
-        <input class="float-input" type="number" id="consumption-5" required>
-        <label class="float-label" for="consumption-5">Consumo</label>
-    </div>
-</div>```
+```
 
 # Documentação da Função `createDisplayFieldsForDeliveryPerson`
 
@@ -90,11 +91,12 @@ Cria um campo de texto para exibir informações do entregador no relatório.
 
 ## Estrutura HTML gerada:
 ```html
-<div id="delivery-person-report-1" class="hidden">
-    <span id="textField-delivery-person-name-1" class="class-update-name-1"></span>:
-    <span id="textField-payment-1"></span><br>
-    <span class="hidden">(</span><span id="textField-deliveries-1"></span>
-    <span id="textField-extra-1"></span>
-    <span id="textField-consumption-1"></span><span class="hidden">)</span>
-</div>```
+    <div id="delivery-person-report-1" class="hidden">
+        <span id="textField-delivery-person-name-1" class="class-update-name-1"></span>:
+        <span id="textField-payment-1"></span><br>
+        <span class="hidden">(</span><span id="textField-deliveries-1"></span>
+        <span id="textField-extra-1"></span>
+        <span id="textField-consumption-1"></span><span class="hidden">)</span>
+    </div>
+```
 
