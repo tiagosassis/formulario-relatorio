@@ -51,7 +51,7 @@ function createInputFieldsForDeliveryPerson(deliveryPersonId, name) {
      *         <label class="float-label" for="extra-5">Extra</label>
      *     </div>
      *     <div class="flex-item-day-consumption">
-     *         <input class="float-input" type="text" id="consumption-5" required>
+     *         <input class="float-input" type="number" id="consumption-5" required>
      *         <label class="float-label" for="consumption-5">Consumo</label>
      *     </div>
      * </div>
@@ -114,7 +114,7 @@ function createInputFieldsForDeliveryPerson(deliveryPersonId, name) {
         
             case 3:
                 div2.classList.add('flex-item-day-consumption')
-                input.setAttribute('type', 'text')
+                input.setAttribute('type', 'number')
                 input.setAttribute('id', `consumption-${deliveryPersonId}`)
                 input.setAttribute('required', '')
                 label.setAttribute('for', `consumption-${deliveryPersonId}`)
