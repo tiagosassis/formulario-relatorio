@@ -3,7 +3,7 @@ import { copyContent } from "./clipboard.js"
 import { createDateTimeInfo, toggleClassHidden } from "./utils.js"
 import { paymentCalculation } from "./payment.js"
 import { createInputFieldsForExtraEmployee } from "./formFields.js"
-import { updateReportExtraEmployee, removeExtraEmployee, updateDeliveries, updateName, ExtraDeliveryRegister } from "./formDataHandler.js"
+import { updateReportExtraEmployee, removeExtraEmployee, updateDeliveries, updatePersonNameInDisplay, ExtraDeliveryRegister } from "./formDataHandler.js"
 import { createDisplayFieldsForDeliveryPerson, createDisplayFieldsForExtraDelivery } from "./displayFields.js";
 
 document.addEventListener('DOMContentLoaded', () =>{
@@ -167,7 +167,7 @@ function updateReport(event) {
     const sectionExtraDelivery = document.getElementById('report-extra-delivery')
     
     paymentCalculation(deliveryPersonId) // calcula o pagamento do entregador(a) com base nas entregas, entregas extras e consumo
-    updateName(deliveryPersonId)
+    updatePersonNameInDisplay(deliveryPersonId)
     
 
     if(event.target.id.includes('deliveries')){

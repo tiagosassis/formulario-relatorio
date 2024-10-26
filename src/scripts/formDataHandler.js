@@ -68,7 +68,7 @@ export function updateDeliveries(event, deliveryPersonId) {
         toggleClassHidden(document.querySelector(`#delivery-person-report-${deliveryPersonId}`), false)
 }
 
-export function updateName(deliveryPersonId) {
+export function updatePersonNameInDisplay(deliveryPersonId) {
     /**
      * Atualiza o nome do entregador em todos os elementos da página que possuem a classe
      * `class-update-name-${deliveryPersonId}` com o valor do input correspondente.
