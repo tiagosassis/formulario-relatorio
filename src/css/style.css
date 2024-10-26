@@ -58,7 +58,8 @@ main{
 }
 
 .container{
-    width: 800px;
+    width: 60vw;
+    min-width: 500px;
     background-color: var(--secondary-background-color);
     padding: 15px;
     border-radius: 15px;
