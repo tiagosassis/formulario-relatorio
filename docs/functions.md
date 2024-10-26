@@ -11,7 +11,7 @@ Configura o relatório de entregadores para o turno atual (Almoço ou Noite).
 - `createDateTimeInfo()`
 - `deliveryPersonDatalist()`
 - `createInputFieldsForDeliveryPerson()`
-- `addExtraEmployee()`
+- `createInputFieldsForExtraEmployee()`
 
 ## Variáveis Globais
 - **`activeDeliveryPersons`**: Array contendo informações dos entregadores.
@@ -21,7 +21,7 @@ Configura o relatório de entregadores para o turno atual (Almoço ou Noite).
 2. Atualiza o título do relatório e a data exibida, dependendo do turno (Almoço ou Noite).
 3. Cria uma lista de entregadores ativos, ignorando aqueles que estão de folga no dia.
 4. Para cada entregador ativo, chama a função `createInputFieldsForDeliveryPerson()` para criar campos de entrada.
-5. Chama a função `addExtraEmployee()` para adicionar um campo para o primeiro funcionário diarista.
+5. Chama a função `createInputFieldsForExtraEmployee()` para adicionar um campo para o primeiro funcionário diarista.
 
 ## Observações
 - Caso ocorra um erro no turno, uma mensagem de erro será registrada no console.

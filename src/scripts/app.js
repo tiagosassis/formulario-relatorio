@@ -2,7 +2,7 @@ import { darkMode, detectUserTheme } from "./theme.js"
 import { copyContent } from "./clipboard.js"
 import { createDateTimeInfo, toggleClassHidden } from "./utils.js"
 import { paymentCalculation } from "./payment.js"
-import { addExtraEmployee } from "./formFields.js"
+import { createInputFieldsForExtraEmployee } from "./formFields.js"
 import { updateReportExtraEmployee, removeExtraEmployee, updateDeliveries, updateName, ExtraDeliveryRegister } from "./formDataHandler.js"
 import { createDisplayFieldsForDeliveryPerson, createDisplayFieldsForExtraDelivery } from "./displayFields.js";
 
@@ -15,7 +15,7 @@ document.getElementById('section-extra-delivery').addEventListener('input', upda
 document.getElementById('copy-button').addEventListener('click', copyContent)
 document.getElementById('add-delivery-person-button').addEventListener('click', createInputFieldsForDeliveryPerson)
 document.getElementById('theme').addEventListener('click', darkMode)
-document.getElementById('add-extra-employee').addEventListener('click', addExtraEmployee)
+document.getElementById('add-extra-employee').addEventListener('click', createInputFieldsForExtraEmployee)
 document.getElementById('remove-extra-employee').addEventListener('click', removeExtraEmployee)
 document.getElementById('section-extra-employee').addEventListener('input', updateReportExtraEmployee)
 
@@ -111,7 +111,7 @@ function configDeliveryPerson() {
      * Atualiza título e data do relatório, cria campos de entrada para entregadores ativos 
      * e adiciona campo para o primeiro funcionário diarista.
      * 
-     * Dependências: createDateTimeInfo(), deliveryPersonDatalist(), createInputFieldsForDeliveryPerson(), addExtraEmployee()
+     * Dependências: createDateTimeInfo(), deliveryPersonDatalist(), createInputFieldsForDeliveryPerson(), createInputFieldsForExtraEmployee()
      * Variáveis globais: activeDeliveryPersons (Array de entregadores).
      */
     
@@ -140,7 +140,7 @@ function configDeliveryPerson() {
             createInputFieldsForDeliveryPerson(index, person.name)
         }
     })
-    addExtraEmployee()
+    createInputFieldsForExtraEmployee()
 }
 
 function deliveryPersonDatalist() { // cria a datalist de entregador e coloca no html do relatorio
