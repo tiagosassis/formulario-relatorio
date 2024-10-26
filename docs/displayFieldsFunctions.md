@@ -28,7 +28,7 @@ Cria dinamicamente um campo de texto no relatório para exibir informações dos
 </div>
 ```
 
-***
+___
 
 # Documentação da Função `createDisplayFieldsForExtraDelivery()`
 
@@ -60,7 +60,7 @@ Cria dinamicamente campos de exibição no relatório para mostrar informações
 </div>
 ```
 
----
+___
 
 # Documentação da Função `createDisplayFieldsForExtraEmployee()`
 
@@ -89,5 +89,3 @@ Cria dinamicamente uma seção no relatório para exibir as informações de um 
         <span id="textField-employee-pix-key-{extraEmployeeId}"></span>
     </div>
 ```
-
-___
