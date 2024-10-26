@@ -121,3 +121,21 @@ export function ExtraDeliveryRegister(deliveryPersonId, numberOfExtra) {
         container.appendChild(div)
     }
 }
+
+export function handleExtraDeliveryData(event) {
+    const [deliveryPersonId, extraDeliveryIndex] = event.target.id.match(/\d+/g); // pega o número identificador do entregador e pega o número do input que foi usado
+    let span
+
+    if (event.target.className.includes('number')) { // if usado para selecionar se o input usado foi o de numero de pedido ou de motivo de extra
+        span = document.getElementById(`report-extra-delivery-number-${deliveryPersonId}-${extraDeliveryIndex}`)
+        let requestNumber = event.target.value
+        span.textContent = ' N' + requestNumber
+    } else if(event.target.className.includes('reason')) {
+        span = document.getElementById(`report-extra-delivery-reason-${deliveryPersonId}-${extraDeliveryIndex}`)
+        let reason = event.target.value
+        reason = reason.charAt(0).toUpperCase() + reason.slice(1) // deixa a primeira letra maiúscula
+        span.textContent = ' (' + reason + ')'
+    } else{
+        console.log('um erro detectado na função handleExtraDeliveryData')
+    }
+}

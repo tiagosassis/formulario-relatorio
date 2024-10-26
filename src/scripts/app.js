@@ -3,7 +3,7 @@ import { copyContent } from "./clipboard.js"
 import { createDateTimeInfo, toggleClassHidden } from "./utils.js"
 import { paymentCalculation } from "./payment.js"
 import { createInputFieldsForExtraEmployee } from "./formFields.js"
-import { updateReportExtraEmployee, removeExtraEmployee, updateDeliveries, updatePersonNameInDisplay, ExtraDeliveryRegister } from "./formDataHandler.js"
+import { updateReportExtraEmployee, removeExtraEmployee, updateDeliveries, updatePersonNameInDisplay, ExtraDeliveryRegister, handleExtraDeliveryData } from "./formDataHandler.js"
 import { createDisplayFieldsForDeliveryPerson, createDisplayFieldsForExtraDelivery } from "./displayFields.js";
 
 document.addEventListener('DOMContentLoaded', () =>{
@@ -194,24 +194,6 @@ function updateReport(event) {
             document.querySelector(`#textField-${event.target.id}`).innerHTML = ', 1 Consumo'
         else
             document.querySelector(`#textField-${event.target.id}`).innerHTML = ''
-    }
-}
-
-function handleExtraDeliveryData(event) {
-    const [deliveryPersonId, extraDeliveryIndex] = event.target.id.match(/\d+/g); // pega o número identificador do entregador e pega o número do input que foi usado
-    let span
-
-    if (event.target.className.includes('number')) { // if usado para selecionar se o input usado foi o de numero de pedido ou de motivo de extra
-        span = document.getElementById(`report-extra-delivery-number-${deliveryPersonId}-${extraDeliveryIndex}`)
-        let requestNumber = event.target.value
-        span.textContent = ' N' + requestNumber
-    } else if(event.target.className.includes('reason')) {
-        span = document.getElementById(`report-extra-delivery-reason-${deliveryPersonId}-${extraDeliveryIndex}`)
-        let reason = event.target.value
-        reason = reason.charAt(0).toUpperCase() + reason.slice(1) // deixa a primeira letra maiúscula
-        span.textContent = ' (' + reason + ')'
-    } else{
-        console.log('um erro detectado na função handleExtraDeliveryData')
     }
 }
 
