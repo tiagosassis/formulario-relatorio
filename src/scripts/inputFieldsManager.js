@@ -2,6 +2,7 @@
 // Funções para manipular e atualizar input's do formulário em tempo real.
 
 import { createInputFieldsForExtraDelivery } from "./formFields.js"
+import { createDisplayFieldsForExtraDelivery } from "./displayFields.js";
 
 export function manageExtraDeliveryInputs(deliveryPersonId, numberOfExtra) {
     /**
@@ -62,4 +63,35 @@ export function removeExtraEmployee() {
 
     // remove a div onde os dados são expostos
     document.getElementById(`report-freelancer-${extraEmployeeId}`).remove()
+}
+
+export function manageExtraDeliveryDisplay(deliveryPersonId, numberOfExtra) {
+    const container = document.getElementById('report-extra-delivery')
+    let div = document.getElementById(`div-report-extra-delivery-${deliveryPersonId}`)
+
+    if (div) {
+        let register = document.querySelectorAll(`.register-content-${deliveryPersonId}`)
+        let currentRegister = numberOfExtra - register.length
+        if (currentRegister > 0) {
+            createDisplayFieldsForExtraDelivery(deliveryPersonId, currentRegister, div)
+        } else if(currentRegister < 0){
+            for (let i = register.length; currentRegister !== 0; i--) {
+                if (register[i - 1]) {
+                    register[i - 1].remove()
+                }
+                currentRegister++
+            }
+        } else {
+            return
+        }
+
+    } else {
+        div = document.createElement('div')
+        div.classList.add('flex-column-wrap', `order-${deliveryPersonId}`)
+        div.setAttribute('id', `div-report-extra-delivery-${deliveryPersonId}`)
+
+        createDisplayFieldsForExtraDelivery(deliveryPersonId, numberOfExtra, div)
+
+        container.appendChild(div)
+    }
 }
