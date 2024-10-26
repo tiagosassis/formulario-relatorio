@@ -14,7 +14,7 @@
 body{
     height: 100vh;
     width: 100vw;
-    background-color: var(--primary-background-color);
+    background-color: var(--body-bg-color);
     overflow-x: hidden;
     color: var(--text-color);
     transition: .2s ease-in-out;
@@ -25,7 +25,15 @@ body{
     color: var(--theme-button-color);
 }
 
+header{
+    width: 100vw;
+    background-color: var(--header-bg-color);
+    padding: 1.5em 0px;
+}
+
 main{
+    width: 100wv;
+    justify-content: center;
     align-items: center;
     padding-top: 25px;
 }
@@ -60,7 +68,7 @@ main{
 .container{
     width: 60vw;
     min-width: 500px;
-    background-color: var(--secondary-background-color);
+    background-color: var(--secondary-bg-color);
     padding: 15px;
     border-radius: 15px;
 }
@@ -94,7 +102,7 @@ input{
     font-size: 1em;
     height: 100%;
     width: 100%;
-    background: var(--input-background-color);
+    background: var(--input-bg-color);
     border-bottom: var(--input-border-bottom);
     border-radius: var(--input-border-radius);
     color: var(--text-color);
@@ -197,7 +205,7 @@ button:hover, button:active{
 button:active{
     transform: scale(0.95);
     transition: 0.1s ease;
-    background-color: var(--active-background-button-color);
+    background-color: var(--active-bg-button-color);
 }
 
 /*Estilização para extra de entregadores*/
@@ -207,7 +215,7 @@ button:active{
     height: 31px;
     flex: 0 0 20%;
     border-bottom: var(--label-name-border-bottom);
-    background-color: var(--label-background-color);
+    background-color: var(--label-bg-color);
 }
 
 .flex-item-order-number{
@@ -244,7 +252,7 @@ button:active{
     color: var(--popup-text-color);
     visibility: hidden;
     width: 250px;
-    background-color: var(--popup-background-color);
+    background-color: var(--popup-bg-color);
     text-align: center;
     border-radius: 5px;
     padding: 10px;

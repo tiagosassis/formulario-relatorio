@@ -1,25 +1,27 @@
 :root{
-    --primary-background-color: #E3EBEF;
-    --secondary-background-color: white;
+    --body-bg-color: #E3EBEF;
+    --header-bg-color: #103F89;
+    --footer-bg-color: #103F89;
+    --secondary-bg-color: white;
     
     --button-bg-color: #0D6EFD;
     --button-shadow-color: rgb(51, 51, 51);
-    --active-background-button-color: #0956c9;
+    --active-bg-button-color: #0956c9;
     --theme-button-bg-color: #E3EBEF;
 
     --text-color: #373737;
     --button-text-color: white;
     
-    --input-background-color: #F2F5F4;
+    --input-bg-color: #F2F5F4;
     --input-border-bottom: none;
     --input-border-radius: 5px;
 
     --label-name-border-bottom: none;
-    --label-background-color: #F2F5F4;
+    --label-bg-color: #F2F5F4;
     --label-border-radius: 5px;
 
     --divider-color: rgba(33, 33, 33, 1);
 
-    --popup-background-color: #444444;
+    --popup-bg-color: #444444;
     --popup-text-color: white;
 }
