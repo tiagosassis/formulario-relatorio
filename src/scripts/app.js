@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () =>{
     detectUserTheme()
 })
 document.getElementById('section-delivery-person').addEventListener('input', updateReport)
-document.getElementById('section-extra-delivery').addEventListener('input', updateReportExtraDeliveries)
+document.getElementById('section-extra-delivery').addEventListener('input', handleExtraDeliveryData)
 document.getElementById('copy-button').addEventListener('click', copyContent)
 document.getElementById('add-delivery-person-button').addEventListener('click', createInputFieldsForDeliveryPerson)
 document.getElementById('theme').addEventListener('click', darkMode)
@@ -197,7 +197,7 @@ function updateReport(event) {
     }
 }
 
-function updateReportExtraDeliveries(event) {
+function handleExtraDeliveryData(event) {
     const [deliveryPersonId, extraDeliveryIndex] = event.target.id.match(/\d+/g); // pega o número identificador do entregador e pega o número do input que foi usado
     let span
 
@@ -211,7 +211,7 @@ function updateReportExtraDeliveries(event) {
         reason = reason.charAt(0).toUpperCase() + reason.slice(1) // deixa a primeira letra maiúscula
         span.textContent = ' (' + reason + ')'
     } else{
-        console.log('um erro detectado na função updateReportExtraDeliveries')
+        console.log('um erro detectado na função handleExtraDeliveryData')
     }
 }
 
