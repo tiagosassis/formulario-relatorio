@@ -28,6 +28,36 @@ Cria dinamicamente um campo de texto no relatório para exibir informações dos
 </div>
 ```
 
+# Documentação da Função `createDisplayFieldsForExtraDelivery()`
+
+## Descrição
+Cria dinamicamente campos de exibição no relatório para mostrar informações das entregas extras associadas a um entregador específico.
+
+- **Parâmetros:**
+  - `{number} deliveryPersonId` - O identificador único do entregador, utilizado para gerar os IDs dos elementos de exibição.
+  - `{number} numberOfExtra` - O número de entregas extras que devem ser exibidas.
+  - `{HTMLElement} div` - O elemento DOM onde os campos gerados serão inseridos.
+
+## Dependências
+- **Container DOM:** A função requer um elemento `div` já existente no DOM onde os campos de exibição para as entregas extras serão adicionados.
+
+## Funcionamento
+1. Itera pelo número de entregas extras (`numberOfExtra`) para criar um novo `div` para cada entrega.
+2. Cada `div` contém três `spans` para:
+   - **Nome do Entregador:** Um `span` com o ID `report-extra-delivery-name-{deliveryPersonId}-{i}` e a classe `class-update-name-{deliveryPersonId}`, preenchido com o nome do entregador, a clase é utilizada para atualizar o nome do entregador em multiplos campos em tempo real.
+   - **Número da Entrega Extra:** Um `span` com o ID `report-extra-delivery-number-{deliveryPersonId}-{i}` que exibe o número da entrega extra.
+   - **Motivo da Entrega Extra:** Um `span` com o ID `report-extra-delivery-reason-{deliveryPersonId}-{i}` para exibir o motivo associado a essa entrega.
+3. Adiciona o `div` criado ao container `div` fornecido.
+
+## Estrutura HTML resultante
+```html
+<div class="register-content-{deliveryPersonId}">
+    <span id="report-extra-delivery-name-{deliveryPersonId}-{i}" class="class-update-name-{deliveryPersonId}"></span>
+    <span id="report-extra-delivery-number-{deliveryPersonId}-{i}"></span>
+    <span id="report-extra-delivery-reason-{deliveryPersonId}-{i}"></span>
+</div>
+```
+
 # Documentação da Função `createDisplayFieldsForExtraEmployee()`
 
 ## Descrição
