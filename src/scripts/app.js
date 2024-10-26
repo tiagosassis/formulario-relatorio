@@ -199,7 +199,6 @@ function updateReport(event) {
 
 function updateReportExtraDeliveries(event) {
     const [deliveryPersonId, extraDeliveryIndex] = event.target.id.match(/\d+/g); // pega o número identificador do entregador e pega o número do input que foi usado
-    const teste = document.querySelectorAll('#report-extra-delivery > div')
     let span
 
     if (event.target.className.includes('number')) { // if usado para selecionar se o input usado foi o de numero de pedido ou de motivo de extra
