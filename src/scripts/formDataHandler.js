@@ -2,7 +2,6 @@
 // Funções para manipular e atualizar dados do formulário em tempo real.
 
 import { toggleClassHidden } from "./utils.js"
-import { createInputFieldsForExtraDelivery } from "./formFields.js";
 
 export function updateReportExtraEmployee(event) {
     /**

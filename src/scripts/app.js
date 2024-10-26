@@ -4,7 +4,7 @@ import { createDateTimeInfo, toggleClassHidden } from "./utils.js"
 import { paymentCalculation } from "./payment.js"
 import { createInputFieldsForExtraEmployee } from "./formFields.js"
 import { updateReportExtraEmployee, updateDeliveries, updatePersonNameInDisplay, handleExtraDeliveryData } from "./formDataHandler.js"
-import { manageExtraDeliveryInputs, removeExtraEmployee, manageExtraDeliveryDisplay } from "./inputFieldsManager.js"
+import { manageExtraDeliveryInputs, removeExtraEmployee, manageExtraDeliveryDisplay } from "./fieldManager.js"
 import { createDisplayFieldsForDeliveryPerson } from "./displayFields.js";
 
 document.addEventListener('DOMContentLoaded', () =>{
