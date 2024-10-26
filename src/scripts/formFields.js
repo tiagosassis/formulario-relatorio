@@ -1,6 +1,6 @@
 // formFields.js
 // Funções responsáveis por criar e configurar campos de formulário para inserção de dados.
-import { createReportExtraEmployee } from "./displayFields.js"
+import { createDisplayFieldsForExtraEmployee } from "./displayFields.js"
 
 export function addExtraEmployee() {
     /**
@@ -83,7 +83,7 @@ export function addExtraEmployee() {
 
     container.appendChild(div1)
 
-    createReportExtraEmployee(extraEmployeeId) // cria a div onde as informações do funcionario extra serão colocadas para mostrar no relatorio
+    createDisplayFieldsForExtraEmployee(extraEmployeeId) // cria a div onde as informações do funcionario extra serão colocadas para mostrar no relatorio
 }
 
 export function createInputFieldsForExtraDelivery(div1, numberOfExtra, deliveryPersonId) {
