@@ -18,7 +18,13 @@ export function createInputFieldsForExtraDelivery(div1, numberOfExtra, deliveryP
      *   - Campo de entrada para o motivo da entrega extra.
      */
     let div2, div3, input, label
-    for (let i = 0; i < numberOfExtra; i++) {
+    let register = document.querySelectorAll(`.register-${deliveryPersonId}`)
+    numberOfExtra = parseInt(numberOfExtra)
+    let i = register.length
+    numberOfExtra = numberOfExtra + i
+
+    
+    for (; i < numberOfExtra; i++) {
         div2 = document.createElement('div')
         div2.classList.add('flex-row-wrap', `register-${deliveryPersonId}`, 'flex-container-extra')
 

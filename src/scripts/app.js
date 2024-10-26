@@ -3,7 +3,8 @@ import { copyContent } from "./clipboard.js"
 import { createDateTimeInfo, toggleClassHidden } from "./utils.js"
 import { paymentCalculation } from "./payment.js"
 import { createInputFieldsForExtraEmployee } from "./formFields.js"
-import { updateReportExtraEmployee, removeExtraEmployee, updateDeliveries, updatePersonNameInDisplay, ExtraDeliveryRegister, handleExtraDeliveryData } from "./formDataHandler.js"
+import { updateReportExtraEmployee, removeExtraEmployee, updateDeliveries, updatePersonNameInDisplay, handleExtraDeliveryData } from "./formDataHandler.js"
+import { manageExtraDeliveryInputs } from "./inputFieldsManager.js"
 import { createDisplayFieldsForDeliveryPerson, createDisplayFieldsForExtraDelivery } from "./displayFields.js";
 
 document.addEventListener('DOMContentLoaded', () =>{
@@ -176,12 +177,12 @@ function updateReport(event) {
     } else if(event.target.id.includes('extra')){
         if (event.target.value){ // altera a quantidade de extra no relatorio
             document.querySelector(`#textField-${event.target.id}`).innerHTML = ', ' + event.target.value + ' Extra'
-            ExtraDeliveryRegister(deliveryPersonId, event.target.value)
+            manageExtraDeliveryInputs(deliveryPersonId, event.target.value)
             updateReportTextField(deliveryPersonId, event.target.value)
         }
         else {
             document.querySelector(`#textField-${event.target.id}`).innerHTML = ''
-            ExtraDeliveryRegister(deliveryPersonId, 0)
+            manageExtraDeliveryInputs(deliveryPersonId, 0)
             updateReportTextField(deliveryPersonId, 0)
         }
         

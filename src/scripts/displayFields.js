@@ -47,8 +47,13 @@ export function createDisplayFieldsForExtraDelivery(deliveryPersonId, numberOfEx
     /**
      * Cria campos de exibição para entregas extras no relatório.
      */
+
+    let register = document.querySelectorAll(`.register-content-${deliveryPersonId}`)
+    numberOfExtra = parseInt(numberOfExtra)
+    let i = register.length
+    numberOfExtra = numberOfExtra + i
    
-    for (let i = 0; i < numberOfExtra; i++) {
+    for (; i < numberOfExtra; i++) {
         const div2 = document.createElement('div')
         div2.classList.add(`register-content-${deliveryPersonId}`)
         div2.textContent = '- '
