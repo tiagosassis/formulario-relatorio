@@ -29,6 +29,10 @@ header{
     width: 100vw;
     background-color: var(--header-bg-color);
     padding: 1.5em 0px;
+
+    .flex-row-wrap{
+        margin-top: 0px;
+    }
 }
 
 main{
@@ -47,11 +51,14 @@ main{
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
-    margin-top: 25px;
-
+    
     div{
         position: relative;
     }
+}
+
+div.flex-row-wrap, section.flex-row-wrap{
+    margin-top: 25px;
 }
 
 .flex-container-button{
