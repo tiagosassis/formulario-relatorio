@@ -3,16 +3,7 @@
 
 export function createDisplayFieldsForDeliveryPerson(deliveryPersonId) {
     /**
-     * Cria um campo de texto para exibir informações do entregador no relatório.
-     * 
-     * Estrutura HTML gerada:
-     * <div id="delivery-person-report-1" class="hidden">
-     *     <span id="textField-delivery-person-name-1" class="class-update-name-1"></span>:
-     *     <span id="textField-payment-1"></span><br>
-     *     <span class="hidden">(</span><span id="textField-deliveries-1"></span>
-     *     <span id="textField-extra-1"></span>
-     *     <span id="textField-consumption-1"></span><span class="hidden">)</span>
-     * </div>
+     * Cria um campo de texto para exibir informações dos entregadores no relatório, tais informações incluem nome, numero de entregas, numero de entregas extras e consumo.
      */
 
     let div, span, br
@@ -55,15 +46,6 @@ export function createDisplayFieldsForDeliveryPerson(deliveryPersonId) {
 export function createDisplayFieldsForExtraDelivery(deliveryPersonId, numberOfExtra, div) {
     /**
      * Cria campos de exibição para entregas extras no relatório.
-     * 
-     * Gera elementos DOM que mostram:
-     * - Nome do entregador
-     * - Número da entrega
-     * - Motivo da entrega extra
-     * 
-     * @param {number} deliveryPersonId - ID do entregador.
-     * @param {number} numberOfExtra - Número de entregas extras a serem exibidas.
-     * @param {HTMLElement} div - Elemento DOM onde os campos serão adicionados.
      */
    
     for (let i = 0; i < numberOfExtra; i++) {
