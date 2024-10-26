@@ -1,4 +1,4 @@
-# Documentação da Função `configDeliveryPerson`
+# Documentação da Função `configDeliveryPerson()`
 
 ## Descrição
 Configura o relatório de entregadores para o turno atual (Almoço ou Noite).
@@ -25,6 +25,8 @@ Configura o relatório de entregadores para o turno atual (Almoço ou Noite).
 
 ## Observações
 - Caso ocorra um erro no turno, uma mensagem de erro será registrada no console.
+
+___
 
 # Documentação da Função `createInputFieldsForDeliveryPerson()`
 
@@ -66,7 +68,9 @@ Cria uma estrutura de entrada de dados para o entregador na seção "section-del
     </div>
 ```
 
-# Documentação da Função `createDisplayFieldsForDeliveryPerson`
+___
+
+# Documentação da Função `createDisplayFieldsForDeliveryPerson()`
 
 ## Descrição
 Cria um campo de texto para exibir informações do entregador no relatório.
@@ -100,7 +104,9 @@ Cria um campo de texto para exibir informações do entregador no relatório.
     </div>
 ```
 
-# Documentação da Função `createDisplayFieldsForExtraDelivery`
+___
+
+# Documentação da Função `createDisplayFieldsForExtraDelivery()`
 
 ## Descrição
 Cria campos de exibição para entregas extras no relatório.
