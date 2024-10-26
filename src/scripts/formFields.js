@@ -22,7 +22,6 @@ export function createInputFieldsForExtraDelivery(div1, numberOfExtra, deliveryP
     numberOfExtra = parseInt(numberOfExtra)
     let i = register.length
     numberOfExtra = numberOfExtra + i
-
     
     for (; i < numberOfExtra; i++) {
         div2 = document.createElement('div')
@@ -43,7 +42,7 @@ export function createInputFieldsForExtraDelivery(div1, numberOfExtra, deliveryP
                 input.setAttribute('name', 'extra-delivery-number')
                 input.classList.add('float-input', 'request-number-extra')
                 input.setAttribute('required', '')
-                input.setAttribute('id', `extra-delivery-number-${deliveryPersonId}-${i}`)
+                input.setAttribute('id', `${deliveryPersonId}-${i}-extra-delivery-number-${deliveryPersonId}-${i}`)
                 label = document.createElement('label')
                 label.setAttribute('for', `extra-delivery-number-${deliveryPersonId}-${i}`)
                 label.classList.add('float-label')
