@@ -33,7 +33,7 @@ export function updateReportExtraEmployee(event) {
 
 export function removeExtraEmployee() {
     /**
-     * Remove o último funcionário extra da seção e do relatório.
+     * Remove o último funcionário extra da seção de input e do relatório.
      */
     const extraEmployee = document.querySelectorAll('#section-extra-employee > div')
 
@@ -43,12 +43,12 @@ export function removeExtraEmployee() {
     }
 
     const extraEmployeeId = extraEmployee[extraEmployee.length - 1].firstChild.firstChild.id.match(/\d+/g)
-    
-    // remove a div onde os dados são expostos
-    document.getElementById(`report-freelancer-${extraEmployeeId}`).remove()
 
     // remove a div onde os dados são inseridos
     extraEmployee[extraEmployee.length - 1].remove()
+
+    // remove a div onde os dados são expostos
+    document.getElementById(`report-freelancer-${extraEmployeeId}`).remove()
 }
 
 export function updateDeliveries(event, deliveryPersonId) {
