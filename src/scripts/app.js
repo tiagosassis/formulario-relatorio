@@ -4,8 +4,8 @@ import { createDateTimeInfo, toggleClassHidden } from "./utils.js"
 import { paymentCalculation } from "./payment.js"
 import { createInputFieldsForExtraEmployee } from "./formFields.js"
 import { updateReportExtraEmployee, updateDeliveries, updatePersonNameInDisplay, handleExtraDeliveryData } from "./formDataHandler.js"
-import { manageExtraDeliveryInputs, removeExtraEmployee } from "./inputFieldsManager.js"
-import { createDisplayFieldsForDeliveryPerson, createDisplayFieldsForExtraDelivery } from "./displayFields.js";
+import { manageExtraDeliveryInputs, removeExtraEmployee, manageExtraDeliveryDisplay } from "./inputFieldsManager.js"
+import { createDisplayFieldsForDeliveryPerson } from "./displayFields.js";
 
 document.addEventListener('DOMContentLoaded', () =>{
     configDeliveryPerson()
@@ -178,12 +178,12 @@ function updateReport(event) {
         if (event.target.value){ // altera a quantidade de extra no relatorio
             document.querySelector(`#textField-${event.target.id}`).innerHTML = ', ' + event.target.value + ' Extra'
             manageExtraDeliveryInputs(deliveryPersonId, event.target.value)
-            updateReportTextField(deliveryPersonId, event.target.value)
+            manageExtraDeliveryDisplay(deliveryPersonId, event.target.value)
         }
         else {
             document.querySelector(`#textField-${event.target.id}`).innerHTML = ''
             manageExtraDeliveryInputs(deliveryPersonId, 0)
-            updateReportTextField(deliveryPersonId, 0)
+            manageExtraDeliveryDisplay(deliveryPersonId, 0)
         }
         
         document.querySelectorAll('.flex-container-extra').length < 1 // caso haja entregas extras a parte do relatorio fica visivel, se não, ficava com display none
@@ -195,36 +195,5 @@ function updateReport(event) {
             document.querySelector(`#textField-${event.target.id}`).innerHTML = ', 1 Consumo'
         else
             document.querySelector(`#textField-${event.target.id}`).innerHTML = ''
-    }
-}
-
-function updateReportTextField(deliveryPersonId, numberOfExtra) {
-    const container = document.getElementById('report-extra-delivery')
-    let div = document.getElementById(`div-report-extra-delivery-${deliveryPersonId}`)
-
-    if (div) {
-        let register = document.querySelectorAll(`.register-content-${deliveryPersonId}`)
-        let currentRegister = numberOfExtra - register.length
-        if (currentRegister > 0) {
-            createDisplayFieldsForExtraDelivery(deliveryPersonId, currentRegister, div)
-        } else if(currentRegister < 0){
-            for (let i = register.length; currentRegister !== 0; i--) {
-                if (register[i - 1]) {
-                    register[i - 1].remove()
-                }
-                currentRegister++
-            }
-        } else {
-            return
-        }
-
-    } else {
-        div = document.createElement('div')
-        div.classList.add('flex-column-wrap', `order-${deliveryPersonId}`)
-        div.setAttribute('id', `div-report-extra-delivery-${deliveryPersonId}`)
-
-        createDisplayFieldsForExtraDelivery(deliveryPersonId, numberOfExtra, div)
-
-        container.appendChild(div)
     }
 }
