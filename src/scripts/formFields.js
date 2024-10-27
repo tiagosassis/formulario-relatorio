@@ -67,7 +67,7 @@ export function createInputFieldsForDeliveryPerson(deliveryPersonId, name) {
                 break;
         
             default:
-                console.log('erro no switch case')
+                console.warn('erro no switch case')
                 break;
         }
         div2.appendChild(input)

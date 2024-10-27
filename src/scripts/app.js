@@ -62,7 +62,7 @@ function configDeliveryPerson() {
         dateOfReport.innerHTML = `*Noite ${time.day} / ${time.month}*<br>`
 
     } else {
-        console.log('erro na função configDeliveryPerson()')
+        console.warn('erro na função configDeliveryPerson()')
     }
 
     activeDeliveryPersons.forEach((person, index) =>{

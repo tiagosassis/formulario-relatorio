@@ -22,7 +22,7 @@ function paymentRules(deliveryValues, time) {
             deliveryValues.costAssistance = 20
 
     } else {
-        console.log('erro na função paymentRules()')
+        console.warn('erro na função paymentRules()')
     }
 }
 
@@ -65,7 +65,7 @@ export function paymentCalculation(deliveryPersonId) {
     } else if (time.turn === 'Night') 
         totalPayment = ((deliveries + extra) * deliveryValues.deliveryFee) + deliveryValues.costAssistance - consumption
     else 
-        console.log('erro na função paymentCalculation()')
+        console.warn('erro na função paymentCalculation()')
     
     document.querySelector(`#textField-payment-${deliveryPersonId}`).textContent = `R$ ${totalPayment.toFixed(2).replace('.', ',')}`
 }

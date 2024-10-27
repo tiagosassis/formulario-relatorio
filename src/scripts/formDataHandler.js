@@ -76,7 +76,7 @@ export function handleExtraDeliveryData(event) {
         reason = reason.charAt(0).toUpperCase() + reason.slice(1) // deixa a primeira letra maiúscula
         span.textContent = ' (' + reason + ')'
     } else{
-        console.log('um erro detectado na função handleExtraDeliveryData')
+        console.warn('um erro detectado na função handleExtraDeliveryData')
     }
 }
 
