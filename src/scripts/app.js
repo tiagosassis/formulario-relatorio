@@ -1,17 +1,16 @@
 import { darkMode, detectUserTheme } from "./theme.js"
 import { copyContent } from "./clipboard.js"
-import { createDateTimeInfo, toggleClassHidden, deliveryPersonDatalist } from "./utils.js"
-import { paymentCalculation } from "./payment.js"
+import { createDateTimeInfo, deliveryPersonDatalist } from "./utils.js"
 import { createInputFieldsForExtraEmployee } from "./formFields.js"
-import { updateReportExtraEmployee, updateDeliveries, updatePersonNameInDisplay, handleExtraDeliveryData } from "./formDataHandler.js"
-import { manageExtraDeliveryInputs, removeExtraEmployee, manageExtraDeliveryDisplay } from "./fieldManager.js"
+import { updateReportExtraEmployee, handleExtraDeliveryData, handleDeliveryPersonData } from "./formDataHandler.js"
+import { removeExtraEmployee } from "./fieldManager.js"
 import { createDisplayFieldsForDeliveryPerson } from "./displayFields.js";
 
 document.addEventListener('DOMContentLoaded', () =>{
     configDeliveryPerson()
     detectUserTheme()
 })
-document.getElementById('section-delivery-person').addEventListener('input', updateReport)
+document.getElementById('section-delivery-person').addEventListener('input', handleDeliveryPersonData)
 document.getElementById('section-extra-delivery').addEventListener('input', handleExtraDeliveryData)
 document.getElementById('copy-button').addEventListener('click', copyContent)
 document.getElementById('add-delivery-person-button').addEventListener('click', createInputFieldsForDeliveryPerson)
@@ -142,44 +141,4 @@ function configDeliveryPerson() {
         }
     })
     createInputFieldsForExtraEmployee()
-}
-
-function updateReport(event) {
-    /* função que atualiza o relatorio final com as informações que estão sendo inseridas, como a função capta informações de vários input, eles tem que ser separados pelo ID
-        dessa forma temos um if/else que separa delivery, extra e consumo
-        o nome é atualizado de forma automatica pela funçao updatePersonNameInDisplay() e o pagamento é calculado pela função paymentCalculation()
-        oque diferencia cada entrega é deliveryPersonId
-    */
-    const deliveryPersonId = event.target.id.match(/\d+/g)[0]
-    const sectionExtraDelivery = document.getElementById('report-extra-delivery')
-    
-    paymentCalculation(deliveryPersonId) // calcula o pagamento do entregador(a) com base nas entregas, entregas extras e consumo
-    updatePersonNameInDisplay(deliveryPersonId)
-    
-
-    if(event.target.id.includes('deliveries')){
-        updateDeliveries(event, deliveryPersonId)
-
-    } else if(event.target.id.includes('extra')){
-        if (event.target.value){ // altera a quantidade de extra no relatorio
-            document.querySelector(`#textField-${event.target.id}`).innerHTML = ', ' + event.target.value + ' Extra'
-            manageExtraDeliveryInputs(deliveryPersonId, event.target.value)
-            manageExtraDeliveryDisplay(deliveryPersonId, event.target.value)
-        }
-        else {
-            document.querySelector(`#textField-${event.target.id}`).innerHTML = ''
-            manageExtraDeliveryInputs(deliveryPersonId, 0)
-            manageExtraDeliveryDisplay(deliveryPersonId, 0)
-        }
-        
-        document.querySelectorAll('.flex-container-extra').length < 1 // caso haja entregas extras a parte do relatorio fica visivel, se não, ficava com display none
-            ? toggleClassHidden(sectionExtraDelivery, false)
-            : toggleClassHidden(sectionExtraDelivery, true)
-
-    } else if(event.target.id.includes('consumption')){ 
-        if (event.target.value) // altera o status de consumo no relatorio
-            document.querySelector(`#textField-${event.target.id}`).innerHTML = ', 1 Consumo'
-        else
-            document.querySelector(`#textField-${event.target.id}`).innerHTML = ''
-    }
 }

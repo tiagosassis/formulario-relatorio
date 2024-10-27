@@ -2,6 +2,8 @@
 // Funções para manipular e atualizar dados do formulário em tempo real.
 
 import { toggleClassHidden } from "./utils.js"
+import { paymentCalculation } from "./payment.js"
+import { manageExtraDeliveryInputs, manageExtraDeliveryDisplay } from "./fieldManager.js"
 
 export function updateReportExtraEmployee(event) {
     /**
@@ -47,7 +49,7 @@ export function updateDeliveries(event, deliveryPersonId) {
         toggleClassHidden(document.querySelector(`#delivery-person-report-${deliveryPersonId}`), false)
 }
 
-export function updatePersonNameInDisplay(deliveryPersonId) {
+function updatePersonNameInDisplay(deliveryPersonId) {
     /**
      * Atualiza o nome do entregador em todos os elementos da página que possuem a classe
      * `class-update-name-${deliveryPersonId}` com o valor do input correspondente.
@@ -75,5 +77,45 @@ export function handleExtraDeliveryData(event) {
         span.textContent = ' (' + reason + ')'
     } else{
         console.log('um erro detectado na função handleExtraDeliveryData')
+    }
+}
+
+export function handleDeliveryPersonData(event) {
+    /* função que atualiza o relatorio final com as informações que estão sendo inseridas, como a função capta informações de vários input, eles tem que ser separados pelo ID
+        dessa forma temos um if/else que separa delivery, extra e consumo
+        o nome é atualizado de forma automatica pela funçao updatePersonNameInDisplay() e o pagamento é calculado pela função paymentCalculation()
+        oque diferencia cada entrega é deliveryPersonId
+    */
+    const deliveryPersonId = event.target.id.match(/\d+/g)[0]
+    const sectionExtraDelivery = document.getElementById('report-extra-delivery')
+    
+    paymentCalculation(deliveryPersonId) // calcula o pagamento do entregador(a) com base nas entregas, entregas extras e consumo
+    updatePersonNameInDisplay(deliveryPersonId)
+    
+
+    if(event.target.id.includes('deliveries')){
+        updateDeliveries(event, deliveryPersonId)
+
+    } else if(event.target.id.includes('extra')){
+        if (event.target.value){ // altera a quantidade de extra no relatorio
+            document.querySelector(`#textField-${event.target.id}`).innerHTML = ', ' + event.target.value + ' Extra'
+            manageExtraDeliveryInputs(deliveryPersonId, event.target.value)
+            manageExtraDeliveryDisplay(deliveryPersonId, event.target.value)
+        }
+        else {
+            document.querySelector(`#textField-${event.target.id}`).innerHTML = ''
+            manageExtraDeliveryInputs(deliveryPersonId, 0)
+            manageExtraDeliveryDisplay(deliveryPersonId, 0)
+        }
+        
+        document.querySelectorAll('.flex-container-extra').length < 1 // caso haja entregas extras a parte do relatorio fica visivel, se não, ficava com display none
+            ? toggleClassHidden(sectionExtraDelivery, false)
+            : toggleClassHidden(sectionExtraDelivery, true)
+
+    } else if(event.target.id.includes('consumption')){ 
+        if (event.target.value) // altera o status de consumo no relatorio
+            document.querySelector(`#textField-${event.target.id}`).innerHTML = ', 1 Consumo'
+        else
+            document.querySelector(`#textField-${event.target.id}`).innerHTML = ''
     }
 }
