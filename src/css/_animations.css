@@ -8,3 +8,29 @@ button:active{ /*botão reduz de tamanho quando clicado*/
     transition: 0.1s ease;
     background-color: var(--active-bg-button-color);
 }
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px); }
+    10% { transform: translate(-1px, -1px); }
+    20% { transform: translate(1px, 1px); }
+    30% { transform: translate(-1px, -1px); }
+    40% { transform: translate(1px, 1px); }
+    50% { transform: translate(-1px, -1px); }
+    60% { transform: translate(1px, 1px); }
+    70% { transform: translate(-1px, -1px); }
+    80% { transform: translate(1px, 1px); }
+    90% { transform: translate(-1px, -1px); }
+    100% { transform: translate(0px, 0px); }
+}
+
+.shake {
+    animation: shake .3s; /* Duracao da animação */
+    animation-fill-mode: both; /* Mantém o estado final da animação */
+}
+
+/* Implementação JavaScript
+    document.querySelector(`#consumption-${deliveryPersonId}`).classList.add('shake');
+    setTimeout(() => {
+        document.querySelector(`#consumption-${deliveryPersonId}`).classList.remove('shake');
+    }, 300);
+ */

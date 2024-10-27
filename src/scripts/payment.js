@@ -54,8 +54,14 @@ export function paymentCalculation(deliveryPersonId) {
 
     if (document.querySelector(`#consumption-${deliveryPersonId}`).value == '') 
         consumption = 0
-    else 
+    else {
         consumption = parseFloat(document.querySelector(`#consumption-${deliveryPersonId}`).value.replace(',', '.'))
+        if (isNaN(consumption))
+            document.querySelector(`#consumption-${deliveryPersonId}`).classList.add('input-invalid-value')
+        
+        else
+            document.querySelector(`#consumption-${deliveryPersonId}`).classList.remove('input-invalid-value')
+    }
 
     if (time.turn === 'Morning') {
         if ((deliveries + extra) < 10) 

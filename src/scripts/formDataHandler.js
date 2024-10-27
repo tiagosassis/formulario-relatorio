@@ -115,7 +115,11 @@ export function handleDeliveryPersonData(event) {
     } else if(event.target.id.includes('consumption')){ 
         if (event.target.value) // altera o status de consumo no relatorio
             document.querySelector(`#textField-${event.target.id}`).innerHTML = ', 1 Consumo'
-        else
+        else {
             document.querySelector(`#textField-${event.target.id}`).innerHTML = ''
+            if (!document.querySelector(`#textField-${event.target.id}`).value) {
+                document.querySelector(`#consumption-${deliveryPersonId}`).classList.remove('input-invalid-value')
+            }
+        }
     }
 }
