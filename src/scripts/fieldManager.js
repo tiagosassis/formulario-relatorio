@@ -45,26 +45,6 @@ export function manageExtraDeliveryInputs(deliveryPersonId, numberOfExtra) {
     }
 }
 
-export function removeExtraEmployee() {
-    /**
-     * Remove o último funcionário extra da seção de input e do relatório.
-     */
-    const extraEmployee = document.querySelectorAll('#section-extra-employee > div')
-
-    if (extraEmployee.length === 0) {
-        console.warn('Não há funcionários extras para remover.')
-        return
-    }
-
-    const extraEmployeeId = extraEmployee[extraEmployee.length - 1].firstChild.firstChild.id.match(/\d+/g)
-
-    // remove a div onde os dados são inseridos
-    extraEmployee[extraEmployee.length - 1].remove()
-
-    // remove a div onde os dados são expostos
-    document.getElementById(`report-freelancer-${extraEmployeeId}`).remove()
-}
-
 export function manageExtraDeliveryDisplay(deliveryPersonId, numberOfExtra) {
     const container = document.getElementById('report-extra-delivery')
     let div = document.getElementById(`div-report-extra-delivery-${deliveryPersonId}`)
@@ -94,4 +74,24 @@ export function manageExtraDeliveryDisplay(deliveryPersonId, numberOfExtra) {
 
         container.appendChild(div)
     }
+}
+
+export function removeExtraEmployee() {
+    /**
+     * Remove o último funcionário extra da seção de input e do relatório.
+     */
+    const extraEmployee = document.querySelectorAll('#section-extra-employee > div')
+
+    if (extraEmployee.length === 0) {
+        console.warn('Não há funcionários extras para remover.')
+        return
+    }
+
+    const extraEmployeeId = extraEmployee[extraEmployee.length - 1].firstChild.firstChild.id.match(/\d+/g)
+
+    // remove a div onde os dados são inseridos
+    extraEmployee[extraEmployee.length - 1].remove()
+
+    // remove a div onde os dados são expostos
+    document.getElementById(`report-freelancer-${extraEmployeeId}`).remove()
 }
