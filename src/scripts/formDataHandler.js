@@ -5,7 +5,7 @@ import { toggleClassHidden } from "./utils.js"
 import { paymentCalculation } from "./payment.js"
 import { manageExtraDeliveryInputs, manageExtraDeliveryDisplay } from "./fieldManager.js"
 
-export function updateReportExtraEmployee(event) {
+export function handleExtraEmployeeData(event) {
     /**
      * Atualiza os campos de exibição no relatório em tempo real com os dados inseridos nos inputs de nome, pagamento e chave Pix dos funcionários extras.
      * Caso haja um nome inserido, torna a seção correspondente visível no relatório.
@@ -32,7 +32,7 @@ export function updateReportExtraEmployee(event) {
 
 }
 
-export function updateDeliveries(event, deliveryPersonId) {
+function handleDeliveryData(event, deliveryPersonId) {
     /**
      * Atualiza a quantidade de entregas no relatório e altera a visibilidade do entregador
      * conforme a quantidade informada.
@@ -49,7 +49,7 @@ export function updateDeliveries(event, deliveryPersonId) {
         toggleClassHidden(document.querySelector(`#delivery-person-report-${deliveryPersonId}`), false)
 }
 
-function updatePersonNameInDisplay(deliveryPersonId) {
+function refreshPersonNameInDisplayOnChange(deliveryPersonId) {
     /**
      * Atualiza o nome do entregador em todos os elementos da página que possuem a classe
      * `class-update-name-${deliveryPersonId}` com o valor do input correspondente.
@@ -83,18 +83,18 @@ export function handleExtraDeliveryData(event) {
 export function handleDeliveryPersonData(event) {
     /* função que atualiza o relatorio final com as informações que estão sendo inseridas, como a função capta informações de vários input, eles tem que ser separados pelo ID
         dessa forma temos um if/else que separa delivery, extra e consumo
-        o nome é atualizado de forma automatica pela funçao updatePersonNameInDisplay() e o pagamento é calculado pela função paymentCalculation()
+        o nome é atualizado de forma automatica pela funçao refreshPersonNameInDisplayOnChange() e o pagamento é calculado pela função paymentCalculation()
         oque diferencia cada entrega é deliveryPersonId
     */
     const deliveryPersonId = event.target.id.match(/\d+/g)[0]
     const sectionExtraDelivery = document.getElementById('report-extra-delivery')
     
     paymentCalculation(deliveryPersonId) // calcula o pagamento do entregador(a) com base nas entregas, entregas extras e consumo
-    updatePersonNameInDisplay(deliveryPersonId)
+    refreshPersonNameInDisplayOnChange(deliveryPersonId)
     
 
     if(event.target.id.includes('deliveries')){
-        updateDeliveries(event, deliveryPersonId)
+        handleDeliveryData(event, deliveryPersonId)
 
     } else if(event.target.id.includes('extra')){
         if (event.target.value){ // altera a quantidade de extra no relatorio

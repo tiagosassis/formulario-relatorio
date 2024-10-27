@@ -1,6 +1,7 @@
 // formFields.js
 // Funções responsáveis por criar e configurar campos de formulário para inserção de dados.
 import { createDisplayFieldsForDeliveryPerson, createDisplayFieldsForExtraEmployee } from "./displayFields.js"
+import { getCurrentDeliveryPersonCount, setCurrentDeliveryPersonCount } from "./app.js";
 
 export function createInputFieldsForDeliveryPerson(deliveryPersonId, name) {
     /**
@@ -8,8 +9,8 @@ export function createInputFieldsForDeliveryPerson(deliveryPersonId, name) {
      * Dependências: Requer a função `createDisplayFieldsForDeliveryPerson(deliveryPersonId)` para criar o campo de exibição.
      */
     if (!(typeof deliveryPersonId === 'number')) {
-        deliveryPersonId = currentDeliveryPersonCount
-        currentDeliveryPersonCount++
+        deliveryPersonId = getCurrentDeliveryPersonCount()
+        setCurrentDeliveryPersonCount(getCurrentDeliveryPersonCount() + 1)
         name = ''
     }
 
@@ -58,7 +59,7 @@ export function createInputFieldsForDeliveryPerson(deliveryPersonId, name) {
         
             case 3:
                 div2.classList.add('flex-item-day-consumption')
-                input.setAttribute('type', 'number')
+                input.setAttribute('type', 'text')
                 input.setAttribute('id', `consumption-${deliveryPersonId}`)
                 input.setAttribute('required', '')
                 label.setAttribute('for', `consumption-${deliveryPersonId}`)

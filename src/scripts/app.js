@@ -2,7 +2,7 @@ import { darkMode, detectUserTheme } from "./theme.js"
 import { copyContent } from "./clipboard.js"
 import { createDateTimeInfo, deliveryPersonDatalist } from "./utils.js"
 import { createInputFieldsForExtraEmployee, createInputFieldsForDeliveryPerson } from "./formFields.js"
-import { updateReportExtraEmployee, handleExtraDeliveryData, handleDeliveryPersonData } from "./formDataHandler.js"
+import { handleExtraEmployeeData, handleExtraDeliveryData, handleDeliveryPersonData } from "./formDataHandler.js"
 import { removeExtraEmployee } from "./fieldManager.js"
 
 document.addEventListener('DOMContentLoaded', () =>{
@@ -16,7 +16,7 @@ document.getElementById('add-delivery-person-button').addEventListener('click', 
 document.getElementById('theme').addEventListener('click', darkMode)
 document.getElementById('add-extra-employee').addEventListener('click', createInputFieldsForExtraEmployee)
 document.getElementById('remove-extra-employee').addEventListener('click', removeExtraEmployee)
-document.getElementById('section-extra-employee').addEventListener('input', updateReportExtraEmployee)
+document.getElementById('section-extra-employee').addEventListener('input', handleExtraEmployeeData)
 
 export const activeDeliveryPersons = [
     {name: 'Byane', turn: ['Night'], dayOff: 'Wednesday'},
@@ -26,7 +26,15 @@ export const activeDeliveryPersons = [
     {name: 'João Pedro', turn: ['Morning'], dayOff: ''}
 ]
 
-export let currentDeliveryPersonCount = activeDeliveryPersons.length // necessário para criar o ID único para extradores extras criados pelo usuário
+let currentDeliveryPersonCount = activeDeliveryPersons.length // necessário para criar o ID único para extradores extras criados pelo usuário
+
+export function getCurrentDeliveryPersonCount() {
+    return currentDeliveryPersonCount;
+}
+
+export function setCurrentDeliveryPersonCount(newCount) {
+    currentDeliveryPersonCount = newCount;
+}
 
 function configDeliveryPerson() {
     /**
