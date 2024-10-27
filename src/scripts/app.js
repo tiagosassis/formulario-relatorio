@@ -26,7 +26,7 @@ export const activeDeliveryPersons = [
     {name: 'João Pedro', turn: ['Morning'], dayOff: ''}
 ]
 
-export let currentDeliveryPersonCount = activeDeliveryPersons.length
+export let currentDeliveryPersonCount = activeDeliveryPersons.length // necessário para criar o ID único para extradores extras criados pelo usuário
 
 function configDeliveryPerson() {
     /**
