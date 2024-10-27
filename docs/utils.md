@@ -35,3 +35,50 @@ Cria um objeto com informações sobre a data e hora atuais, incluindo o turno d
 ```
 
 ___
+
+# Documentação da Função `toggleClassHidden()`
+
+## Descrição
+Alterna a classe `hidden` em elementos HTML, que aplica `display: none` aos elementos.
+
+- Se o parâmetro `toggle` for `true`, remove a classe `hidden` se ela estiver presente.
+- Se o parâmetro `toggle` for `false`, adiciona a classe `hidden` se ela não estiver presente.
+
+## Dependências
+- Nenhuma função externa é necessária para o funcionamento desta função.
+
+## Parâmetros
+- **`element`**: O elemento HTML no qual a classe `hidden` será alternada.
+- **`toggle`**: Um booleano que determina se a classe `hidden` deve ser removida (`true`) ou adicionada (`false`).
+
+## Funcionamento
+1. Verifica o valor do parâmetro `toggle`.
+2. Se `toggle` for `true`, remove a classe `hidden` do elemento, se estiver presente.
+3. Se `toggle` for `false`, adiciona a classe `hidden` ao elemento, se não estiver presente.
+
+## Estrutura do Uso
+```javascript
+    toggleClassHidden(element, true); // Remove a classe hidden
+    toggleClassHidden(element, false); // Adiciona a classe hidden
+```
+
+___
+
+# Documentação da Função `deliveryPersonDatalist()`
+
+## Descrição
+Cria uma `datalist` para os entregadores e a insere no HTML do relatório.
+
+- A função seleciona um contêiner HTML onde a `datalist` será inserida.
+- Para cada entregador ativo, cria uma opção (`<option>`) e a adiciona à `datalist`.
+- A `datalist` é então inserida como o primeiro filho do contêiner especificado.
+
+## Dependências
+- A variável `activeDeliveryPersons` deve estar definida e conter um array de objetos com as informações dos entregadores ativos.
+
+## Funcionamento
+1. Seleciona o contêiner HTML onde a `datalist` será inserida.
+2. Cria um novo elemento `datalist` e define seu ID como `datalist-delivery-person`.
+3. Itera sobre o array `activeDeliveryPersons`, criando um elemento `<option>` para cada entregador.
+4. Adiciona cada `<option>` à `datalist`.
+5. Insere a `datalist` no contêiner como o primeiro filho.

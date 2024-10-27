@@ -2,21 +2,12 @@ import { activeDeliveryPersons } from "./app.js"
 
 export function createDateTimeInfo(){
     /**
-     * Cria um objeto com informações sobre a data e hora atuais, incluindo o turno do dia
-     * e o dia da semana.
+     * Gera um objeto com a data e hora atuais, incluindo o turno do dia e o dia da semana.
+     * Ajusta a data se a hora for entre 00:00 e 05:00, e determina se o turno é "Morning" ou "Night".
      * 
-     * - A função ajusta a data para o dia anterior se a hora atual estiver entre meia-noite e 5 da manhã.
-     * - Determina o turno do dia como "Morning" se a hora estiver entre 5:00 e 17:00, e "Night" caso contrário.
-     * - Identifica o dia da semana correspondente ao valor do dia da semana retornado pelo método `getDay()` do objeto Date, convertendo-o em uma string representativa (ex: "Monday").
-     * - Retorna um objeto contendo as seguintes propriedades:
-     *   - currentHour: A hora atual no formato 24 horas.
-     *   - turn: O turno do dia ("Morning" ou "Night").
-     *   - weekDay: O dia da semana (ex: "Monday", "Tuesday").
-     *   - day: O dia do mês com dois dígitos.
-     *   - month: O mês atual com dois dígitos.
-     * 
-     * @returns {Object} Um objeto com informações sobre a data e hora atuais.
+     * @returns {Object} Objeto contendo `currentHour`, `turn`, `weekDay`, `day`, e `month`.
      */
+
     const now = new Date()
     if (now.getHours() < 5)
         now.setDate(now.getDate() - 1) // Ajusta para o dia anterior caso a hora esteja entre meia noite e 5 da madrugada
