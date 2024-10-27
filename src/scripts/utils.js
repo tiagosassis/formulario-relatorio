@@ -1,3 +1,5 @@
+import { activeDeliveryPersons } from "./app.js"
+
 export function createDateTimeInfo(){
     /**
      * Cria um objeto com informações sobre a data e hora atuais, incluindo o turno do dia
@@ -82,4 +84,18 @@ export function toggleClassHidden(element, toggle) {
         if(!element.classList.contains('hidden'))
             element.classList.add('hidden')
     }
+}
+
+export function deliveryPersonDatalist() { // cria a datalist de entregador e coloca no html do relatorio
+    const container = document.getElementById('section-delivery-person')
+    const datalist = document.createElement('datalist')
+    datalist.setAttribute('id', 'datalist-delivery-person')
+
+    activeDeliveryPersons.forEach(person => {
+        const option = document.createElement('option')
+        option.setAttribute('value', person.name)
+        option.textContent = person.name
+        datalist.appendChild(option)
+    })
+    container.insertBefore(datalist, container.firstChild)
 }
