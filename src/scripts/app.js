@@ -1,6 +1,6 @@
 import { darkMode, detectUserTheme } from "./theme.js"
 import { copyContent } from "./clipboard.js"
-import { createDateTimeInfo, toggleClassHidden } from "./utils.js"
+import { createDateTimeInfo, toggleClassHidden, deliveryPersonDatalist } from "./utils.js"
 import { paymentCalculation } from "./payment.js"
 import { createInputFieldsForExtraEmployee } from "./formFields.js"
 import { updateReportExtraEmployee, updateDeliveries, updatePersonNameInDisplay, handleExtraDeliveryData } from "./formDataHandler.js"
@@ -20,7 +20,7 @@ document.getElementById('add-extra-employee').addEventListener('click', createIn
 document.getElementById('remove-extra-employee').addEventListener('click', removeExtraEmployee)
 document.getElementById('section-extra-employee').addEventListener('input', updateReportExtraEmployee)
 
-const activeDeliveryPersons = [
+export const activeDeliveryPersons = [
     {name: 'Byane', turn: ['Night'], dayOff: 'Wednesday'},
     {name: 'Guilherme Vieira', turn: ['Night'], dayOff: 'Tuesday'},
     {name: 'Kaio', turn: ['Night'], dayOff: 'Thursday'},
@@ -144,25 +144,11 @@ function configDeliveryPerson() {
     createInputFieldsForExtraEmployee()
 }
 
-function deliveryPersonDatalist() { // cria a datalist de entregador e coloca no html do relatorio
-    const container = document.getElementById('section-delivery-person')
-    const datalist = document.createElement('datalist')
-    datalist.setAttribute('id', 'datalist-delivery-person')
-
-    activeDeliveryPersons.forEach(person => {
-        const option = document.createElement('option')
-        option.setAttribute('value', person.name)
-        option.textContent = person.name
-        datalist.appendChild(option)
-    })
-    container.insertBefore(datalist, container.firstChild)
-}
-
 function updateReport(event) {
     /* função que atualiza o relatorio final com as informações que estão sendo inseridas, como a função capta informações de vários input, eles tem que ser separados pelo ID
-    dessa forma temos um if/else que separa delivery, extra e consumo
-    o nome é atualizado de forma automatica e o pagamento é calculado pela função paymentCalculation
-    oque diferencia cada entrega é deliveryPersonId
+        dessa forma temos um if/else que separa delivery, extra e consumo
+        o nome é atualizado de forma automatica pela funçao updatePersonNameInDisplay() e o pagamento é calculado pela função paymentCalculation()
+        oque diferencia cada entrega é deliveryPersonId
     */
     const deliveryPersonId = event.target.id.match(/\d+/g)[0]
     const sectionExtraDelivery = document.getElementById('report-extra-delivery')
