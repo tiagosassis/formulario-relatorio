@@ -1,0 +1,10 @@
+.float-input:focus ~ .float-label, .float-input:valid ~ .float-label{ /*animação do label flutuar sobre o input quando está em foco*/
+    top: -21px;
+    font-size: 0.8em;
+}
+
+button:active{ /*botão reduz de tamanho quando clicado*/
+    transform: scale(0.95);
+    transition: 0.1s ease;
+    background-color: var(--active-bg-button-color);
+}
