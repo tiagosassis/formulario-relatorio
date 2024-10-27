@@ -154,24 +154,7 @@ export function createInputFieldsForExtraEmployee() {
      * Adiciona um novo funcionário extra ao formulário, criando campos de entrada para nome, pagamento diário e chave Pix.
      * Esta função gera automaticamente IDs exclusivos para os campos de entrada com base na quantidade de funcionários extras já existentes.
      *
-     * Estrutura HTML gerada:
-     * <div class="flex-row-wrap extra-employee">
-     *     <div class="flex-item-employee-name">
-     *         <input type="text" name="extra-employee-name-{extraEmployeeId}" id="extra-employee-name-{extraEmployeeId}" class="float-input" required>
-     *         <label for="extra-employee-name-{extraEmployeeId}" class="float-label">Nome</label>
-     *     </div>
-     *     <div class="flex-item-daily-payment">
-     *         <input type="number" name="extra-employee-daily-payment-{extraEmployeeId}" id="extra-employee-daily-payment-{extraEmployeeId}" class="float-input" required>
-     *         <label for="extra-employee-daily-payment-{extraEmployeeId}" class="float-label">Diária</label>
-     *     </div>
-     *     <div class="flex-item-pix-key">
-     *         <input type="text" name="extra-employee-pix-key-{extraEmployeeId}" id="extra-employee-pix-key-{extraEmployeeId}" class="float-input" required>
-     *         <label for="extra-employee-pix-key-{extraEmployeeId}" class="float-label">Chave Pix</label>
-     *     </div>
-     * </div>
-     *
      * - Cada funcionário extra é representado por um <div> com a classe 'extra-employee'.
-     * - Os campos de entrada têm atributos 'name' e 'id' gerados com o ID do funcionário extra.
      */
     const container = document.getElementById('section-extra-employee')
     const extraEmployeeCount = document.querySelectorAll('#section-extra-employee > div') // seleciona todos os campos ja criados para saber a quantidade de extras
