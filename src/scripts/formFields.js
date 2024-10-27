@@ -1,6 +1,82 @@
 // formFields.js
 // Funções responsáveis por criar e configurar campos de formulário para inserção de dados.
-import { createDisplayFieldsForExtraEmployee } from "./displayFields.js"
+import { createDisplayFieldsForDeliveryPerson, createDisplayFieldsForExtraEmployee } from "./displayFields.js"
+
+export function createInputFieldsForDeliveryPerson(deliveryPersonId, name) {
+    /**
+     * Cria uma estrutura de entrada de dados para o entregador na seção "section-delivery-person".
+     * Dependências: Requer a função `createDisplayFieldsForDeliveryPerson(deliveryPersonId)` para criar o campo de exibição.
+     */
+    if (!(typeof deliveryPersonId === 'number')) {
+        deliveryPersonId = currentDeliveryPersonCount
+        currentDeliveryPersonCount++
+        name = ''
+    }
+
+    const section = document.getElementById('section-delivery-person')
+    let div1, div2, input, label;
+
+    div1 = document.createElement('div')
+    div1.classList.add('flex-row-wrap', 'delivery-person-container', 'container-relative')
+
+    for (let index = 0; index < 4; index++) {
+        div2 = document.createElement('div')
+        input = document.createElement('input')
+        input.classList.add('float-input')
+        label = document.createElement('label')
+        label.classList.add('float-label')
+
+        switch (index) {
+            case 0:
+                div2.classList.add('flex-item-delivery-person-name')
+                input.setAttribute('type', 'text')
+                input.setAttribute('id', `delivery-person-name-${deliveryPersonId}`)
+                input.setAttribute('list', 'datalist-delivery-person')
+                input.setAttribute('value', name)
+                input.setAttribute('required', '')
+                label.setAttribute('for', `delivery-person-name-${deliveryPersonId}`)
+                label.textContent = 'Nome'
+                break;
+        
+            case 1:
+                div2.classList.add('flex-item-deliveries-amount')
+                input.setAttribute('type', 'number')
+                input.setAttribute('id', `deliveries-${deliveryPersonId}`)
+                input.setAttribute('required', '')
+                label.setAttribute('for', `deliveries-${deliveryPersonId}`)
+                label.textContent = 'Entregas'
+                break;
+        
+            case 2:
+                div2.classList.add('flex-item-delivery-extra')
+                input.setAttribute('type', 'number')
+                input.setAttribute('id', `extra-${deliveryPersonId}`)
+                input.setAttribute('required', '')
+                label.setAttribute('for', `extra-${deliveryPersonId}`)
+                label.textContent = 'Extra'
+                break;
+        
+            case 3:
+                div2.classList.add('flex-item-day-consumption')
+                input.setAttribute('type', 'number')
+                input.setAttribute('id', `consumption-${deliveryPersonId}`)
+                input.setAttribute('required', '')
+                label.setAttribute('for', `consumption-${deliveryPersonId}`)
+                label.textContent = 'Consumo'
+                break;
+        
+            default:
+                console.log('erro no switch case')
+                break;
+        }
+        div2.appendChild(input)
+        div2.appendChild(label)
+        div1.appendChild(div2)
+    }
+    section.appendChild(div1)
+
+    createDisplayFieldsForDeliveryPerson(deliveryPersonId)
+}
 
 export function createInputFieldsForExtraDelivery(div1, numberOfExtra, deliveryPersonId) {
     /*
