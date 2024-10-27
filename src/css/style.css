@@ -36,10 +36,10 @@ header{
 }
 
 main{
-    width: 100wv;
+    width: 100vw;
     justify-content: center;
     align-items: center;
-    padding-top: 25px;
+    padding: 25px 0px;
 }
 
 .flex-column-wrap{
