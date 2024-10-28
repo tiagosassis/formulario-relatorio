@@ -29,7 +29,6 @@ export function createInputFieldsForDeliveryPerson(deliveryPersonId, name) {
     for (let index = 0; index < 4; index++) {
         div2 = document.createElement('div')
         input = document.createElement('input')
-        input.setAttribute('autocomplete', 'on')
         input.classList.add('float-input')
         label = document.createElement('label')
         label.classList.add('float-label')
@@ -37,6 +36,7 @@ export function createInputFieldsForDeliveryPerson(deliveryPersonId, name) {
         switch (index) {
             case 0:
                 div2.classList.add('flex-item-delivery-person-name')
+                input.setAttribute('autocomplete', 'on')
                 input.setAttribute('type', 'text')
                 input.setAttribute('id', `delivery-person-name-${deliveryPersonId}`)
                 input.setAttribute('list', 'datalist-delivery-person')
