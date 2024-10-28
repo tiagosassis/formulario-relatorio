@@ -1,4 +1,4 @@
-@import url('./_variables.css');
+@import url('./variables.css');
 @import url('./_dark-mode.css');
 
 .float-input:focus ~ .float-label, .float-input:valid ~ .float-label{ /*animação do label flutuar sobre o input quando está em foco*/
