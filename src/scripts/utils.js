@@ -98,3 +98,11 @@ export function blockNonNumericKeys(input) { // bloqueia o uso desses caracteres
         }
     })
 }
+
+export function restrictInputRange(input) { // limita o valor em input type number
+    input.addEventListener('input', (event) => {
+        if (event.target.value >= 10) {
+            event.target.value = 10;
+        }
+    })
+}
