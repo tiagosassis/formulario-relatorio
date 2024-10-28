@@ -124,3 +124,9 @@ export function showWarningForHighValue(value, extraEmployeeId) {
         document.getElementById(`span-alert-${extraEmployeeId}`).classList.add('display-none')
     }
 }
+
+export function validateOrderNumberLength(event){
+    if (event.target.value.length > 6) {
+        event.target.value = event.target.value.slice(0, 6); // Limita a entrada a 6 caracteres
+    }
+}
