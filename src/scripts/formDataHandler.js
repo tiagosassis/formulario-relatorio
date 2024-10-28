@@ -27,7 +27,6 @@ export function handleExtraEmployeeData(event) {
     inputPayment.value ? payment.textContent = `: R$ ${parseFloat(inputPayment.value).toFixed(2).replace('.', ',')}` : payment.textContent = ''
     inputPixKey.value ? pixKey.textContent = ` (Pix: ${inputPixKey.value})` : pixKey.textContent = ''
 
-    
     name.textContent.length >= 1
         ? toggleClassHidden(document.getElementById('report-freelancer'), true)
         : toggleClassHidden(document.getElementById('report-freelancer'), false)
@@ -113,6 +112,10 @@ export function handleDeliveryPersonData(event) {
         document.querySelectorAll('.flex-container-extra').length < 1 // caso haja entregas extras a parte do relatorio fica visivel, se não, ficava com display none
             ? toggleClassHidden(sectionExtraDelivery, false)
             : toggleClassHidden(sectionExtraDelivery, true)
+        
+        document.querySelectorAll('#section-extra-delivery div > div').length >= 1 // caso haja entregas extras, a section onde havera o input das informações aparece, se não, fica invisivel
+            ? toggleClassHidden(document.getElementById('fieldset-extra-delivery'), true)
+            : toggleClassHidden(document.getElementById('fieldset-extra-delivery'), false)
 
     } else if(event.target.id.includes('consumption')){ 
         if (event.target.value) // altera o status de consumo no relatorio
