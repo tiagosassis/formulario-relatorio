@@ -178,6 +178,10 @@ hr{
     display: none;
 }
 
+.visibility-hidden{
+    visibility: hidden;
+}
+
 .content{
     display: contents;
     /*Essa classe altera a disposição do texto no relatorio, de forma que fique exatamente como tem que ficar quando for copiado, essa classe deve ser aplicada somente no momento de copiar e depois deve ser retirada para o texto voltar a ter display block*/
@@ -185,7 +189,6 @@ hr{
 
 .popup {
     color: var(--popup-text-color);
-    visibility: hidden;
     width: 250px;
     background-color: var(--popup-bg-color);
     text-align: center;
