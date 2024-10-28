@@ -1,6 +1,6 @@
 @import url('./_variables.css');
 @import url('./_dark-mode.css');
-@import url(./_animations.css);
+@import url('./_animations.css');
 
 label{
     padding-top: 5px;
