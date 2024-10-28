@@ -1,7 +1,7 @@
 // formFields.js
 // Funções responsáveis por criar e configurar campos de formulário para inserção de dados.
 import { createDisplayFieldsForDeliveryPerson, createDisplayFieldsForExtraEmployee } from "./displayFields.js"
-import { getCurrentDeliveryPersonCount, setCurrentDeliveryPersonCount } from "./app.js";
+import { activeDeliveryPersons, getCurrentDeliveryPersonCount, setCurrentDeliveryPersonCount } from "./app.js";
 import { blockNonNumericKeys } from './utils.js'
 
 export function createInputFieldsForDeliveryPerson(deliveryPersonId, name) {
@@ -13,6 +13,11 @@ export function createInputFieldsForDeliveryPerson(deliveryPersonId, name) {
         deliveryPersonId = getCurrentDeliveryPersonCount()
         setCurrentDeliveryPersonCount(getCurrentDeliveryPersonCount() + 1)
         name = ''
+    }
+
+    if((getCurrentDeliveryPersonCount() - activeDeliveryPersons.length) > 3){
+        console.warn('Limite de entregadores alcançado!')
+        return
     }
 
     const section = document.getElementById('section-delivery-person')
