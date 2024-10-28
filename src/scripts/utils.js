@@ -102,7 +102,25 @@ export function blockNonNumericKeys(input) { // bloqueia o uso desses caracteres
 export function restrictInputRange(input) { // limita o valor em input type number
     input.addEventListener('input', (event) => {
         if (event.target.value >= 10) {
-            event.target.value = 10;
+            event.target.value = 10
         }
     })
+}
+
+export function handleMouseEvent(event) {
+    const extraEmployeeId = event.target.id.match(/\d+/g)
+    const spanPopup = document.getElementById(`span-popup-${extraEmployeeId}`)
+    if (event.type === 'mouseenter') {
+        spanPopup.classList.remove('display-none')
+    } else if (event.type === 'mouseleave') {
+        spanPopup.classList.add('display-none')
+    }
+}
+
+export function showWarningForHighValue(value, extraEmployeeId) {
+    if (value > 100) {
+        document.getElementById(`span-alert-${extraEmployeeId}`).classList.remove('display-none')
+    } else {
+        document.getElementById(`span-alert-${extraEmployeeId}`).classList.add('display-none')
+    }
 }
