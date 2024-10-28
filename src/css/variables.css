@@ -15,8 +15,6 @@
     --input-bg-color: #F2F5F4;
     --input-border-bottom: none;
     --input-border-radius: 5px;
-    --text-color-input-invalid: red;
-    --box-shadow-input-invalid: 0px 1px 10px rgb(151, 0, 0);
 
     --label-name-border-bottom: none;
     --label-bg-color: #F2F5F4;
