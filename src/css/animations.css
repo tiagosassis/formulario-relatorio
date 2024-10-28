@@ -30,10 +30,3 @@ button:active{ /*botão reduz de tamanho quando clicado*/
     animation: shake .3s; /* Duracao da animação */
     animation-fill-mode: both; /* Mantém o estado final da animação */
 }
-
-/* Implementação JavaScript
-    document.querySelector(`#consumption-${deliveryPersonId}`).classList.add('shake');
-    setTimeout(() => {
-        document.querySelector(`#consumption-${deliveryPersonId}`).classList.remove('shake');
-    }, 300);
- */
