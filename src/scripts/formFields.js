@@ -2,7 +2,7 @@
 // Funções responsáveis por criar e configurar campos de formulário para inserção de dados.
 import { createDisplayFieldsForDeliveryPerson, createDisplayFieldsForExtraEmployee } from "./displayFields.js"
 import { activeDeliveryPersons, getCurrentDeliveryPersonCount, setCurrentDeliveryPersonCount } from "./app.js";
-import { blockNonNumericKeys, restrictInputRange, handleMouseEvent, validateOrderNumberLength } from './utils.js'
+import { blockNonNumericKeys, restrictInputRange, handleMouseEvent, validateInputLength } from './utils.js'
 
 export function createInputFieldsForDeliveryPerson(deliveryPersonId, name) {
     /**
@@ -132,7 +132,7 @@ export function createInputFieldsForExtraDelivery(div1, numberOfExtra, deliveryP
                 input.setAttribute('autocomplete', 'on')
                 input.setAttribute('type', 'number')
                 input.setAttribute('min', '0')
-                input.addEventListener('input', validateOrderNumberLength)
+                input.addEventListener('input', (event) => validateInputLength(event, 6))
                 blockNonNumericKeys(input)
                 input.setAttribute('name', 'extra-delivery-number')
                 input.classList.add('float-input', 'request-number-extra')

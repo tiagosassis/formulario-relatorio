@@ -107,7 +107,7 @@ export function restrictInputRange(input) { // limita o valor em input type numb
     })
 }
 
-export function handleMouseEvent(event) {
+export function handleMouseEvent(event) { // monstra popup avisando que o valor é inesperado para pagamento caso passo o mouse no indicador
     const extraEmployeeId = event.target.id.match(/\d+/g)
     const spanPopup = document.getElementById(`span-popup-${extraEmployeeId}`)
     if (event.type === 'mouseenter') {
@@ -117,7 +117,7 @@ export function handleMouseEvent(event) {
     }
 }
 
-export function showWarningForHighValue(value, extraEmployeeId) {
+export function showWarningForHighValue(value, extraEmployeeId) { // mostra indicador de que o valor é inesperado para pagamento
     if (value > 100) {
         document.getElementById(`span-alert-${extraEmployeeId}`).classList.remove('display-none')
     } else {
@@ -125,8 +125,8 @@ export function showWarningForHighValue(value, extraEmployeeId) {
     }
 }
 
-export function validateOrderNumberLength(event){
-    if (event.target.value.length > 6) {
-        event.target.value = event.target.value.slice(0, 6) // Limita a entrada a 6 caracteres
+export function validateInputLength(event, maxLength){
+    if (event.target.value.length > maxLength) {
+        event.target.value = event.target.value.slice(0, maxLength) // Limita a entrada a 6 caracteres
     }
 }
