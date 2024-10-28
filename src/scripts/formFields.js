@@ -41,6 +41,7 @@ export function createInputFieldsForDeliveryPerson(deliveryPersonId, name) {
                 input.setAttribute('id', `delivery-person-name-${deliveryPersonId}`)
                 input.setAttribute('list', 'datalist-delivery-person')
                 input.setAttribute('value', name)
+                input.addEventListener('input', (event) => validateInputLength(event, 40))
                 input.setAttribute('required', '')
                 label.setAttribute('for', `delivery-person-name-${deliveryPersonId}`)
                 label.textContent = 'Nome'
@@ -197,6 +198,7 @@ export function createInputFieldsForExtraEmployee() {
     input.setAttribute('type', 'text')
     input.setAttribute('name', `extra-employee-name-${extraEmployeeId}`)
     input.setAttribute('required', '')
+    input.addEventListener('input', (event) => validateInputLength(event, 40))
     label = document.createElement('label')
     label.setAttribute('for', `extra-employee-name-${extraEmployeeId}`)
     label.classList.add('float-label')
