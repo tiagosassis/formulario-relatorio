@@ -90,3 +90,11 @@ export function deliveryPersonDatalist() { // cria a datalist de entregador e co
     })
     container.insertBefore(datalist, container.firstChild)
 }
+
+export function blockNonNumericKeys(input) {
+    input.addEventListener('keydown', (event) => {
+        if (event.key === 'e' || event.key === 'E' || event.key === '+' || event.key === '-') {
+            event.preventDefault()
+        }
+    })
+}
