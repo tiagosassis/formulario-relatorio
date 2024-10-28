@@ -24,4 +24,7 @@
 
     --popup-bg-color: #444444;
     --popup-text-color: white;
+
+    --start-pulse-animation-color: black;
+    --end-pulse-animation-color: red;
 }
