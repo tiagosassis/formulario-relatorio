@@ -29,6 +29,7 @@ export function createInputFieldsForDeliveryPerson(deliveryPersonId, name) {
     for (let index = 0; index < 4; index++) {
         div2 = document.createElement('div')
         input = document.createElement('input')
+        input.setAttribute('autocomplete', 'on')
         input.classList.add('float-input')
         label = document.createElement('label')
         label.classList.add('float-label')
@@ -50,6 +51,7 @@ export function createInputFieldsForDeliveryPerson(deliveryPersonId, name) {
                 input.setAttribute('type', 'number')
                 blockNonNumericKeys(input)
                 input.setAttribute('id', `deliveries-${deliveryPersonId}`)
+                input.setAttribute('min', '0')
                 input.setAttribute('required', '')
                 label.setAttribute('for', `deliveries-${deliveryPersonId}`)
                 label.textContent = 'Entregas'
@@ -61,6 +63,7 @@ export function createInputFieldsForDeliveryPerson(deliveryPersonId, name) {
                 blockNonNumericKeys(input)
                 restrictInputRange(input)
                 input.setAttribute('id', `extra-${deliveryPersonId}`)
+                input.setAttribute('min', '0')
                 input.setAttribute('required', '')
                 label.setAttribute('for', `extra-${deliveryPersonId}`)
                 label.textContent = 'Extra'
@@ -71,6 +74,7 @@ export function createInputFieldsForDeliveryPerson(deliveryPersonId, name) {
                 input.setAttribute('type', 'number')
                 blockNonNumericKeys(input)
                 input.setAttribute('id', `consumption-${deliveryPersonId}`)
+                input.setAttribute('min', '0')
                 input.setAttribute('required', '')
                 label.setAttribute('for', `consumption-${deliveryPersonId}`)
                 label.textContent = 'Consumo'
@@ -125,6 +129,8 @@ export function createInputFieldsForExtraDelivery(div1, numberOfExtra, deliveryP
             if (j == 0) {
                 div3.classList.add('flex-item-order-number')
                 input = document.createElement('input')
+                input.setAttribute('autocomplete', 'on')
+                input.setAttribute('min', '0')
                 input.setAttribute('type', 'number')
                 blockNonNumericKeys(input)
                 input.setAttribute('name', 'extra-delivery-number')
@@ -142,6 +148,7 @@ export function createInputFieldsForExtraDelivery(div1, numberOfExtra, deliveryP
             else{
                 div3.classList.add('flex-item-extra-reason')
                 input = document.createElement('input')
+                input.setAttribute('autocomplete', 'on')
                 input.setAttribute('type', 'text')
                 input.setAttribute('name', 'reason-extra-delivery')
                 input.classList.add('float-input', 'reason-delivery-extra')
@@ -183,6 +190,7 @@ export function createInputFieldsForExtraEmployee() {
     div2 = document.createElement('div')
     div2.classList.add('flex-item-employee-name')
     input = document.createElement('input')
+    input.setAttribute('autocomplete', 'on')
     input.setAttribute('id', `extra-employee-name-${extraEmployeeId}`)
     input.classList.add('float-input')
     input.setAttribute('type', 'text')
@@ -198,7 +206,9 @@ export function createInputFieldsForExtraEmployee() {
     div2 = document.createElement('div')
     div2.classList.add('flex-item-daily-payment')
     input = document.createElement('input')
+    input.setAttribute('autocomplete', 'on')
     input.setAttribute('id', `extra-employee-daily-payment-${extraEmployeeId}`)
+    input.setAttribute('min', '0')
     input.classList.add('float-input')
     input.setAttribute('type', 'number')
     blockNonNumericKeys(input)
@@ -225,6 +235,7 @@ export function createInputFieldsForExtraEmployee() {
     div2 = document.createElement('div')
     div2.classList.add('flex-item-pix-key')
     input = document.createElement('input')
+    input.setAttribute('autocomplete', 'on')
     input.setAttribute('id', `extra-employee-pix-key-${extraEmployeeId}`)
     input.classList.add('float-input')
     input.setAttribute('type', 'text')
