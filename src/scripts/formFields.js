@@ -51,7 +51,7 @@ export function createInputFieldsForDeliveryPerson(deliveryPersonId, name) {
                 input.setAttribute('type', 'number')
                 blockNonNumericKeys(input)
                 input.setAttribute('id', `deliveries-${deliveryPersonId}`)
-                input.setAttribute('min', '2')
+                input.setAttribute('min', '0')
                 input.setAttribute('required', '')
                 label.setAttribute('for', `deliveries-${deliveryPersonId}`)
                 label.textContent = 'Entregas'
@@ -63,7 +63,7 @@ export function createInputFieldsForDeliveryPerson(deliveryPersonId, name) {
                 blockNonNumericKeys(input)
                 restrictInputRange(input)
                 input.setAttribute('id', `extra-${deliveryPersonId}`)
-                input.setAttribute('min', '2')
+                input.setAttribute('min', '0')
                 input.setAttribute('required', '')
                 label.setAttribute('for', `extra-${deliveryPersonId}`)
                 label.textContent = 'Extra'
@@ -74,7 +74,7 @@ export function createInputFieldsForDeliveryPerson(deliveryPersonId, name) {
                 input.setAttribute('type', 'number')
                 blockNonNumericKeys(input)
                 input.setAttribute('id', `consumption-${deliveryPersonId}`)
-                input.setAttribute('min', '2')
+                input.setAttribute('min', '0')
                 input.setAttribute('required', '')
                 label.setAttribute('for', `consumption-${deliveryPersonId}`)
                 label.textContent = 'Consumo'
@@ -208,9 +208,9 @@ export function createInputFieldsForExtraEmployee() {
     input = document.createElement('input')
     input.setAttribute('autocomplete', 'on')
     input.setAttribute('id', `extra-employee-daily-payment-${extraEmployeeId}`)
-    input.setAttribute('min', '0')
     input.classList.add('float-input')
     input.setAttribute('type', 'number')
+    input.setAttribute('min', '0')
     blockNonNumericKeys(input)
     input.setAttribute('name', `extra-employee-daily-payment-${extraEmployeeId}`)
     input.setAttribute('required', '')
