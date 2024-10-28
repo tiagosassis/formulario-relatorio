@@ -1,3 +1,6 @@
+@import url('./_variables.css');
+@import url('./_dark-mode.css');
+
 input{
     outline: none;
     border: none;
