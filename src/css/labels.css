@@ -8,6 +8,9 @@ label{
     height: 29px;
     padding-left: 10px;
     border-radius: var(--label-border-radius);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .float-label{
