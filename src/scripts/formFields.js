@@ -2,6 +2,7 @@
 // Funções responsáveis por criar e configurar campos de formulário para inserção de dados.
 import { createDisplayFieldsForDeliveryPerson, createDisplayFieldsForExtraEmployee } from "./displayFields.js"
 import { getCurrentDeliveryPersonCount, setCurrentDeliveryPersonCount } from "./app.js";
+import { blockNonNumericKeys } from './utils.js'
 
 export function createInputFieldsForDeliveryPerson(deliveryPersonId, name) {
     /**
@@ -42,6 +43,7 @@ export function createInputFieldsForDeliveryPerson(deliveryPersonId, name) {
             case 1:
                 div2.classList.add('flex-item-deliveries-amount')
                 input.setAttribute('type', 'number')
+                blockNonNumericKeys(input)
                 input.setAttribute('id', `deliveries-${deliveryPersonId}`)
                 input.setAttribute('required', '')
                 label.setAttribute('for', `deliveries-${deliveryPersonId}`)
@@ -51,6 +53,7 @@ export function createInputFieldsForDeliveryPerson(deliveryPersonId, name) {
             case 2:
                 div2.classList.add('flex-item-delivery-extra')
                 input.setAttribute('type', 'number')
+                blockNonNumericKeys(input)
                 input.setAttribute('id', `extra-${deliveryPersonId}`)
                 input.setAttribute('required', '')
                 label.setAttribute('for', `extra-${deliveryPersonId}`)
@@ -59,7 +62,8 @@ export function createInputFieldsForDeliveryPerson(deliveryPersonId, name) {
         
             case 3:
                 div2.classList.add('flex-item-day-consumption')
-                input.setAttribute('type', 'text')
+                input.setAttribute('type', 'number')
+                blockNonNumericKeys(input)
                 input.setAttribute('id', `consumption-${deliveryPersonId}`)
                 input.setAttribute('required', '')
                 label.setAttribute('for', `consumption-${deliveryPersonId}`)
@@ -116,6 +120,7 @@ export function createInputFieldsForExtraDelivery(div1, numberOfExtra, deliveryP
                 div3.classList.add('flex-item-order-number')
                 input = document.createElement('input')
                 input.setAttribute('type', 'number')
+                blockNonNumericKeys(input)
                 input.setAttribute('name', 'extra-delivery-number')
                 input.classList.add('float-input', 'request-number-extra')
                 input.setAttribute('required', '')
@@ -188,6 +193,7 @@ export function createInputFieldsForExtraEmployee() {
     input.setAttribute('id', `extra-employee-daily-payment-${extraEmployeeId}`)
     input.classList.add('float-input')
     input.setAttribute('type', 'number')
+    blockNonNumericKeys(input)
     input.setAttribute('name', `extra-employee-daily-payment-${extraEmployeeId}`)
     input.setAttribute('required', '')
     label = document.createElement('label')
