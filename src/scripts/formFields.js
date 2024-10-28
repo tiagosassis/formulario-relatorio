@@ -2,7 +2,7 @@
 // Funções responsáveis por criar e configurar campos de formulário para inserção de dados.
 import { createDisplayFieldsForDeliveryPerson, createDisplayFieldsForExtraEmployee } from "./displayFields.js"
 import { activeDeliveryPersons, getCurrentDeliveryPersonCount, setCurrentDeliveryPersonCount } from "./app.js";
-import { blockNonNumericKeys, restrictInputRange, handleMouseEvent } from './utils.js'
+import { blockNonNumericKeys, restrictInputRange, handleMouseEvent, validateOrderNumberLength } from './utils.js'
 
 export function createInputFieldsForDeliveryPerson(deliveryPersonId, name) {
     /**
@@ -132,11 +132,12 @@ export function createInputFieldsForExtraDelivery(div1, numberOfExtra, deliveryP
                 input.setAttribute('autocomplete', 'on')
                 input.setAttribute('type', 'number')
                 input.setAttribute('min', '0')
+                input.addEventListener('input', validateOrderNumberLength)
                 blockNonNumericKeys(input)
                 input.setAttribute('name', 'extra-delivery-number')
                 input.classList.add('float-input', 'request-number-extra')
                 input.setAttribute('required', '')
-                input.setAttribute('id', `${deliveryPersonId}-${i}-extra-delivery-number-${deliveryPersonId}-${i}`)
+                input.setAttribute('id', `extra-delivery-number-${deliveryPersonId}-${i}`)
                 label = document.createElement('label')
                 label.setAttribute('for', `extra-delivery-number-${deliveryPersonId}-${i}`)
                 label.classList.add('float-label')
