@@ -91,7 +91,7 @@ export function deliveryPersonDatalist() { // cria a datalist de entregador e co
     container.insertBefore(datalist, container.firstChild)
 }
 
-export function blockNonNumericKeys(input) {
+export function blockNonNumericKeys(input) { // bloqueia o uso desses caracteres em input type number
     input.addEventListener('keydown', (event) => {
         if (event.key === 'e' || event.key === 'E' || event.key === '+' || event.key === '-') {
             event.preventDefault()
