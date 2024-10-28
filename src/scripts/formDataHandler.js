@@ -88,7 +88,7 @@ export function handleDeliveryPersonData(event) {
     */
     const deliveryPersonId = event.target.id.match(/\d+/g)[0]
     const sectionExtraDelivery = document.getElementById('report-extra-delivery')
-    
+
     paymentCalculation(deliveryPersonId) // calcula o pagamento do entregador(a) com base nas entregas, entregas extras e consumo
     refreshPersonNameInDisplayOnChange(deliveryPersonId)
     
