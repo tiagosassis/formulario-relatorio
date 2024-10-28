@@ -1,7 +1,7 @@
 // formDataHandler.js
 // Funções para manipular e atualizar dados do formulário em tempo real.
 
-import { toggleClassHidden } from "./utils.js"
+import { toggleClassHidden, showWarningForHighValue } from "./utils.js"
 import { paymentCalculation } from "./payment.js"
 import { manageExtraDeliveryInputs, manageExtraDeliveryDisplay } from "./fieldManager.js"
 
@@ -16,6 +16,8 @@ export function handleExtraEmployeeData(event) {
     const inputName = document.getElementById(`extra-employee-name-${extraEmployeeId}`)
     const inputPayment = document.getElementById(`extra-employee-daily-payment-${extraEmployeeId}`)
     const inputPixKey = document.getElementById(`extra-employee-pix-key-${extraEmployeeId}`)
+
+    showWarningForHighValue(inputPayment.value, extraEmployeeId)
 
     const name = document.getElementById(`textField-employee-name-${extraEmployeeId}`)
     const payment = document.getElementById(`textField-employee-daily-payment-${extraEmployeeId}`)
