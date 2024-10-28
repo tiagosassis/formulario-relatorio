@@ -182,6 +182,40 @@ hr{
     visibility: hidden;
 }
 
+.input-alert{
+    font-size: 1.2em;
+    position: absolute;
+    top: 0px;
+    right: 3px;
+    width: 10px;
+    text-align: center;
+
+    animation: pulse 1.2s ease-in-out infinite;
+}
+
+.input-alert-popup{
+    padding: 5px;
+    border: 1px solid #373737;
+    border-radius: 5px;
+    border-bottom-right-radius: 4px;
+    font-size: .7em;
+    position: absolute;
+    right: 0px;
+    top: -35px;
+    background-color: #F2F5F4;
+}
+
+.input-alert-popup::after {
+    content: '';
+    position: absolute;
+    top: 100%; /* Posiciona o triângulo abaixo do balão */
+    right: 7px; /* Centraliza o triângulo */
+    margin-left: -5px; /* Ajusta para que o triângulo fique centralizado */
+    border-width: 5px; /* Tamanho do triângulo */
+    border-style: solid;
+    border-color: #373737 transparent transparent transparent; /* Cor do triângulo */
+}
+
 .content{
     display: contents;
     /*Essa classe altera a disposição do texto no relatorio, de forma que fique exatamente como tem que ficar quando for copiado, essa classe deve ser aplicada somente no momento de copiar e depois deve ser retirada para o texto voltar a ter display block*/
