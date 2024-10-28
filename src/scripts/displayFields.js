@@ -12,7 +12,7 @@ export function createDisplayFieldsForDeliveryPerson(deliveryPersonId) {
 
     const container = document.getElementById('report-delivery')
     div = document.createElement('div')
-    div.classList.add('hidden')
+    div.classList.add('display-none')
     div.setAttribute('id', `delivery-person-report-${deliveryPersonId}`)
     
     span = document.createElement('span')
@@ -23,7 +23,7 @@ export function createDisplayFieldsForDeliveryPerson(deliveryPersonId) {
     span.setAttribute('id', `textField-payment-${deliveryPersonId}`)
     div.append(span, br)
     span = document.createElement('span')
-    span.classList.add('hidden')
+    span.classList.add('display-none')
     span.textContent = '('
     div.appendChild(span)
     span = document.createElement('span')
@@ -36,7 +36,7 @@ export function createDisplayFieldsForDeliveryPerson(deliveryPersonId) {
     span.setAttribute('id', `textField-consumption-${deliveryPersonId}`)
     div.appendChild(span)
     span = document.createElement('span')
-    span.classList.add('hidden')
+    span.classList.add('display-none')
     span.textContent = ')'
     div.appendChild(span)
 

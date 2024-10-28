@@ -45,6 +45,6 @@ function toggleThemeIcon() {
      * Mostra o ícone correspondente ao tema ativo (dark ou light mode).
      */
     
-    darkModeIcon.classList.toggle('hidden')
-    lightModeIcon.classList.toggle('hidden')
+    darkModeIcon.classList.toggle('display-none')
+    lightModeIcon.classList.toggle('display-none')
 }

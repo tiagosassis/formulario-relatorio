@@ -66,14 +66,14 @@ export function createDateTimeInfo(){
 
 export function toggleClassHidden(element, toggle) {
     /**
-     * Alterna a classe hidden em elementos html, está classe da aos elementos o display none
+     * Alterna a classe display-none em elementos html, está classe da aos elementos o display none
      */
     if(toggle){
-        if(element.classList.contains('hidden'))
-            element.classList.remove('hidden')
+        if(element.classList.contains('display-none'))
+            element.classList.remove('display-none')
     } else{
-        if(!element.classList.contains('hidden'))
-            element.classList.add('hidden')
+        if(!element.classList.contains('display-none'))
+            element.classList.add('display-none')
     }
 }
 
