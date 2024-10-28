@@ -2,7 +2,7 @@
 // Funções responsáveis por criar e configurar campos de formulário para inserção de dados.
 import { createDisplayFieldsForDeliveryPerson, createDisplayFieldsForExtraEmployee } from "./displayFields.js"
 import { activeDeliveryPersons, getCurrentDeliveryPersonCount, setCurrentDeliveryPersonCount } from "./app.js";
-import { blockNonNumericKeys, restrictInputRange } from './utils.js'
+import { blockNonNumericKeys, restrictInputRange, handleMouseEvent } from './utils.js'
 
 export function createInputFieldsForDeliveryPerson(deliveryPersonId, name) {
     /**
@@ -171,6 +171,8 @@ export function createInputFieldsForExtraEmployee() {
     const container = document.getElementById('section-extra-employee')
     const extraEmployeeCount = document.querySelectorAll('#section-extra-employee > div') // seleciona todos os campos ja criados para saber a quantidade de extras
     const extraEmployeeId = extraEmployeeCount.length + 1
+    const spanAlert = document.createElement('span')
+    const spanPopup = document.createElement('span')
 
     const div1 = document.createElement('div')
     div1.classList.add('flex-row-wrap', 'extra-employee')
@@ -206,7 +208,18 @@ export function createInputFieldsForExtraEmployee() {
     label.setAttribute('for', `extra-employee-daily-payment-${extraEmployeeId}`)
     label.classList.add('float-label')
     label.textContent = 'Diária'
-    div2.append(input, label)
+
+    spanAlert.classList.add('input-alert', 'display-none')
+    spanAlert.setAttribute('id', `span-alert-${extraEmployeeId}`)
+    spanAlert.textContent = '!'
+    spanAlert.addEventListener('mouseenter', handleMouseEvent);
+    spanAlert.addEventListener('mouseleave', handleMouseEvent);
+    
+    spanPopup.textContent = 'Valor inesperado'
+    spanPopup.setAttribute('id', `span-popup-${extraEmployeeId}`)
+    spanPopup.classList.add('input-alert-popup', 'display-none')
+
+    div2.append(input, label, spanAlert, spanPopup)
     div1.appendChild(div2)
 
     div2 = document.createElement('div')
