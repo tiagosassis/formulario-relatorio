@@ -1,5 +1,5 @@
-@import url('./_variables.css');
-@import url('./_dark-mode.css');
+@import url('./variables.css');
+@import url('./dark-mode.css');
 
 input{
     outline: none;
