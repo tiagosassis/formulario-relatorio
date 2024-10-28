@@ -1,0 +1,46 @@
+@import url('./variables.css');
+@import url('./dark-mode.css');
+
+.input-alert-popup{
+    color: var(--popup-text-color);
+    padding: 5px;
+    border: 1px solid #373737;
+    border-radius: 5px;
+    border-bottom-right-radius: 4px;
+    font-size: .7em;
+    position: absolute;
+    right: 0px;
+    top: -35px;
+    background-color: var(--popup-bg-color);
+}
+
+.input-alert-popup::after {
+    content: '';
+    position: absolute;
+    top: 100%; /* Posiciona o triângulo abaixo do balão */
+    right: 7px; /* Centraliza o triângulo */
+    margin-left: -5px; /* Ajusta para que o triângulo fique centralizado */
+    border-width: 5px; /* Tamanho do triângulo */
+    border-style: solid;
+    border-color: #373737 transparent transparent transparent; /* Cor do triângulo */
+}
+
+.popup {
+    color: var(--popup-text-color);
+    width: 250px;
+    background-color: var(--popup-bg-color);
+    text-align: center;
+    border-radius: 5px;
+    padding: 10px;
+    position: fixed;
+    z-index: 1000;
+    right: 20px; /* Alinha à direita */
+    top: 20px; /* Distância do topo */
+    opacity: 0;
+    transition: opacity 0.5s, visibility 0.5s;
+}
+
+.popup.show {
+    visibility: visible;
+    opacity: 1;
+}
