@@ -34,7 +34,7 @@ body{
 header{
     width: 100vw;
     background-color: var(--header-bg-color);
-    padding: 1.5em 0px;
+    padding: 1.5em 10%;
 
     .flex-row-wrap{
         margin-top: 0px;
@@ -190,6 +190,7 @@ hr{
     right: 3px;
     width: 10px;
     text-align: center;
+    cursor: pointer;
 
     animation: pulse 1.2s ease-in-out infinite;
 }
