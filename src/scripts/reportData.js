@@ -31,9 +31,8 @@ export function exportReportToExcel() {
         : `Noite ${time.day} / ${time.month}`;
 
     // Adiciona o título do turno e data e mescla as duas colunas
-    worksheet.mergeCells('B2:C2');
     worksheet.getCell('B2').value = headerTitle;
-    worksheet.getCell('B2').alignment = { vertical: 'middle', horizontal: 'center' };
+    worksheet.getCell('B2').alignment = { vertical: 'middle', horizontal: 'left' };
 
     // Ajusta a largura da coluna B para acomodar os nomes
     worksheet.getColumn('B').width = 30;
@@ -57,6 +56,7 @@ export function exportReportToExcel() {
             bottom: { style: 'thin', color: { argb: '585858' } },
             right: { style: 'thin', color: { argb: '585858' } }
         };
+        worksheet.getCell(`C${rowIndex}`).alignment = { vertical: 'middle', horizontal: 'right' };
     });
 
     // Gera o arquivo e faz o download
