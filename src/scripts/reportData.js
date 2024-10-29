@@ -31,17 +31,13 @@ export function exportReportToExcel() {
         : `Noite ${time.day} / ${time.month}`;
 
     // Adiciona o título do turno e data e mescla as duas colunas
-    worksheet.mergeCells('B1:C1');
-    worksheet.getCell('B1').value = headerTitle;
-    worksheet.getCell('B1').alignment = { vertical: 'middle', horizontal: 'center' };
+    worksheet.mergeCells('B2:C2');
+    worksheet.getCell('B2').value = headerTitle;
+    worksheet.getCell('B2').alignment = { vertical: 'middle', horizontal: 'center' };
 
     // Ajusta a largura da coluna B para acomodar os nomes
-    worksheet.getColumn('B').width = 30; // Define a largura da coluna B para aproximadamente 215px
+    worksheet.getColumn('B').width = 30;
     worksheet.getColumn('C').width = 10;
-
-    // Adiciona as colunas "Nome" e "Pagamento" abaixo do cabeçalho
-    worksheet.getCell('B2').value = 'Nome';
-    worksheet.getCell('C2').value = 'Pagamento';
 
     // Insere os dados de nome e pagamento a partir da linha 3 e aplica a cor amarela com bordas pretas às células de pagamento
     reportData.forEach((data, index) => {
