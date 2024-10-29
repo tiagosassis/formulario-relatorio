@@ -8,15 +8,19 @@
     <title>Relatorio</title>
 </head>
 <body>
-    <header class="flex-row-wrap">
-        <button id="theme">
-            <span class="material-symbols-outlined light-mode">
-                light_mode
-            </span>
-            <span class="material-symbols-outlined dark-mode display-none">
-                dark_mode
-            </span>
-        </button>
+    <header>
+        <nav class="flex-row-wrap">
+            <button id="theme">
+                <span class="material-symbols-outlined light-mode">
+                    light_mode
+                </span>
+                <span class="material-symbols-outlined dark-mode display-none">
+                    dark_mode
+                </span>
+            </button>
+    
+            <button id="download-report">Baixar Relatório</button>
+        </nav>
     </header>
     <main class="flex-column-wrap">
         <div class="container">
@@ -90,6 +94,7 @@
 
     <div id="popup" class="popup visibility-hidden">Relatório copiado!</div>
 
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
     <script type="module" src="src/scripts/app.js"></script>
 
     <!--

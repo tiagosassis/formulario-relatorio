@@ -24,7 +24,7 @@ export function createInputFieldsForDeliveryPerson(deliveryPersonId, name) {
     let div1, div2, input, label;
 
     div1 = document.createElement('div')
-    div1.classList.add('flex-row-wrap', 'delivery-person-container', 'container-relative')
+    div1.classList.add('flex-row-wrap', 'delivery-person-container', 'container-relative', 'excel-sheet-data')
 
     for (let index = 0; index < 4; index++) {
         div2 = document.createElement('div')

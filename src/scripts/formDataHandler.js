@@ -4,6 +4,7 @@
 import { toggleClassHidden, showWarningForHighValue } from "./utils.js"
 import { paymentCalculation } from "./payment.js"
 import { manageExtraDeliveryInputs, manageExtraDeliveryDisplay } from "./fieldManager.js"
+import { reportData } from "./reportData.js";
 
 export function handleDeliveryPersonData(event) {
     /* função que atualiza o relatorio final com as informações que estão sendo inseridas, como a função capta informações de vários input, eles tem que ser separados pelo ID
@@ -16,7 +17,6 @@ export function handleDeliveryPersonData(event) {
 
     paymentCalculation(deliveryPersonId) // calcula o pagamento do entregador(a) com base nas entregas, entregas extras e consumo
     refreshPersonNameInDisplayOnChange(deliveryPersonId)
-    
 
     if(event.target.id.includes('deliveries')){
         handleDeliveryData(event, deliveryPersonId)
