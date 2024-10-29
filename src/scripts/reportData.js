@@ -1,4 +1,4 @@
-import { createDateTimeInfo } from "./utils.js"
+import { createDateTimeInfo } from "./utils.js";
 
 export const reportData = [];
 
@@ -13,14 +13,8 @@ export function updateReportDataFromInputs() {
         const name = div.querySelector(`#delivery-person-name-${deliveryPersonId}`).value;
         const payment = document.querySelector(`#textField-payment-${deliveryPersonId}`).textContent;
 
-        const rowData = {};
-        if (time.turn === 'Morning') { // dia
-            rowData[`Almoço ${time.day} / ${time.month}`] = name;
-        } else { // noite
-            rowData[`Noite ${time.day} / ${time.month}`] = name;
-        }
-        rowData[""] = payment;
-
+        // Cria um objeto com as informações de nome e pagamento
+        const rowData = { Nome: name, Pagamento: payment };
         reportData.push(rowData);
     });
 }
@@ -30,19 +24,33 @@ export function exportReportToExcel() {
     const workbook = new ExcelJS.Workbook();
     const worksheet = workbook.addWorksheet("Relatório");
 
-    // Define a posição inicial para começar a tabela na célula B2
-    const startRow = 3;
-    const startColumn = 3;
+    // Define o cabeçalho principal com o turno e data na primeira célula
+    const time = createDateTimeInfo();
+    const headerTitle = time.turn === 'Morning' 
+        ? `Almoço ${time.day} / ${time.month}` 
+        : `Noite ${time.day} / ${time.month}`;
 
-    // Adiciona os dados da tabela a partir de B2
-    reportData.forEach((data, rowIndex) => {
-        const row = worksheet.getRow(startRow + rowIndex);
-        let colIndex = startColumn;
-        for (const key in data) {
-            row.getCell(colIndex).value = data[key];
-            colIndex++;
-        }
-        row.commit(); // Confirma a adição de cada linha
+    // Adiciona o título do turno e data e mescla as duas colunas
+    worksheet.mergeCells('B1:C1');
+    worksheet.getCell('B1').value = headerTitle;
+    worksheet.getCell('B1').alignment = { vertical: 'middle', horizontal: 'center' };
+
+    // Adiciona as colunas "Nome" e "Pagamento" abaixo do cabeçalho
+    worksheet.getCell('B2').value = 'Nome';
+    worksheet.getCell('C2').value = 'Pagamento';
+
+    // Insere os dados de nome e pagamento a partir da linha 3 e aplica a cor amarela às células de pagamento
+    reportData.forEach((data, index) => {
+        const rowIndex = index + 3;
+        worksheet.getCell(`B${rowIndex}`).value = data.Nome;
+        worksheet.getCell(`C${rowIndex}`).value = data.Pagamento;
+
+        // Define a cor de preenchimento da célula de pagamento
+        worksheet.getCell(`C${rowIndex}`).fill = {
+            type: 'pattern',
+            pattern: 'solid',
+            fgColor: { argb: 'FFFF00' } // Amarelo marca-texto
+        };
     });
 
     // Gera o arquivo e faz o download
