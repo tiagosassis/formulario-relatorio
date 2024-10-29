@@ -35,21 +35,31 @@ export function exportReportToExcel() {
     worksheet.getCell('B1').value = headerTitle;
     worksheet.getCell('B1').alignment = { vertical: 'middle', horizontal: 'center' };
 
+    // Ajusta a largura da coluna B para acomodar os nomes
+    worksheet.getColumn('B').width = 30; // Define a largura da coluna B para aproximadamente 215px
+    worksheet.getColumn('C').width = 10;
+
     // Adiciona as colunas "Nome" e "Pagamento" abaixo do cabeçalho
     worksheet.getCell('B2').value = 'Nome';
     worksheet.getCell('C2').value = 'Pagamento';
 
-    // Insere os dados de nome e pagamento a partir da linha 3 e aplica a cor amarela às células de pagamento
+    // Insere os dados de nome e pagamento a partir da linha 3 e aplica a cor amarela com bordas pretas às células de pagamento
     reportData.forEach((data, index) => {
         const rowIndex = index + 3;
         worksheet.getCell(`B${rowIndex}`).value = data.Nome;
         worksheet.getCell(`C${rowIndex}`).value = data.Pagamento;
 
-        // Define a cor de preenchimento da célula de pagamento
+        // Define a cor de preenchimento e as bordas da célula de pagamento
         worksheet.getCell(`C${rowIndex}`).fill = {
             type: 'pattern',
             pattern: 'solid',
             fgColor: { argb: 'FFFF00' } // Amarelo marca-texto
+        };
+        worksheet.getCell(`C${rowIndex}`).border = {
+            top: { style: 'thin', color: { argb: '585858' } },
+            left: { style: 'thin', color: { argb: '585858' } },
+            bottom: { style: 'thin', color: { argb: '585858' } },
+            right: { style: 'thin', color: { argb: '585858' } }
         };
     });
 
