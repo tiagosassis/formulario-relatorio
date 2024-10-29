@@ -1,19 +1,32 @@
+import { createDateTimeInfo } from "./utils.js"
+
 export const reportData = []
 
 export function updateReportDataFromInputs() {
     // Limpa o array antes de preencher novamente
     reportData.length = 0
 
+    const time = createDateTimeInfo()
+
     document.querySelectorAll(".excel-sheet-data").forEach(div => {
         const deliveryPersonId = div.querySelector("div > input").id.match(/\d+/g)[0];
         const name = div.querySelector(`#delivery-person-name-${deliveryPersonId}`).value
         const payment = document.querySelector(`#textField-payment-${deliveryPersonId}`).textContent
 
-        const rowData = {
-            Nome: name,
-            Pagamento: payment
+        if (time.turn === 'Morning') { // dia
+            const rowData = {}
+            rowData[`Almoço ${time.day} / ${time.month}`] = name
+            rowData[""] = payment
+
+            reportData.push(rowData)
+    
+        } else{ // noite
+            const rowData = {}
+            rowData[`Noite ${time.day} / ${time.month}`] = name
+            rowData[""] = payment
+
+            reportData.push(rowData)
         }
-        reportData.push(rowData);
     })
 }
 
