@@ -4,19 +4,28 @@ export const reportData = [];
 
 export function updateReportDataFromInputs() {
     // Limpa o array antes de preencher novamente
-    reportData.length = 0;
-
-    const time = createDateTimeInfo();
+    reportData.length = 0
 
     document.querySelectorAll(".excel-sheet-data").forEach(div => {
-        const deliveryPersonId = div.querySelector("div > input").id.match(/\d+/g)[0];
-        const name = div.querySelector(`#delivery-person-name-${deliveryPersonId}`).value;
-        const payment = document.querySelector(`#textField-payment-${deliveryPersonId}`).textContent;
+        const deliveryPersonId = div.querySelector("div > input").id.match(/\d+/g)[0]
+        const name = div.querySelector(`#delivery-person-name-${deliveryPersonId}`).value
+        const payment = document.querySelector(`#textField-payment-${deliveryPersonId}`).textContent
 
         // Cria um objeto com as informações de nome e pagamento
-        const rowData = { Nome: name, Pagamento: payment };
-        reportData.push(rowData);
-    });
+        const rowData = { Nome: name, Pagamento: payment }
+        reportData.push(rowData)
+    })
+
+    document.querySelectorAll('#report-freelancer > div').forEach(div => {
+        const deliveryPersonId = div.id.match(/\d+/g)[0]
+        const name = div.querySelector(`#textField-employee-name-${deliveryPersonId}`).textContent
+        const payment = document.querySelector(`#textField-employee-daily-payment-${deliveryPersonId}`).textContent
+        const pix = div.querySelector(`#textField-employee-pix-key-${deliveryPersonId}`).textContent
+
+        // Cria um objeto com as informações de nome e pagamento
+        const rowData = { Nome: name, Pagamento: payment }
+        reportData.push(rowData)
+    })
 }
 
 export function exportReportToExcel() {
