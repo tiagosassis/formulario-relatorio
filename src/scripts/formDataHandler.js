@@ -119,8 +119,8 @@ export function handleExtraEmployeeData(event) {
     const payment = document.getElementById(`textField-employee-daily-payment-${extraEmployeeId}`)
     const pixKey = document.getElementById(`textField-employee-pix-key-${extraEmployeeId}`)
 
-    inputName.value ? name.textContent = `- ${inputName.value}` : name.textContent = ''
-    inputPayment.value ? payment.textContent = `: R$ ${parseFloat(inputPayment.value).toFixed(2).replace('.', ',')}` : payment.textContent = ''
+    inputName.value ? name.textContent = `- ${inputName.value}: ` : name.textContent = ''
+    inputPayment.value ? payment.textContent = `R$ ${parseFloat(inputPayment.value).toFixed(2).replace('.', ',')}` : payment.textContent = ''
     inputPixKey.value ? pixKey.textContent = ` (Pix: ${inputPixKey.value})` : pixKey.textContent = ''
 
     name.textContent.length >= 1
