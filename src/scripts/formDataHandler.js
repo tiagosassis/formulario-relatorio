@@ -113,14 +113,17 @@ export function handleExtraEmployeeData(event) {
     const inputPayment = document.getElementById(`extra-employee-daily-payment-${extraEmployeeId}`)
     const inputPixKey = document.getElementById(`extra-employee-pix-key-${extraEmployeeId}`)
 
-    showWarningForHighValue(inputPayment.value, extraEmployeeId)
+    if (inputPayment.value) {
+        const formattedInputPayment = inputPayment.value.replace(/\D/g, "").slice(0, -2) + '.' + inputPayment.value.replace(/\D/g, "").slice(-2)
+        showWarningForHighValue(formattedInputPayment, extraEmployeeId)
+    }
 
     const name = document.getElementById(`textField-employee-name-${extraEmployeeId}`)
     const payment = document.getElementById(`textField-employee-daily-payment-${extraEmployeeId}`)
     const pixKey = document.getElementById(`textField-employee-pix-key-${extraEmployeeId}`)
 
     inputName.value ? name.textContent = `- ${inputName.value}: ` : name.textContent = ''
-    inputPayment.value ? payment.textContent = `R$ ${parseFloat(inputPayment.value).toFixed(2).replace('.', ',')}` : payment.textContent = ''
+    inputPayment.value ? payment.textContent = inputPayment.value : payment.textContent = ''
     inputPixKey.value ? pixKey.textContent = ` (Pix: ${inputPixKey.value})` : pixKey.textContent = ''
 
     name.textContent.length >= 1
