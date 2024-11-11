@@ -72,7 +72,7 @@ export function createInputFieldsForDeliveryPerson(deliveryPersonId, name) {
         
             case 3:
                 div2.classList.add('flex-item-day-consumption')
-                input.setAttribute('type', 'number')
+                input.setAttribute('type', 'text')
                 blockNonNumericKeys(input)
                 input.setAttribute('id', `consumption-${deliveryPersonId}`)
                 input.setAttribute('min', '0')
