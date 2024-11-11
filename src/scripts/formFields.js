@@ -75,6 +75,7 @@ export function createInputFieldsForDeliveryPerson(deliveryPersonId, name) {
                 input.setAttribute('type', 'text')
                 blockNonNumericKeys(input)
                 input.setAttribute('id', `consumption-${deliveryPersonId}`)
+                input.classList.add('currency-input')
                 input.setAttribute('min', '0')
                 input.setAttribute('required', '')
                 label.setAttribute('for', `consumption-${deliveryPersonId}`)

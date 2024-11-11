@@ -9,6 +9,29 @@ import { exportReportToExcel } from "./reportData.js";
 document.addEventListener('DOMContentLoaded', () =>{
     configDeliveryPerson()
     detectUserTheme()
+
+    // Listener global para inputs de moeda
+    document.addEventListener("focus", (event) => {
+        const formatter = new Intl.NumberFormat('pt-BR', {
+            style: 'currency',
+            currency: 'BRL',
+            minimumFractionDigits: 2
+        })
+
+        const input = event.target
+        setTimeout(()=>{
+            if (input.classList.contains("currency-input") && input.value === "") {
+                input.value = formatter.format(0); // Exibe "R$ 0,00" se o campo estiver vazio
+            }
+        }, 200)
+    }, true)
+
+    document.addEventListener("blur", (event) => {
+        const input = event.target
+        if (input.classList.contains("currency-input") && (input.value == "R$ 0,00" || input.value === "" || input.value === " ")) {
+            input.value = ''; // Limpa o input se o usuário não digitar nenhum valor
+        }
+    }, true)
 })
 document.getElementById('section-delivery-person').addEventListener('input', handleDeliveryPersonData)
 document.getElementById('section-extra-delivery').addEventListener('input', handleExtraDeliveryData)
