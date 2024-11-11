@@ -138,27 +138,3 @@ function formatCurrencyInput(value) {
         minimumFractionDigits: 2
     })
 }
-
-    // const input = document.getElementById("money-input");
-    // const formatter = new Intl.NumberFormat('pt-BR', {
-    //     style: 'currency',
-    //     currency: 'BRL',
-    //     minimumFractionDigits: 2
-    // })
-
-    // // Evento de foco para definir o valor inicial ao clicar no campo
-    
-
-    // // Evento de input para formatar o valor enquanto o usuário digita
-    // input.addEventListener("input", (event) => {
-    //     const value = input.value.replace(/\D/g, ""); // Remove caracteres não numéricos
-    //     const number = parseFloat(value) / 100; // Converte para número com duas casas decimais
-    //     input.value = formatter.format(number); // Formata o valor
-    // });
-
-    // // Evento de blur para limpar o valor se for "R$ 0,00" quando o usuário sair do campo
-    // input.addEventListener("blur", () => {
-    //     if (input.value === formatter.format(0)) {
-    //         input.value = ""; // Limpa o campo se o valor for "R$ 0,00"
-    //     }
-    // });
