@@ -10,14 +10,14 @@ document.addEventListener('DOMContentLoaded', () =>{
     configDeliveryPerson()
     detectUserTheme()
 
+    const formatter = new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL',
+        minimumFractionDigits: 2
+    })
+
     // Listener global para inputs de moeda
     document.addEventListener("focus", (event) => {
-        const formatter = new Intl.NumberFormat('pt-BR', {
-            style: 'currency',
-            currency: 'BRL',
-            minimumFractionDigits: 2
-        })
-
         const input = event.target
         setTimeout(()=>{
             if (input.classList.contains("currency-input") && input.value === "") {
@@ -30,6 +30,15 @@ document.addEventListener('DOMContentLoaded', () =>{
         const input = event.target
         if (input.classList.contains("currency-input") && (input.value == "R$ 0,00" || input.value === "" || input.value === " ")) {
             input.value = ''; // Limpa o input se o usuário não digitar nenhum valor
+        }
+    }, true)
+
+    document.addEventListener("input", (event) => {
+        const input = event.target
+        if (input.classList.contains("currency-input")) {
+            const value = input.value.replace(/\D/g, "")
+            const number = parseFloat(value) / 100
+            input.value = formatter.format(number) // Formata o valor
         }
     }, true)
 })
