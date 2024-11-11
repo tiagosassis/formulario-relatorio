@@ -54,8 +54,11 @@ export function paymentCalculation(deliveryPersonId) {
 
     if (document.querySelector(`#consumption-${deliveryPersonId}`).value == '') 
         consumption = 0
-    else
-        consumption = parseFloat(document.querySelector(`#consumption-${deliveryPersonId}`).value.replace(',', '.'))
+    else {
+        const valueConsumption = document.querySelector(`#consumption-${deliveryPersonId}`).value
+        const formattedValue = valueConsumption.replace(/\D/g, "").slice(0, -2) + '.' + valueConsumption.replace(/\D/g, "").slice(-2)
+        consumption = parseFloat(formattedValue)
+    }
 
     if (time.turn === 'Morning') {
         if ((deliveries + extra) < 10) 
