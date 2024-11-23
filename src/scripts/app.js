@@ -54,10 +54,9 @@ document.getElementById('download-report').addEventListener('click', exportRepor
 
 export const activeDeliveryPersons = [
     {name: 'Byane', turn: ['Night'], dayOff: 'Wednesday'},
-    {name: 'Guilherme Vieira', turn: ['Night'], dayOff: 'Tuesday'},
+    {name: 'Guilherme Vieira', turn: ['Morning', 'Night'], dayOff: 'Tuesday'},
     {name: 'Kaio', turn: ['Night'], dayOff: 'Thursday'},
-    {name: 'Keven', turn: ['Morning', 'Night'], dayOff: 'Monday'},
-    {name: 'João Pedro', turn: ['Morning'], dayOff: ''}
+    {name: 'Keven', turn: ['Morning', 'Night'], dayOff: 'Monday'}
 ]
 
 let currentDeliveryPersonCount = activeDeliveryPersons.length // necessário para criar o ID único para extradores extras criados pelo usuário
