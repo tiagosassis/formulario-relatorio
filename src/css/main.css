@@ -34,7 +34,7 @@ body{
 header{
     width: 100vw;
     background-color: var(--header-bg-color);
-    padding: 1.5em 10%;
+    padding: 1em 10%;
 
     .flex-row-wrap{
         margin-top: 0px;
@@ -62,8 +62,12 @@ main{
     }
 }
 
-div.flex-row-wrap, section.flex-row-wrap{
+div.flex-row-wrap {
     margin-top: 25px;
+}
+
+div.flex-row-wrap.extra-employee    {
+    margin-top: 20px;
 }
 
 .flex-container-button{
@@ -117,12 +121,12 @@ hr{
 }
 
 .extra-container{
-    margin-top: 20px;
+    margin-top: 0px;
     border: none;
     border-top: 1px solid var(--divider-color);
 
     legend{
-        padding: 10px;
+        padding: 0px 10px;
         text-align: center;
     }
 }
