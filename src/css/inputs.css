@@ -25,3 +25,19 @@ input[type="number"]::-webkit-outer-spin-button {
     /* Remove spinners em navegadores baseados em WebKit (Chrome, Safari) */
     -webkit-appearance: none;
 }
+
+.comment {
+    width: 100%;
+    min-height: 100px;
+    font-family: Poppins, Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    
+    border-radius: 5px;
+    resize: none;
+}
+
+.comment:focus {
+    outline: none;
+}
