@@ -131,3 +131,15 @@ export function handleExtraEmployeeData(event) {
         : toggleClassHidden(document.getElementById('report-freelancer'), false)
 
 }
+
+export function handleNoteData(event) {
+    const comment = event.target.value
+    if(comment){
+        console.log('teste')
+        toggleClassHidden(document.getElementById('report-note'), true)
+        const commentDisplay = document.getElementById('display-note')
+        commentDisplay.innerText = comment
+    } else{
+        toggleClassHidden(document.getElementById('report-note'), false)
+    }
+}
