@@ -2,7 +2,7 @@ import { darkMode, detectUserTheme } from "./theme.js"
 import { copyContent } from "./clipboard.js"
 import { createDateTimeInfo, deliveryPersonDatalist } from "./utils.js"
 import { createInputFieldsForExtraEmployee, createInputFieldsForDeliveryPerson } from "./formFields.js"
-import { handleExtraEmployeeData, handleExtraDeliveryData, handleDeliveryPersonData } from "./formDataHandler.js"
+import { handleExtraEmployeeData, handleExtraDeliveryData, handleDeliveryPersonData, handleNoteData } from "./formDataHandler.js"
 import { removeExtraEmployee } from "./fieldManager.js"
 import { exportReportToExcel } from "./reportData.js";
 
@@ -51,6 +51,7 @@ document.getElementById('add-extra-employee').addEventListener('click', createIn
 document.getElementById('remove-extra-employee').addEventListener('click', removeExtraEmployee)
 document.getElementById('section-extra-employee').addEventListener('input', handleExtraEmployeeData)
 document.getElementById('download-report').addEventListener('click', exportReportToExcel)
+document.getElementById('comment').addEventListener('input', handleNoteData)
 
 export const activeDeliveryPersons = [
     {name: 'Byane', turn: ['Night'], dayOff: 'Wednesday'},
