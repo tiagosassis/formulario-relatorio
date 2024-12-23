@@ -14,7 +14,7 @@
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
-    font-family: Poppins, Arial, Helvetica, sans-serif;
+    font-family: var(--font-family);
 }
 
 body{
@@ -203,4 +203,8 @@ hr{
 .content{
     display: contents;
     /*Essa classe altera a disposição do texto no relatorio, de forma que fique exatamente como tem que ficar quando for copiado, essa classe deve ser aplicada somente no momento de copiar e depois deve ser retirada para o texto voltar a ter display block*/
+}
+
+p {
+    word-break: break-all;
 }
