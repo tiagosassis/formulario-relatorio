@@ -74,6 +74,7 @@ div.flex-row-wrap.extra-employee    {
     display: flex;
     flex-flow: row nowrap;
     margin-top: 15px;
+    margin-bottom: 10px;
     justify-content: space-between;
 
     button{
@@ -120,7 +121,7 @@ hr{
     border-radius: 5px;
 }
 
-.extra-container{
+.fieldset-container{
     margin-top: 0px;
     border: none;
     border-top: 1px solid var(--divider-color);
