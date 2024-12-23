@@ -34,7 +34,7 @@ body{
 header{
     width: 100vw;
     background-color: var(--header-bg-color);
-    padding: 1em 10%;
+    padding: .5em 10%;
 
     .flex-row-wrap{
         margin-top: 0px;
