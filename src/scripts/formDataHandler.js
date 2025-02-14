@@ -112,21 +112,28 @@ export function handleExtraEmployeeData(event) {
     const inputName = document.getElementById(`extra-employee-name-${extraEmployeeId}`)
     const inputPayment = document.getElementById(`extra-employee-daily-payment-${extraEmployeeId}`)
     const inputPixKey = document.getElementById(`extra-employee-pix-key-${extraEmployeeId}`)
+    const inputConsumption = document.getElementById(`extra-employee-day-consumption-${extraEmployeeId}`)
+    
+    let paymentValue = inputPayment.value ? parseFloat(inputPayment.value.replace(/\D/g, "")) / 100 : 0;
+    let consumptionValue = inputConsumption.value ? parseFloat(inputConsumption.value.replace(/\D/g, "")) / 100 : 0;
+
+    const payment = paymentValue - consumptionValue;
+
+    const formattedPayment = payment.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
 
     if (inputPayment.value) {
-        const formattedInputPayment = inputPayment.value.replace(/\D/g, "").slice(0, -2) + '.' + inputPayment.value.replace(/\D/g, "").slice(-2)
-        showWarningForHighValue(formattedInputPayment, extraEmployeeId)
+        showWarningForHighValue(formattedPayment, extraEmployeeId);
     }
 
-    const name = document.getElementById(`textField-employee-name-${extraEmployeeId}`)
-    const payment = document.getElementById(`textField-employee-daily-payment-${extraEmployeeId}`)
-    const pixKey = document.getElementById(`textField-employee-pix-key-${extraEmployeeId}`)
+    const displayName = document.getElementById(`textField-employee-name-${extraEmployeeId}`)
+    const displayPayment = document.getElementById(`textField-employee-daily-payment-${extraEmployeeId}`)
+    const displayPixKey = document.getElementById(`textField-employee-pix-key-${extraEmployeeId}`)
 
-    inputName.value ? name.textContent = `- ${inputName.value}: ` : name.textContent = ''
-    inputPayment.value ? payment.textContent = inputPayment.value : payment.textContent = ''
-    inputPixKey.value ? pixKey.textContent = ` (Pix: ${inputPixKey.value})` : pixKey.textContent = ''
+    inputName.value ? displayName.textContent = `- ${inputName.value}: ` : displayName.textContent = ''
+    inputPayment.value ? displayPayment.textContent = formattedPayment : displayPayment.textContent = ''
+    inputPixKey.value ? displayPixKey.textContent = ` (Pix: ${inputPixKey.value})` : displayPixKey.textContent = ''
 
-    name.textContent.length >= 1
+    displayName.textContent.length >= 1
         ? toggleClassHidden(document.getElementById('report-freelancer'), true)
         : toggleClassHidden(document.getElementById('report-freelancer'), false)
 
