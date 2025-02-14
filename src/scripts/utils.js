@@ -130,11 +130,3 @@ export function validateInputLength(event, maxLength){
         event.target.value = event.target.value.slice(0, maxLength) // Limita a entrada a 6 caracteres
     }
 }
-
-function formatCurrencyInput(value) {
-    const formatter = new Intl.NumberFormat('pt-BR', {
-        style: 'currency',
-        currency: 'BRL',
-        minimumFractionDigits: 2
-    })
-}
