@@ -114,22 +114,25 @@ export function handleExtraEmployeeData(event) {
     const inputPixKey = document.getElementById(`extra-employee-pix-key-${extraEmployeeId}`)
     const inputConsumption = document.getElementById(`extra-employee-day-consumption-${extraEmployeeId}`)
     
-    let paymentValue = inputPayment.value ? parseFloat(inputPayment.value.replace(/\D/g, "")) / 100 : 0;
-    let consumptionValue = inputConsumption.value ? parseFloat(inputConsumption.value.replace(/\D/g, "")) / 100 : 0;
+    let paymentValue = inputPayment.value ? parseFloat(inputPayment.value.replace(/\D/g, "")) / 100 : 0
+    let consumptionValue = inputConsumption.value ? parseFloat(inputConsumption.value.replace(/\D/g, "")) / 100 : 0
 
     const payment = paymentValue - consumptionValue;
 
-    const formattedPayment = payment.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+    const formattedPayment = payment.toLocaleString('pt-BR', { minimumFractionDigits: 2 })
 
-    if (inputPayment.value) {
-        showWarningForHighValue(formattedPayment, extraEmployeeId);
-    }
+    if (inputPayment.value)
+        showWarningForHighValue(formattedPayment, extraEmployeeId)
 
     const displayName = document.getElementById(`textField-employee-name-${extraEmployeeId}`)
     const displayPayment = document.getElementById(`textField-employee-daily-payment-${extraEmployeeId}`)
     const displayPixKey = document.getElementById(`textField-employee-pix-key-${extraEmployeeId}`)
 
-    inputName.value ? displayName.textContent = `- ${inputName.value}: ` : displayName.textContent = ''
+    if (inputName.value) {
+        consumptionValue > 0 ? displayName.textContent = `- ${inputName.value} (1 consumo): ` : displayName.textContent = `- ${inputName.value}: `
+    } else{
+        displayName.textContent = ''
+    }
     inputPayment.value ? displayPayment.textContent = formattedPayment : displayPayment.textContent = ''
     inputPixKey.value ? displayPixKey.textContent = ` (Pix: ${inputPixKey.value})` : displayPixKey.textContent = ''
 
