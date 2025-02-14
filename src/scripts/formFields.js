@@ -252,6 +252,23 @@ export function createInputFieldsForExtraEmployee() {
     div2.append(input, label)
     div1.appendChild(div2)
 
+    div2 = document.createElement('div')
+    div2.classList.add('flex-item-day-consumption')
+    input = document.createElement('input')
+    input.setAttribute('autocomplete', 'on')
+    input.setAttribute('id', `extra-employee-day-consumption-${extraEmployeeId}`)
+    input.classList.add('float-input')
+    input.setAttribute('type', 'text')
+    input.setAttribute('name', `extra-employee-day-consumption-${extraEmployeeId}`)
+    input.setAttribute('required', '')
+    label = document.createElement('label')
+    label.setAttribute('for', `extra-employee-day-consumption-${extraEmployeeId}`)
+    label.classList.add('float-label')
+    label.textContent = 'Consumo'
+    div2.append(input, label)
+    div1.appendChild(div2)
+
+
     container.appendChild(div1)
 
     createDisplayFieldsForExtraEmployee(extraEmployeeId) // cria a div onde as informações do funcionario extra serão colocadas para mostrar no relatorio
