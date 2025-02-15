@@ -37,6 +37,10 @@ document.addEventListener('DOMContentLoaded', () =>{
         const input = event.target
         if (input.classList.contains("currency-input")) {
             const value = input.value.replace(/\D/g, "")
+            if (value === "") {
+                input.value = ""
+                return
+            }
             const number = parseFloat(value) / 100
             input.value = formatter.format(number) // Formata o valor
         }
