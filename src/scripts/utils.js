@@ -16,7 +16,7 @@ export function createDateTimeInfo(){
     const month = String(now.getMonth() + 1).padStart(2, '0')
     let dayShift, weekDay
 
-    if(now.getHours() >= 5 && now.getHours() < 17) // define o turno
+    if(now.getHours() >= 5 && now.getHours() < 20) // define o turno
         dayShift = 'Morning'
     else
         dayShift = 'Night'
