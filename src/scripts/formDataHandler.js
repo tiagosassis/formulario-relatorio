@@ -121,8 +121,9 @@ export function handleExtraEmployeeData(event) {
 
     const formattedPayment = payment.toLocaleString('pt-BR', { minimumFractionDigits: 2 })
 
-    if (inputPayment.value)
+    if (inputPayment.value){
         showWarningForHighValue(formattedPayment, extraEmployeeId)
+    }
 
     const displayName = document.getElementById(`textField-employee-name-${extraEmployeeId}`)
     const displayPayment = document.getElementById(`textField-employee-daily-payment-${extraEmployeeId}`)

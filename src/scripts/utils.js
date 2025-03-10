@@ -117,7 +117,8 @@ export function handleMouseEvent(event) { // monstra popup avisando que o valor 
     }
 }
 
-export function showWarningForHighValue(value, extraEmployeeId) { // mostra indicador de que o valor é inesperado para pagamento
+export function showWarningForHighValue(formattedPayment, extraEmployeeId) { // mostra indicador de que o valor é inesperado para pagamento
+    const value = parseFloat(formattedPayment.replace(/\D/g, "").replace(/(\d{2})$/, '.$1'));
     if (value > 100) {
         document.getElementById(`span-alert-${extraEmployeeId}`).classList.remove('display-none')
     } else {
