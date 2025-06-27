@@ -197,6 +197,7 @@ export function createInputFieldsForExtraEmployee() {
     input.setAttribute('id', `extra-employee-name-${extraEmployeeId}`)
     input.classList.add('float-input')
     input.setAttribute('type', 'text')
+    input.setAttribute('list', 'datalist-extra-employee')
     input.setAttribute('name', `extra-employee-name-${extraEmployeeId}`)
     input.setAttribute('required', '')
     input.addEventListener('input', (event) => validateInputLength(event, 40))
@@ -206,7 +207,7 @@ export function createInputFieldsForExtraEmployee() {
     label.textContent = 'Nome'
     div2.append(input, label)
     div1.appendChild(div2)
-
+ 
     div2 = document.createElement('div')
     div2.classList.add('flex-item-daily-payment')
     input = document.createElement('input')
