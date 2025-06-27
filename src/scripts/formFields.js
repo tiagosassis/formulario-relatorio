@@ -219,6 +219,7 @@ export function createInputFieldsForExtraEmployee() {
     blockNonNumericKeys(input)
     input.setAttribute('name', `extra-employee-daily-payment-${extraEmployeeId}`)
     input.setAttribute('required', '')
+    input.setAttribute('value', '70,00')
     label = document.createElement('label')
     label.setAttribute('for', `extra-employee-daily-payment-${extraEmployeeId}`)
     label.classList.add('float-label')
