@@ -16,9 +16,12 @@ export function createDateTimeInfo(){
     const month = String(now.getMonth() + 1).padStart(2, '0')
     let dayShift, weekDay
 
-    if(now.getHours() >= 5 && now.getHours() < 17) // define o turno
-        dayShift = 'Morning'
-    else
+    // if(now.getHours() >= 5 && now.getHours() < 17) // define o turno
+    //     dayShift = 'Morning'
+    // else
+    //     dayShift = 'Night'
+
+    if(true) // por enquanto o turno do dia está desativado pois o almoço não está funcionando
         dayShift = 'Night'
 
     switch (now.getDay()) { // organiza o dia da semana
