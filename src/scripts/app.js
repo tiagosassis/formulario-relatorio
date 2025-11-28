@@ -59,7 +59,7 @@ document.getElementById('comment').addEventListener('input', handleNoteData)
 
 export const activeDeliveryPersons = [
     {name: 'Byane', turn: ['Night'], dayOff: 'Wednesday'},
-    {name: 'Maicon Suel', turn: ['Morning', 'Night'], dayOff: 'Tuesday'},
+    {name: 'Maicon Suel', turn: ['Morning'], dayOff: 'Tuesday'},
     {name: 'Kaio de Oliveira', turn: ['Night'], dayOff: 'Thursday'},
     {name: 'Keven', turn: ['Night'], dayOff: 'Monday'},
     {name: 'Frederick Muller', turn: ['Morning'], dayOff: 'Monday'}
