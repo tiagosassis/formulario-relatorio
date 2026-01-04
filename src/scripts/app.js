@@ -59,10 +59,9 @@ document.getElementById('comment').addEventListener('input', handleNoteData)
 
 export const activeDeliveryPersons = [
     {name: 'Byane', turn: ['Night'], dayOff: 'Wednesday'},
-    {name: 'Roberto', turn: ['Night'], dayOff: 'Tuesday'},
-    {name: 'Kaio de Oliveira', turn: ['Night'], dayOff: 'Thursday'},
-    {name: 'Keven', turn: ['Night'], dayOff: 'Monday'},
-    {name: 'Undefined', turn: ['Morning'], dayOff: 'Monday'}
+    {name: 'Roberto', turn: ['Night'], dayOff: 'Wednesday'},
+    {name: 'Kaio de Oliveira', turn: ['Night'], dayOff: 'Wednesday'},
+    {name: 'Keven Anderson', turn: ['Night'], dayOff: 'Wednesday'},
 ]
 
 let currentDeliveryPersonCount = activeDeliveryPersons.length // necessário para criar o ID único para extradores extras criados pelo usuário
