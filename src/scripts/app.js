@@ -61,8 +61,8 @@ export const activeDeliveryPersons = [
     {name: 'Byane', turn: ['Night'], dayOff: 'Wednesday'},
     {name: 'Roberto', turn: ['Night'], dayOff: 'Wednesday'},
     {name: 'Kaio de Oliveira', turn: ['Night'], dayOff: 'Wednesday'},
-    {name: 'Keven Anderson', turn: ['Night'], dayOff: 'Wednesday'}
-    {name: 'Mateus (*Pago*)', turn: ['Morning'], dayOff: 'Wednesday'}
+    {name: 'Keven Anderson', turn: ['Night'], dayOff: 'Wednesday'},
+    {name: 'Mateus (*Pago*)', turn: [''], dayOff: 'Wednesday'}
 ]
 
 let currentDeliveryPersonCount = activeDeliveryPersons.length // necessário para criar o ID único para extradores extras criados pelo usuário
