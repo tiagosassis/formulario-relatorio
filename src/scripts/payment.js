@@ -11,7 +11,7 @@ function paymentRules(deliveryValues, time) {
      * @param {Object} deliveryValues - Objeto contendo os valores da entrega, como taxa e ajuda de custo.
      * @param {Object} time - Objeto contendo as informações de tempo, incluindo turno e dia da semana.
      */
-    deliveryValues.deliveryFee = 6
+    deliveryValues.deliveryFee = 8
     
     if (time.turn === 'Night') {
         if (time.weekDay == 'Friday' || time.weekDay == 'Saturday' || time.weekDay == 'Sunday') // sexta, sabado e domingo a noite a ajuda de custo é R$ 20,00
@@ -36,7 +36,7 @@ export function paymentCalculation(deliveryPersonId) {
     const time = createDateTimeInfo()
     let deliveries, extra, consumption, totalPayment
     let deliveryValues = {
-        deliveryFee: 6,
+        deliveryFee: 8,
         costAssistance: 10
     }
 
