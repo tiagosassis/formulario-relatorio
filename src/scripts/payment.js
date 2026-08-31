@@ -6,7 +6,7 @@ function paymentRules(deliveryValues, time) {
      * 
      * - Durante a noite (turno "Night"), se for sexta-feira, sábado ou domingo, a ajuda de custo será de R$ 20,00.
      * - No almoço (turno "Morning"), se for domingo, a ajuda de custo será de R$ 20,00.
-     * - Em todos os casos, a taxa de entrega padrão é R$ 6,00.
+     * - Em todos os casos, a taxa de entrega padrão é R$ 8,00.
      * 
      * @param {Object} deliveryValues - Objeto contendo os valores da entrega, como taxa e ajuda de custo.
      * @param {Object} time - Objeto contendo as informações de tempo, incluindo turno e dia da semana.
@@ -15,7 +15,7 @@ function paymentRules(deliveryValues, time) {
     
     if (time.turn === 'Night') {
         if (time.weekDay == 'Friday' || time.weekDay == 'Saturday' || time.weekDay == 'Sunday') // sexta, sabado e domingo a noite a ajuda de custo é R$ 20,00
-            deliveryValues.costAssistance = 20
+            deliveryValues.costAssistance = 110
         
     } else if (time.turn === 'Morning') {
         if (time.weekDay == 'Sunday') // domingo no almoço a ajuda de custo é R$ 20,00
@@ -37,7 +37,8 @@ export function paymentCalculation(deliveryPersonId) {
     let deliveries, extra, consumption, totalPayment
     let deliveryValues = {
         deliveryFee: 8,
-        costAssistance: 10
+        deliveryThreshold: 12,
+        costAssistance: 100
     }
 
     paymentRules(deliveryValues, time)
@@ -65,8 +66,13 @@ export function paymentCalculation(deliveryPersonId) {
             totalPayment = 60
         else 
             totalPayment = ((deliveries + extra) * deliveryValues.deliveryFee) + deliveryValues.costAssistance - consumption
-    } else if (time.turn === 'Night') 
-        totalPayment = ((deliveries + extra) * deliveryValues.deliveryFee) + deliveryValues.costAssistance - consumption
+    } else if (time.turn === 'Night')
+        if ((deliveries + extra) <= deliveryValues.deliveryThreshold) {
+            totalPayment = deliveryValues.costAssistance - consumption
+        }
+        else{
+            totalPayment = (((deliveries + extra) - deliveryValues.deliveryThreshold) * deliveryValues.deliveryFee) + deliveryValues.costAssistance - consumption
+        }
     else 
         console.warn('erro na função paymentCalculation()')
     
